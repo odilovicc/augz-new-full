@@ -1,0 +1,702 @@
+{
+  "/Users/notprxgrammer/projects/augz/front/package.json": {
+    "mtime": 1779995823.3487837,
+    "ast_hash": "7c5f790c9a74fcfa29d13d345d949ae3",
+    "semantic_hash": "7c5f790c9a74fcfa29d13d345d949ae3"
+  },
+  "/Users/notprxgrammer/projects/augz/front/nuxt.config.ts": {
+    "mtime": 1780116703.6829648,
+    "ast_hash": "508be9128493a69927359ae5bcb3b321",
+    "semantic_hash": "508be9128493a69927359ae5bcb3b321"
+  },
+  "/Users/notprxgrammer/projects/augz/front/tsconfig.json": {
+    "mtime": 1779160069.0,
+    "ast_hash": "99d8d7543e8bac462160e11d33e5146e",
+    "semantic_hash": "99d8d7543e8bac462160e11d33e5146e"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/app.vue": {
+    "mtime": 1780116845.5129614,
+    "ast_hash": "aa8901756ed5cb56031f8dccd821effe",
+    "semantic_hash": "aa8901756ed5cb56031f8dccd821effe"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/composables/usePageContent.ts": {
+    "mtime": 1780068774.409395,
+    "ast_hash": "f95383213fbb60c7a04e899219b7f7a1",
+    "semantic_hash": "f95383213fbb60c7a04e899219b7f7a1"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/composables/useSettings.ts": {
+    "mtime": 1780059896.7306316,
+    "ast_hash": "bd0baf785c7ee14db06a324d8c781bc7",
+    "semantic_hash": "bd0baf785c7ee14db06a324d8c781bc7"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/composables/useServicesPageContent.ts": {
+    "mtime": 1779997098.0069103,
+    "ast_hash": "270177916105188c1bb6835d7ca3b15a",
+    "semantic_hash": "270177916105188c1bb6835d7ca3b15a"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/plugins/settings.server.ts": {
+    "mtime": 1780059906.5455518,
+    "ast_hash": "90eb43d828dc48693e55d45a622edbdb",
+    "semantic_hash": "90eb43d828dc48693e55d45a622edbdb"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/LocaleSwitcher.vue": {
+    "mtime": 1780081056.6784825,
+    "ast_hash": "da20c2e73eb6652c7ecb76259db2bdba",
+    "semantic_hash": "da20c2e73eb6652c7ecb76259db2bdba"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/SectionPartners.vue": {
+    "mtime": 1779474339.6395864,
+    "ast_hash": "94708be680bfd11c545965d416b64144",
+    "semantic_hash": "94708be680bfd11c545965d416b64144"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/Hero.vue": {
+    "mtime": 1780116474.6997237,
+    "ast_hash": "56ec2d9597781462ee476fd28fab40c8",
+    "semantic_hash": "56ec2d9597781462ee476fd28fab40c8"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/Navbar.vue": {
+    "mtime": 1780081078.28076,
+    "ast_hash": "5b635a96bd75576a2808ed6371c04d92",
+    "semantic_hash": "5b635a96bd75576a2808ed6371c04d92"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/SectionAbout.vue": {
+    "mtime": 1779969142.220913,
+    "ast_hash": "85bf13ebd1c2e823fdb975169820c941",
+    "semantic_hash": "85bf13ebd1c2e823fdb975169820c941"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/SectionStats.vue": {
+    "mtime": 1779474335.2558308,
+    "ast_hash": "bceb06cbfd8207dd823fd0a1fe10dd1f",
+    "semantic_hash": "bceb06cbfd8207dd823fd0a1fe10dd1f"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/SectionNews.vue": {
+    "mtime": 1780080294.028166,
+    "ast_hash": "b0bd4dfe3f5665fa6cceb52b5e85cdfa",
+    "semantic_hash": "b0bd4dfe3f5665fa6cceb52b5e85cdfa"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/SectionContacts.vue": {
+    "mtime": 1780059929.2521584,
+    "ast_hash": "3f992e95acc48c60b7c526294b0cffa1",
+    "semantic_hash": "3f992e95acc48c60b7c526294b0cffa1"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/AppFooter.vue": {
+    "mtime": 1780117205.9012582,
+    "ast_hash": "2d7e7c065c899e5b2b0229f9b658a9ae",
+    "semantic_hash": "2d7e7c065c899e5b2b0229f9b658a9ae"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/Logo.vue": {
+    "mtime": 1780117292.4611218,
+    "ast_hash": "042761aa95b410b3e7922da7a9e20973",
+    "semantic_hash": "042761aa95b410b3e7922da7a9e20973"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/ui/PhoneInput.vue": {
+    "mtime": 1779995850.6265426,
+    "ast_hash": "32138fc6f562adba69526d3bd83c9d1f",
+    "semantic_hash": "32138fc6f562adba69526d3bd83c9d1f"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/ui/LeadForm.vue": {
+    "mtime": 1779996486.2293,
+    "ast_hash": "f77bd7a70f9b89ecf1c164b9734a20e6",
+    "semantic_hash": "f77bd7a70f9b89ecf1c164b9734a20e6"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/ui/VideoCard.vue": {
+    "mtime": 1779433415.6801517,
+    "ast_hash": "8142c68e4828944b2eb48606422528b0",
+    "semantic_hash": "8142c68e4828944b2eb48606422528b0"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/ui/UiButton.vue": {
+    "mtime": 1779534897.3994105,
+    "ast_hash": "f5f70c384cad1782f10c8b557f9ffe6d",
+    "semantic_hash": "f5f70c384cad1782f10c8b557f9ffe6d"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/about/Hero.vue": {
+    "mtime": 1779970844.5311666,
+    "ast_hash": "dd4390f53ae6fd7c9ba65d9b92c1fb12",
+    "semantic_hash": "dd4390f53ae6fd7c9ba65d9b92c1fb12"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/about/SectionIntro.vue": {
+    "mtime": 1779971153.5007515,
+    "ast_hash": "8e300a93285ba1fd40aa2b5bea540086",
+    "semantic_hash": "8e300a93285ba1fd40aa2b5bea540086"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/services/ServicesContent.vue": {
+    "mtime": 1779997397.0812526,
+    "ast_hash": "ffafcfb5b17f4a83aa6274ca4c6b68fc",
+    "semantic_hash": "ffafcfb5b17f4a83aa6274ca4c6b68fc"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/services/ServicesHero.vue": {
+    "mtime": 1779997109.1928685,
+    "ast_hash": "97988c850a5fdecee2f2d45c4e39feb6",
+    "semantic_hash": "97988c850a5fdecee2f2d45c4e39feb6"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/services/ServiceSection.vue": {
+    "mtime": 1779997130.4452422,
+    "ast_hash": "81d43df42da0ba6ed0fefc769203231a",
+    "semantic_hash": "81d43df42da0ba6ed0fefc769203231a"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/membership/index.vue": {
+    "mtime": 1779995442.129325,
+    "ast_hash": "40adfc03480262ad864e7b139452171f",
+    "semantic_hash": "40adfc03480262ad864e7b139452171f"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/components/membership/AskQuestionModal.vue": {
+    "mtime": 1780060054.8137255,
+    "ast_hash": "d5154cf86f9d11efab1776b35e8003c2",
+    "semantic_hash": "d5154cf86f9d11efab1776b35e8003c2"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/layouts/default.vue": {
+    "mtime": 1779518392.6355703,
+    "ast_hash": "12472a715a9aac63c1fb4330a22faa6f",
+    "semantic_hash": "12472a715a9aac63c1fb4330a22faa6f"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/index.vue": {
+    "mtime": 1780116853.6076276,
+    "ast_hash": "332becb8b72eb8a2a57a0e7182a24f4b",
+    "semantic_hash": "332becb8b72eb8a2a57a0e7182a24f4b"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/membership.vue": {
+    "mtime": 1780116865.899148,
+    "ast_hash": "e63b84eed909d0c0d772959d06ee7910",
+    "semantic_hash": "e63b84eed909d0c0d772959d06ee7910"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/tenderzone.vue": {
+    "mtime": 1780116876.456467,
+    "ast_hash": "40d82659751d796fbc2a7a2b2450d2b5",
+    "semantic_hash": "40d82659751d796fbc2a7a2b2450d2b5"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/report.vue": {
+    "mtime": 1780116888.2487686,
+    "ast_hash": "fefcb258a4732b4c2abfc17f6bd556a3",
+    "semantic_hash": "fefcb258a4732b4c2abfc17f6bd556a3"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/about.vue": {
+    "mtime": 1780116859.4067483,
+    "ast_hash": "33d00adf1987aace2230e7301a30851e",
+    "semantic_hash": "33d00adf1987aace2230e7301a30851e"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/contacts/index.vue": {
+    "mtime": 1780116905.6705654,
+    "ast_hash": "44adc5c115ae0d035a64fb3e25dcfea8",
+    "semantic_hash": "44adc5c115ae0d035a64fb3e25dcfea8"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/news/index.vue": {
+    "mtime": 1779969882.8597627,
+    "ast_hash": "c593dabee5daf53ec42a465b43b71e05",
+    "semantic_hash": "c593dabee5daf53ec42a465b43b71e05"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/news/[id].vue": {
+    "mtime": 1779629406.9789732,
+    "ast_hash": "b07f506f1bbb419676ccaa611f8fbd40",
+    "semantic_hash": "b07f506f1bbb419676ccaa611f8fbd40"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/markets/index.vue": {
+    "mtime": 1780081613.648797,
+    "ast_hash": "62cec122733087bda6aa34dfb11ccc64",
+    "semantic_hash": "62cec122733087bda6aa34dfb11ccc64"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/pages/services/index.vue": {
+    "mtime": 1780116896.0490763,
+    "ast_hash": "559f0b846de232caf9a186d40b7d42ac",
+    "semantic_hash": "559f0b846de232caf9a186d40b7d42ac"
+  },
+  "/Users/notprxgrammer/projects/augz/front/server/api/__sitemap__/urls.ts": {
+    "mtime": 1779627789.0276537,
+    "ast_hash": "1750f992dfb5c0d1c389b45b785a577c",
+    "semantic_hash": "1750f992dfb5c0d1c389b45b785a577c"
+  },
+  "/Users/notprxgrammer/projects/augz/front/i18n/i18n.config.ts": {
+    "mtime": 1780081466.8045115,
+    "ast_hash": "ebab955df221a96f5613048576ec79a4",
+    "semantic_hash": "ebab955df221a96f5613048576ec79a4"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/package.json": {
+    "mtime": 1779626788.5666656,
+    "ast_hash": "a4241c44fc0b4068afebe595f11316c2",
+    "semantic_hash": "a4241c44fc0b4068afebe595f11316c2"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/nuxt.config.ts": {
+    "mtime": 1779452732.4848826,
+    "ast_hash": "a9593d7af9c58a128c6675db8ae44c24",
+    "semantic_hash": "a9593d7af9c58a128c6675db8ae44c24"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/tsconfig.json": {
+    "mtime": 1779452698.9389856,
+    "ast_hash": "44a7760e440af404ce6bd8f20de6f1d2",
+    "semantic_hash": "44a7760e440af404ce6bd8f20de6f1d2"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/app.vue": {
+    "mtime": 1779452754.962091,
+    "ast_hash": "8ff6bfcd1d983be82e32ff07349a7faa",
+    "semantic_hash": "8ff6bfcd1d983be82e32ff07349a7faa"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/app.config.ts": {
+    "mtime": 1779452716.881455,
+    "ast_hash": "d49858f2ceb0309230cd55484e0bb2d0",
+    "semantic_hash": "d49858f2ceb0309230cd55484e0bb2d0"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/middleware/auth.ts": {
+    "mtime": 1779452750.3660858,
+    "ast_hash": "4d98a97dec8d4284deaa8953fa483cc8",
+    "semantic_hash": "4d98a97dec8d4284deaa8953fa483cc8"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/composables/useAuth.ts": {
+    "mtime": 1779452747.3417668,
+    "ast_hash": "8dcc647af9ce6aae5c3cbfe99721322f",
+    "semantic_hash": "8dcc647af9ce6aae5c3cbfe99721322f"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/composables/useApi.ts": {
+    "mtime": 1779452742.676397,
+    "ast_hash": "fc5bb2dfd368f8abedf30d70aa9a1007",
+    "semantic_hash": "fc5bb2dfd368f8abedf30d70aa9a1007"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/components/I18nField.vue": {
+    "mtime": 1779474168.3818383,
+    "ast_hash": "d3dc8a771fe16eddc338ba0546adad45",
+    "semantic_hash": "d3dc8a771fe16eddc338ba0546adad45"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/components/RichEditor.vue": {
+    "mtime": 1779626821.6740222,
+    "ast_hash": "03732b8e462cebbb4363abf732f68301",
+    "semantic_hash": "03732b8e462cebbb4363abf732f68301"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/components/ImageUpload.vue": {
+    "mtime": 1779520560.8291097,
+    "ast_hash": "c34b0ec15483f8da8bb5180908beb8d2",
+    "semantic_hash": "c34b0ec15483f8da8bb5180908beb8d2"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/components/SaveBar.vue": {
+    "mtime": 1779474182.2616348,
+    "ast_hash": "aefb21016ba5a34995139dd2f7262222",
+    "semantic_hash": "aefb21016ba5a34995139dd2f7262222"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/layouts/auth.vue": {
+    "mtime": 1779452774.3535206,
+    "ast_hash": "d72ce0a10a23242d21d06ebf560ebac2",
+    "semantic_hash": "d72ce0a10a23242d21d06ebf560ebac2"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/layouts/default.vue": {
+    "mtime": 1780079471.126,
+    "ast_hash": "f680b8c4d269fec6454845cd74fc86e0",
+    "semantic_hash": "f680b8c4d269fec6454845cd74fc86e0"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/index.vue": {
+    "mtime": 1780079485.519445,
+    "ast_hash": "08748fe8ca2077197a2c52b1f733ac87",
+    "semantic_hash": "08748fe8ca2077197a2c52b1f733ac87"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/login.vue": {
+    "mtime": 1779452785.5226717,
+    "ast_hash": "8a7f045e8ac08ffb861810107547a32e",
+    "semantic_hash": "8a7f045e8ac08ffb861810107547a32e"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/settings/index.vue": {
+    "mtime": 1780060124.1234703,
+    "ast_hash": "9be9a1af347e819dc2991814e3c281d0",
+    "semantic_hash": "9be9a1af347e819dc2991814e3c281d0"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/complaints/index.vue": {
+    "mtime": 1780067881.239496,
+    "ast_hash": "91c12869dc71ef1b1fec6e3dec98b9a8",
+    "semantic_hash": "91c12869dc71ef1b1fec6e3dec98b9a8"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/testimonials/index.vue": {
+    "mtime": 1779536630.8524668,
+    "ast_hash": "2362d0adee22fa4235ddaaae8c8c5027",
+    "semantic_hash": "2362d0adee22fa4235ddaaae8c8c5027"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/leads/index.vue": {
+    "mtime": 1780045777.219751,
+    "ast_hash": "d015b4c45de6798b9e61ef30df0e6977",
+    "semantic_hash": "d015b4c45de6798b9e61ef30df0e6977"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/videos/index.vue": {
+    "mtime": 1779458586.2020876,
+    "ast_hash": "2ec30c82c21db43382720ac8cb94c6e0",
+    "semantic_hash": "2ec30c82c21db43382720ac8cb94c6e0"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/news/index.vue": {
+    "mtime": 1779628973.156129,
+    "ast_hash": "cc64edccc5715e149484c5607b42b25d",
+    "semantic_hash": "cc64edccc5715e149484c5607b42b25d"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/markets/index.vue": {
+    "mtime": 1780054255.7175286,
+    "ast_hash": "f0a13d310a98f711c14213d9f90cd6e9",
+    "semantic_hash": "f0a13d310a98f711c14213d9f90cd6e9"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/leaders/index.vue": {
+    "mtime": 1779969925.4366307,
+    "ast_hash": "9732c7aba1bbbdbc4370b90368eeaf54",
+    "semantic_hash": "9732c7aba1bbbdbc4370b90368eeaf54"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/applications/index.vue": {
+    "mtime": 1779538042.8441157,
+    "ast_hash": "9af0de12e734d48e111a38d5aeb6eaa5",
+    "semantic_hash": "9af0de12e734d48e111a38d5aeb6eaa5"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/pages/report.vue": {
+    "mtime": 1780068755.7715983,
+    "ast_hash": "cce4d7f29dcd22c6168e372d0670a1fa",
+    "semantic_hash": "cce4d7f29dcd22c6168e372d0670a1fa"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/pages/[slug].vue": {
+    "mtime": 1780079456.226318,
+    "ast_hash": "9fa6ffe346b17a1f1f692cc9e891709a",
+    "semantic_hash": "9fa6ffe346b17a1f1f692cc9e891709a"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/services/index.vue": {
+    "mtime": 1779475266.1599433,
+    "ast_hash": "15159ad4e421f8e4d5396e5cd843e9d3",
+    "semantic_hash": "15159ad4e421f8e4d5396e5cd843e9d3"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/membership/index.vue": {
+    "mtime": 1779536003.617847,
+    "ast_hash": "3590973a50a3d37a844113515cba4261",
+    "semantic_hash": "3590973a50a3d37a844113515cba4261"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/app/pages/questions/index.vue": {
+    "mtime": 1779989002.414242,
+    "ast_hash": "0207e9bfaf137724b3ea9c5f05c60513",
+    "semantic_hash": "0207e9bfaf137724b3ea9c5f05c60513"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/nitro.json": {
+    "mtime": 1779632210.0652769,
+    "ast_hash": "267768d2f1af36571659c7253cac3d20",
+    "semantic_hash": "267768d2f1af36571659c7253cac3d20"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/package.json": {
+    "mtime": 1779632209.0884202,
+    "ast_hash": "137302b69b95cc6bf144270eadfed5be",
+    "semantic_hash": "137302b69b95cc6bf144270eadfed5be"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/index.mjs": {
+    "mtime": 1779632210.0426424,
+    "ast_hash": "62115896d8629b46f8caf1ebf0067fc7",
+    "semantic_hash": "62115896d8629b46f8caf1ebf0067fc7"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/chunks/_/icons.mjs": {
+    "mtime": 1779632210.0478497,
+    "ast_hash": "8b25962cc48b48b822c1abcc76b91508",
+    "semantic_hash": "8b25962cc48b48b822c1abcc76b91508"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/chunks/_/error-500.mjs": {
+    "mtime": 1779632210.0477524,
+    "ast_hash": "0a489618b9ba49762b05bf9abce1921e",
+    "semantic_hash": "0a489618b9ba49762b05bf9abce1921e"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/chunks/_/icons2.mjs": {
+    "mtime": 1779632210.0524464,
+    "ast_hash": "48240d0da69b73df1fd44e929a26dc85",
+    "semantic_hash": "48240d0da69b73df1fd44e929a26dc85"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/chunks/virtual/_virtual_spa-template.mjs": {
+    "mtime": 1779632210.04769,
+    "ast_hash": "e184c915dec9e718d2fd05a6e12e2f4d",
+    "semantic_hash": "e184c915dec9e718d2fd05a6e12e2f4d"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/chunks/routes/renderer.mjs": {
+    "mtime": 1779632210.0445046,
+    "ast_hash": "5efe29de0d7a422ad308e85e29b26c4e",
+    "semantic_hash": "5efe29de0d7a422ad308e85e29b26c4e"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/server/chunks/nitro/nitro.mjs": {
+    "mtime": 1779632210.043285,
+    "ast_hash": "16c55d029418ce6d96d3c837b80d940f",
+    "semantic_hash": "16c55d029418ce6d96d3c837b80d940f"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/B0W-1K_F.js": {
+    "mtime": 1779632203.3399854,
+    "ast_hash": "2e6c34893d378c3f343f4e2be7d07a83",
+    "semantic_hash": "2e6c34893d378c3f343f4e2be7d07a83"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/C1gBWncH.js": {
+    "mtime": 1779632203.3413036,
+    "ast_hash": "8feb8d387a587a5752ae94c038c094e0",
+    "semantic_hash": "8feb8d387a587a5752ae94c038c094e0"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/DErDIf3W.js": {
+    "mtime": 1779632203.3420777,
+    "ast_hash": "a203b780e75fa6d9500303d74520d33d",
+    "semantic_hash": "a203b780e75fa6d9500303d74520d33d"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/C_a-NbBD.js": {
+    "mtime": 1779632203.3417623,
+    "ast_hash": "11c3aa19ace0672193d2da2f57356ac5",
+    "semantic_hash": "11c3aa19ace0672193d2da2f57356ac5"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/Bnz-M7ac.js": {
+    "mtime": 1779632203.3410323,
+    "ast_hash": "9191d11041ced8b3f92b60f51489e4f4",
+    "semantic_hash": "9191d11041ced8b3f92b60f51489e4f4"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/j4HXUdmM.js": {
+    "mtime": 1779632203.3442562,
+    "ast_hash": "ce3b38ff10699d8060d6054b59e4bf83",
+    "semantic_hash": "ce3b38ff10699d8060d6054b59e4bf83"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/D9wBkbCM.js": {
+    "mtime": 1779632203.3421743,
+    "ast_hash": "ab384d94150d1876432007b012900a55",
+    "semantic_hash": "ab384d94150d1876432007b012900a55"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/BMuXU52P.js": {
+    "mtime": 1779632203.340658,
+    "ast_hash": "a6bd06858754c94c89b887eeef55fb0d",
+    "semantic_hash": "a6bd06858754c94c89b887eeef55fb0d"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/vCBSr1sn.js": {
+    "mtime": 1779632203.3442626,
+    "ast_hash": "57197daae5b6c1d88a2fa4ba5c5457f2",
+    "semantic_hash": "57197daae5b6c1d88a2fa4ba5c5457f2"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/ch4MBtPw.js": {
+    "mtime": 1779632203.342579,
+    "ast_hash": "cf5caf54bde452e899692646d74def4c",
+    "semantic_hash": "cf5caf54bde452e899692646d74def4c"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/DQvt-OMb.js": {
+    "mtime": 1779632203.3421946,
+    "ast_hash": "d6e8ec21e41e0763a24f2919910a5502",
+    "semantic_hash": "d6e8ec21e41e0763a24f2919910a5502"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/BuH-7D-Q.js": {
+    "mtime": 1779632203.3411086,
+    "ast_hash": "2021fe44f396dc39cc9cf7c654200872",
+    "semantic_hash": "2021fe44f396dc39cc9cf7c654200872"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/M6iSfdNw.js": {
+    "mtime": 1779632203.3423893,
+    "ast_hash": "6b243605a7256d511ccd4a59c9b658b6",
+    "semantic_hash": "6b243605a7256d511ccd4a59c9b658b6"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/kTEqSCEV.js": {
+    "mtime": 1779632203.344158,
+    "ast_hash": "656446ddfeefe8d5633ce2dcc00f260d",
+    "semantic_hash": "656446ddfeefe8d5633ce2dcc00f260d"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/4y9frBPb.js": {
+    "mtime": 1779632203.3404274,
+    "ast_hash": "25589d7c81e64da5de958c0acdb63e05",
+    "semantic_hash": "25589d7c81e64da5de958c0acdb63e05"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/B6QmMTzj.js": {
+    "mtime": 1779632203.340149,
+    "ast_hash": "bdcd07ef21b97a3e408a62bff73abc5a",
+    "semantic_hash": "bdcd07ef21b97a3e408a62bff73abc5a"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/CO1RHEph.js": {
+    "mtime": 1779632203.34121,
+    "ast_hash": "15a07a94aa30b7881f624e8513d42d21",
+    "semantic_hash": "15a07a94aa30b7881f624e8513d42d21"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/BX8iIMKB.js": {
+    "mtime": 1779632203.340792,
+    "ast_hash": "7bb5a93a9096041b01e89dd542620563",
+    "semantic_hash": "7bb5a93a9096041b01e89dd542620563"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/2ABX2RC5.js": {
+    "mtime": 1779632203.3399246,
+    "ast_hash": "349bf6e17477aa7ddd28e6ac448e4ac9",
+    "semantic_hash": "349bf6e17477aa7ddd28e6ac448e4ac9"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/BUD1VvQX.js": {
+    "mtime": 1779632203.3406658,
+    "ast_hash": "3da38d405112990766b6c372aa4340f5",
+    "semantic_hash": "3da38d405112990766b6c372aa4340f5"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/BPdM6Qij.js": {
+    "mtime": 1779632203.3406398,
+    "ast_hash": "d097f7d89cb4623e01d565ae12b82e85",
+    "semantic_hash": "d097f7d89cb4623e01d565ae12b82e85"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/DESTYZn8.js": {
+    "mtime": 1779632203.342057,
+    "ast_hash": "b85cd224cf6d4d2c5acea8822cd6684e",
+    "semantic_hash": "b85cd224cf6d4d2c5acea8822cd6684e"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/BK_TJ_sG.js": {
+    "mtime": 1779632203.3403542,
+    "ast_hash": "f5a10fdec7f6f1fbd0de5788dcad1046",
+    "semantic_hash": "f5a10fdec7f6f1fbd0de5788dcad1046"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/1vk54J-l.js": {
+    "mtime": 1779632203.3399825,
+    "ast_hash": "399765a931841a90dc12464db387e2bc",
+    "semantic_hash": "399765a931841a90dc12464db387e2bc"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/CZTzYHU2.js": {
+    "mtime": 1779632203.341292,
+    "ast_hash": "6c74591cea696c27643c7c594c3e9ce5",
+    "semantic_hash": "6c74591cea696c27643c7c594c3e9ce5"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/TiMSTF-o.js": {
+    "mtime": 1779632203.3425152,
+    "ast_hash": "9275ae3fdc6fae847de88f6baefe3a62",
+    "semantic_hash": "9275ae3fdc6fae847de88f6baefe3a62"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/CokiwErO.js": {
+    "mtime": 1779632203.3417528,
+    "ast_hash": "caaa8d2ed1eaff846040fb341e870259",
+    "semantic_hash": "caaa8d2ed1eaff846040fb341e870259"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/Cm48R7xQ.js": {
+    "mtime": 1779632203.3416774,
+    "ast_hash": "9556a97e1306a4067df5db11b779a278",
+    "semantic_hash": "9556a97e1306a4067df5db11b779a278"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/I4alfQix.js": {
+    "mtime": 1779632203.342548,
+    "ast_hash": "2d515ba99b3211c6ac64dc689e4b5413",
+    "semantic_hash": "2d515ba99b3211c6ac64dc689e4b5413"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/C4EzMryF.js": {
+    "mtime": 1779632203.3415604,
+    "ast_hash": "c30e83db8bca9660636baeea5f8752b9",
+    "semantic_hash": "c30e83db8bca9660636baeea5f8752b9"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/B_knWFUZ.js": {
+    "mtime": 1779632203.341034,
+    "ast_hash": "6c5bdb3953ace533b84226192be8d396",
+    "semantic_hash": "6c5bdb3953ace533b84226192be8d396"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/builds/latest.json": {
+    "mtime": 1779632203.3310606,
+    "ast_hash": "91cea73908229f5b40e8876c3f8faaba",
+    "semantic_hash": "91cea73908229f5b40e8876c3f8faaba"
+  },
+  "/Users/notprxgrammer/projects/augz/admin/.output/public/_nuxt/builds/meta/f3316aff-f25f-42eb-8ff0-dd09b4838fdc.json": {
+    "mtime": 1779632203.327969,
+    "ast_hash": "f59bcd0e8f3717f40ed839193bfb57c3",
+    "semantic_hash": "f59bcd0e8f3717f40ed839193bfb57c3"
+  },
+  "/Users/notprxgrammer/projects/augz/front/README.md": {
+    "mtime": 1779160069.0,
+    "ast_hash": "884261092c8d74ec62c5c0860a38bc9d",
+    "semantic_hash": "884261092c8d74ec62c5c0860a38bc9d"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/robots.txt": {
+    "mtime": 1779627796.3088171,
+    "ast_hash": "25e87ec66b77efb66530124b276bc511",
+    "semantic_hash": "25e87ec66b77efb66530124b276bc511"
+  },
+  "/Users/notprxgrammer/projects/augz/front/app/assets/img/Logo.svg": {
+    "mtime": 1779356816.1040826,
+    "ast_hash": "c3c04088229e0728adebe79661813c8f",
+    "semantic_hash": "c3c04088229e0728adebe79661813c8f"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/favicon-16x16.png": {
+    "mtime": 1780116683.2713454,
+    "ast_hash": "6962fa1f191a8b97db10957b329b5dc6",
+    "semantic_hash": "6962fa1f191a8b97db10957b329b5dc6"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/android-chrome-192x192.png": {
+    "mtime": 1780116683.2903106,
+    "ast_hash": "db126ae12888491be0276abc75567ca2",
+    "semantic_hash": "db126ae12888491be0276abc75567ca2"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/apple-touch-icon.png": {
+    "mtime": 1780116683.2800527,
+    "ast_hash": "fb7ec2ee7961704f0c1d3e735af28094",
+    "semantic_hash": "fb7ec2ee7961704f0c1d3e735af28094"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/og-default.jpg": {
+    "mtime": 1779627872.0023084,
+    "ast_hash": "6a99c575ab87f8c7d1ed1e52e7e349ce",
+    "semantic_hash": "6a99c575ab87f8c7d1ed1e52e7e349ce"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/android-chrome-512x512.png": {
+    "mtime": 1780116683.2923765,
+    "ast_hash": "61db1a53d47e22503d4ad42596785ec3",
+    "semantic_hash": "61db1a53d47e22503d4ad42596785ec3"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/og-default.jpeg": {
+    "mtime": 1779628632.5477822,
+    "ast_hash": "b387a8dbeeaafb0887a8a74a3f160ae1",
+    "semantic_hash": "b387a8dbeeaafb0887a8a74a3f160ae1"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/favicon-32x32.png": {
+    "mtime": 1780116683.2775595,
+    "ast_hash": "b5d1023a5ccf10df8126c9fed7e30cf5",
+    "semantic_hash": "b5d1023a5ccf10df8126c9fed7e30cf5"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/anticorruption.png": {
+    "mtime": 1779360776.0,
+    "ast_hash": "38073a9d975f25f0264fd2fd3c24912d",
+    "semantic_hash": "38073a9d975f25f0264fd2fd3c24912d"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/tenderzone.png": {
+    "mtime": 1779360776.0,
+    "ast_hash": "e6814ffec2e968b42101f52496f18120",
+    "semantic_hash": "e6814ffec2e968b42101f52496f18120"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/antimonopoly.png": {
+    "mtime": 1779360776.0,
+    "ast_hash": "f4c3aaa66c305349cd015418bd8d08a1",
+    "semantic_hash": "f4c3aaa66c305349cd015418bd8d08a1"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/icpa.png": {
+    "mtime": 1779360776.0,
+    "ast_hash": "5e1b7e4d08970844125a5e6d1828d015",
+    "semantic_hash": "5e1b7e4d08970844125a5e6d1828d015"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/brokers.png": {
+    "mtime": 1779360776.0,
+    "ast_hash": "9588c06dd6cfc93318027e54bd6291df",
+    "semantic_hash": "9588c06dd6cfc93318027e54bd6291df"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/tendergpt.png": {
+    "mtime": 1779360776.0,
+    "ast_hash": "5f8a8c894da6dff54fd4d8a297de401e",
+    "semantic_hash": "5f8a8c894da6dff54fd4d8a297de401e"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/main/en.png": {
+    "mtime": 1779442390.3944898,
+    "ast_hash": "df9cad59c6407a68c503af2cd2169352",
+    "semantic_hash": "df9cad59c6407a68c503af2cd2169352"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/main/ru.png": {
+    "mtime": 1779442390.402198,
+    "ast_hash": "0ec88edfa0ed196e99cfafd14f422573",
+    "semantic_hash": "0ec88edfa0ed196e99cfafd14f422573"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/logos/main/uz.png": {
+    "mtime": 1779442390.399347,
+    "ast_hash": "d49829dde0353477079709645cb0faa1",
+    "semantic_hash": "d49829dde0353477079709645cb0faa1"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/cons3.png": {
+    "mtime": 1779359801.6492052,
+    "ast_hash": "514f5a03887c4ec2aa622acd2d8aa991",
+    "semantic_hash": "514f5a03887c4ec2aa622acd2d8aa991"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/cons2.png": {
+    "mtime": 1779359801.6448047,
+    "ast_hash": "a40c244efef2e1526259f057c14947ad",
+    "semantic_hash": "a40c244efef2e1526259f057c14947ad"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/cons1.png": {
+    "mtime": 1779359801.664242,
+    "ast_hash": "d3e4d029c4532c54871c087f2f64d337",
+    "semantic_hash": "d3e4d029c4532c54871c087f2f64d337"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/Hero.png": {
+    "mtime": 1779432515.1110191,
+    "ast_hash": "6e3bc09054ff7ed827bc2c55fe1453dd",
+    "semantic_hash": "6e3bc09054ff7ed827bc2c55fe1453dd"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/cons5.png": {
+    "mtime": 1779359801.661472,
+    "ast_hash": "46c7eab2fb04cd5d6f94ce1877be45ec",
+    "semantic_hash": "46c7eab2fb04cd5d6f94ce1877be45ec"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/cons4.png": {
+    "mtime": 1779359801.6526737,
+    "ast_hash": "e0efab1bb70b9182aa8d942e0ebbd48c",
+    "semantic_hash": "e0efab1bb70b9182aa8d942e0ebbd48c"
+  },
+  "/Users/notprxgrammer/projects/augz/front/public/img/bg-pattern.png": {
+    "mtime": 1779518138.1711109,
+    "ast_hash": "09310a47a4a70f3bfb66aef599910495",
+    "semantic_hash": "09310a47a4a70f3bfb66aef599910495"
+  }
+}

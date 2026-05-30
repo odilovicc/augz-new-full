@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+    --theme-color: #D1832C;
+}
+body {
+    font-family: "Manrope", sans-serif;
+}
+
+/* Container — ограничение ширины для всех секций */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+}
+
+/* Утилита для всех секций */
+.section {
+    padding-block: 4rem;
+}
+@media (min-width: 768px) {
+    .section {
+        padding-block: 6rem;
+    }
+}
