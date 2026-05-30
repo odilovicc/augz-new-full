@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: 'http://localhost:8000/api',
+      apiBase: 'https://e422-2a05-45c2-5037-9200-94e-6baf-23f-f6b9.ngrok-free.app/api',
     },
   },
 })

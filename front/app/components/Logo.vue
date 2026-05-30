@@ -3,13 +3,13 @@
         <div class="flex items-center gap-x-2">
             <img :src="`/logos/main/${locale}.png`" :class="{
                 'w-14': locale === 'ru' || locale === 'uz',
-                'w-16': locale === 'en',
-                'w-12': props.variant === 'sm',
+                'w-12': props.variant === 'sm' || locale === 'en',
+                'md:-mr-2': locale === 'uz',
             }" alt="Logo" class="object-contain"/>
-            <div :class="variant === 'sm' ? 'h-8' : 'h-10'" class="w-[1px] bg-black"></div>
+            <div :class="variant === 'sm' ? 'h-8' : 'h-6'" class="w-[1px] bg-black"></div>
             <span :class="{
-                'w-52 md:w-72': true,
-                'text-xs': variant === 'sm'
+                'w-52 md:w-64': true,
+                'text-xs': true
             }">{{ $t('logo_desc') }}</span>
         </div>
     </NuxtLink>

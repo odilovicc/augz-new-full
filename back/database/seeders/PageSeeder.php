@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Page;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class PageSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class PageSeeder extends Seeder
     public function run(): void
     {
         $this->base = rtrim(config('app.url'), '/');
+
+        $this->seedLogos();
 
         $pages = [
             'home'       => $this->homeContent(),
@@ -33,6 +36,23 @@ class PageSeeder extends Seeder
     private function img(string $path): string
     {
         return "{$this->base}/storage/{$path}";
+    }
+
+    private function seedLogos(): void
+    {
+        $src = resource_path('logos');
+        if (!is_dir($src)) {
+            return;
+        }
+
+        Storage::disk('public')->makeDirectory('logos');
+
+        foreach (glob("{$src}/*.{png,jpg,jpeg,svg,webp}", GLOB_BRACE) as $file) {
+            $name = basename($file);
+            if (!Storage::disk('public')->exists("logos/{$name}")) {
+                Storage::disk('public')->put("logos/{$name}", file_get_contents($file));
+            }
+        }
     }
 
     private function homeContent(): array
