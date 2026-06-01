@@ -2,18 +2,19 @@
     <div>
         <!-- Hero -->
         <div
-            class="relative overflow-hidden min-h-[88vh] flex items-center"
+            class="relative overflow-hidden bg-white min-h-85 md:min-h-100 flex items-center"
             style="background: url('/img/Hero.png') center/cover no-repeat;"
         >
-            <div class="relative z-10 container mx-auto px-4 py-20 md:py-28 mr-auto">
+            <div class="absolute inset-0 bg-linear-to-r from-white via-white/70 to-transparent pointer-events-none" />
+            <div class="relative z-10 container mx-auto px-4 py-16 md:py-28 mr-auto">
                 <!-- Breadcrumb -->
-                <nav class="flex items-center gap-1.5 text-xs text-gray-400 mb-8">
+                <nav class="flex items-center gap-1.5 text-xs text-gray-400 mb-6 md:mb-8">
                     <a href="/" class="hover:text-(--theme-color) transition-colors">{{ t(ui.breadcrumb_home) || 'Главная' }}</a>
                     <span>/</span>
                     <span class="text-gray-700">{{ t(ui.breadcrumb_current) || 'Членство' }}</span>
                 </nav>
 
-                <div class="flex flex-col gap-y-5 max-w-xl">
+                <div class="flex flex-col gap-y-4 md:gap-y-5 max-w-xl">
                     <!-- Section label -->
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-0.5 bg-(--theme-color)"></div>
@@ -21,21 +22,21 @@
                     </div>
 
                     <!-- Main heading -->
-                    <h1 class="text-5xl md:text-[3.5rem] font-black uppercase flex flex-col gap-y-4">
+                    <h1 class="text-3xl sm:text-5xl md:text-[3.5rem] font-black uppercase flex flex-col gap-y-2 md:gap-y-4">
                         <span>{{ t(hero.heading_1) || 'Станьте' }}</span>
                         <span>{{ t(hero.heading_2) || 'Частью' }}</span>
                         <span class="text-(--theme-color)">{{ t(hero.heading_3) || 'Сообщества' }}</span>
                     </h1>
 
                     <!-- Description -->
-                    <p class="text-sm text-gray-500 leading-relaxed md:w-full">
+                    <p class="text-xs md:text-sm text-gray-500 leading-relaxed max-w-xs md:max-w-none">
                         {{ t(hero.desc) || 'Более 1000 компаний и специалистов уже используют возможности АУГЗ.' }}
                     </p>
 
                     <!-- CTA buttons -->
-                    <div class="flex flex-col sm:flex-row gap-3 mt-1">
-                        <a :href="hero.btn_primary?.href || '#form'"><UiButton class="px-7 py-3 text-sm font-semibold">{{ t(hero.btn_primary?.label) || 'Вступить сейчас' }}</UiButton></a>
-                        <a :href="hero.btn_secondary?.href || '#benefits'"><UiButton variant="outlined" class="px-7 py-3 text-sm font-semibold">{{ t(hero.btn_secondary?.label) || 'Узнать подробнее' }}</UiButton></a>
+                    <div class="flex flex-col sm:flex-row gap-2 md:gap-3 mt-1">
+                        <a :href="hero.btn_primary?.href || '#form'"><UiButton class="px-6 py-2.5 md:px-7 md:py-3 text-sm font-semibold">{{ t(hero.btn_primary?.label) || 'Вступить сейчас' }}</UiButton></a>
+                        <a :href="hero.btn_secondary?.href || '#benefits'"><UiButton variant="outlined" class="hidden md:block px-6 py-2.5 md:px-7 md:py-3 text-sm font-semibold">{{ t(hero.btn_secondary?.label) || 'Узнать подробнее' }}</UiButton></a>
                     </div>
                 </div>
             </div>
@@ -44,14 +45,14 @@
         <!-- Преимущества членства -->
         <section id="benefits" class="section bg-[#0f1117]">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-black uppercase text-white mb-10">{{ t(benefitsData.heading) || 'Преимущества членства' }}</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                <h2 class="text-2xl md:text-4xl font-black uppercase text-white mb-6 md:mb-10">{{ t(benefitsData.heading) || 'Преимущества членства' }}</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                     <div
                         v-for="benefit in benefits"
                         :key="benefit.title"
                         class="rounded-xl border border-white/10 bg-white/5 p-4 md:p-6 flex flex-col gap-3"
                     >
-                        <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center shrink-0" :class="benefit.iconBg">
+                        <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center shrink-0" :style="{ backgroundColor: twBgColor(benefit.iconBg) }">
                             <Icon :name="benefit.icon" class="text-base md:text-xl text-white" />
                         </div>
                         <div>
@@ -64,13 +65,13 @@
         </section>
 
         <!-- Кто может вступить -->
-        <section class="section bg-white border-y border-gray-100">
+        <section class="section bg-white">
             <div class="container mx-auto px-4">
-                <div class="mb-10">
+                <div class="mb-6 md:mb-10">
                     <p class="text-xs font-semibold tracking-widest uppercase text-(--theme-color) mb-3">Членство</p>
-                    <h2 class="text-3xl md:text-4xl font-black uppercase text-gray-900">{{ t(memberTypesData.heading) || 'Кто может вступить' }}</h2>
+                    <h2 class="text-2xl md:text-4xl font-black uppercase text-gray-900">{{ t(memberTypesData.heading) || 'Кто может вступить' }}</h2>
                 </div>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                     <div
                         v-for="type in memberTypes"
                         :key="type.title"
@@ -92,29 +93,28 @@
         <!-- Подать заявку -->
         <section id="form" class="relative bg-[#0f1117] overflow-hidden">
             <!-- Diagonal cut top -->
-            <div class="absolute top-0 left-0 right-0 h-16 bg-[#f7f7f8]" style="clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);" />
+            <div class="absolute -top-0.5 left-0 right-0 h-16 bg-white border-y border-white" style="clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);" />
 
-            <div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="container mx-auto px-4 py-22 md:py-32 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
 
                     <!-- Left: copy -->
-                    <div class="flex flex-col gap-8">
+                    <div class="flex flex-col gap-6 md:gap-8">
                         <div>
-                            <p class="text-xs font-bold tracking-widest uppercase text-(--theme-color) mb-4">{{ t(formData.label) || 'Вступление' }}</p>
-                            <h2 class="text-4xl md:text-5xl font-black uppercase text-white leading-tight">
+                            <h2 class="text-2xl sm:text-4xl md:text-5xl font-black uppercase text-white leading-tight">
                                 {{ t(formData.heading) || 'Подайте заявку' }}<br/>
-                                <span class="text-(--theme-color)">{{ t(formData.heading_accent) || 'на вступление' }}</span>
+                                <span>{{ t(formData.heading_accent) || 'на вступление' }}</span>
                             </h2>
-                            <p class="mt-5 text-sm text-gray-400 leading-relaxed max-w-sm">
+                            <p class="mt-3 md:mt-5 text-xs md:text-sm text-gray-400 leading-relaxed max-w-sm">
                                 {{ t(formData.desc) || 'Мы свяжемся с вами в течение 24 часов.' }}
                             </p>
                         </div>
 
                         <!-- Trust signals -->
-                        <div class="flex flex-col gap-4">
-                            <div v-for="signal in trustSignals" :key="signal.title" class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" :class="signal.bg">
-                                    <Icon :name="signal.icon" class="text-lg" :class="signal.color" />
+                        <div class="flex flex-col gap-3 md:gap-4">
+                            <div v-for="signal in trustSignals" :key="signal.title" class="flex items-start gap-3 md:gap-4">
+                                <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center shrink-0" :style="{ backgroundColor: twBgColor(signal.bg) }">
+                                    <Icon :name="signal.icon" class="text-base md:text-lg" :style="{ color: twTextColor(signal.color) }" />
                                 </div>
                                 <div>
                                     <p class="text-sm font-semibold text-white">{{ signal.title }}</p>
@@ -125,8 +125,8 @@
 
                         <!-- Decorative stat -->
                         <div class="flex items-center gap-4 pt-4 border-t border-white/8">
-                            <span class="text-5xl font-black text-(--theme-color)">{{ formData.stat_value || '1000+' }}</span>
-                            <span class="text-sm text-gray-400 leading-snug">{{ t(formData.stat_label) || 'компаний и специалистов уже в сети АУГЗ' }}</span>
+                            <span class="text-2xl md:text-5xl font-black text-(--theme-color)">{{ formData.stat_value || '1000+' }}</span>
+                            <span class="text-xs md:text-sm text-gray-400 leading-snug">{{ t(formData.stat_label) || 'компаний и специалистов уже в сети АУГЗ' }}</span>
                         </div>
                     </div>
 
@@ -135,8 +135,8 @@
                         <!-- Glow behind form -->
                         <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-orange-500/8 via-transparent to-transparent blur-2xl pointer-events-none" />
 
-                        <form class="relative bg-[#161b24] border border-white/8 rounded-2xl p-8 flex flex-col gap-5" @submit.prevent="submitApplication">
-                            <div class="grid grid-cols-1 gap-5">
+                        <form class="relative bg-[#161b24] border border-white/8 rounded-2xl p-5 md:p-8 flex flex-col gap-4 md:gap-5" @submit.prevent="submitApplication">
+                            <div class="grid grid-cols-1 gap-4 md:gap-5">
                                 <!-- Name -->
                                 <div class="form-field">
                                     <label class="field-label">{{ t(ui.form_name_label) || 'Ваше имя' }} <span class="text-red-400">*</span></label>
@@ -157,8 +157,8 @@
                                     <input v-model="appForm.organization" type="text" :placeholder="t(ui.form_org_placeholder) || 'Название компании или ИП'" class="field-input" />
                                 </div>
 
-                                <!-- Phone + Email -->
-                                <div class="grid grid-cols-2 gap-4">
+                                <!-- Phone + Email: vertical on mobile, side-by-side on sm+ -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="form-field">
                                         <label class="field-label">{{ t(ui.form_phone_label) || 'Телефон' }} <span class="text-red-400">*</span></label>
                                         <UiPhoneInput
@@ -228,15 +228,15 @@
             <!-- Orange glow center -->
             <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(209,131,44,0.18) 0%, transparent 70%);" />
 
-            <div class="relative z-10 container mx-auto px-4 py-24 md:py-32 text-center flex flex-col items-center gap-8">
+            <div class="relative z-10 container mx-auto px-4 py-16 md:py-32 text-center flex flex-col items-center gap-5 md:gap-8">
                 <!-- Badge -->
-                <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full px-5 py-2">
+                <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full px-4 py-1.5 md:px-5 md:py-2">
                     <span class="w-2 h-2 rounded-full bg-(--theme-color) animate-pulse" />
                     <span class="text-xs font-semibold tracking-widest uppercase text-gray-300">{{ t(ctaData.badge) || '1000+ членов уже с нами' }}</span>
                 </div>
 
                 <!-- Heading -->
-                <h2 class="text-5xl md:text-7xl font-black uppercase text-white">
+                <h2 class="text-3xl sm:text-5xl md:text-7xl font-black uppercase text-white leading-tight">
                     <template v-for="(line, i) in (t(ctaData.heading) || 'Готовы стать\nчастью').split('\n')" :key="i">
                         {{ line }}<br v-if="i < (t(ctaData.heading) || 'Готовы стать\nчастью').split('\n').length - 1" />
                     </template>
@@ -244,14 +244,14 @@
                 </h2>
 
                 <!-- Subtext -->
-                <p class="text-sm text-gray-400 leading-relaxed max-w-md">
+                <p class="text-xs md:text-sm text-gray-400 leading-relaxed max-w-xs md:max-w-md">
                     {{ t(ctaData.desc) || 'Вступите сегодня и получите доступ к возможностям, которые помогут вашему бизнесу расти.' }}
                 </p>
 
                 <!-- Buttons -->
-                <div class="flex flex-col sm:flex-row gap-3 mt-2">
-                    <a :href="ctaData.btn_primary?.href || '#form'"><UiButton class="px-8 py-3.5 text-sm font-bold">{{ t(ctaData.btn_primary?.label) || 'Вступить в АУГЗ' }}</UiButton></a>
-                    <UiButton variant="outlined" class="px-8 py-3.5 text-sm font-bold" @click="askModalOpen = true">{{ t(ctaData.btn_secondary?.label) || 'Задать вопрос' }}</UiButton>
+                <div class="flex flex-col sm:flex-row gap-2 md:gap-3 mt-1 md:mt-2 w-full sm:w-auto">
+                    <a :href="ctaData.btn_primary?.href || '#form'" class="w-full sm:w-auto"><UiButton class="w-full sm:w-auto px-8 py-3 md:py-3.5 text-sm font-bold">{{ t(ctaData.btn_primary?.label) || 'Вступить в АУГЗ' }}</UiButton></a>
+                    <UiButton variant="outlined" class="px-8 py-3 md:py-3.5 text-sm font-bold" @click="askModalOpen = true">{{ t(ctaData.btn_secondary?.label) || 'Задать вопрос' }}</UiButton>
                 </div>
             </div>
         </section>
@@ -413,4 +413,27 @@ const trustSignals = computed(() =>
         subtitle: t(s.subtitle),
     }))
 )
+
+const TW_BG: Record<string, string> = {
+    'bg-orange-500/10': 'rgba(249,115,22,0.10)',
+    'bg-green-500/10':  'rgba(34,197,94,0.10)',
+    'bg-blue-500/10':   'rgba(59,130,246,0.10)',
+    'bg-amber-900/60':  'rgba(120,53,15,0.60)',
+    'bg-teal-900/60':   'rgba(19,78,74,0.60)',
+    'bg-green-900/60':  'rgba(20,83,45,0.60)',
+    'bg-yellow-900/60': 'rgba(113,63,18,0.60)',
+    'bg-indigo-900/60': 'rgba(49,46,129,0.60)',
+    'bg-red-900/60':    'rgba(127,29,29,0.60)',
+    'bg-gray-800/60':   'rgba(31,41,55,0.60)',
+}
+
+const TW_TEXT: Record<string, string> = {
+    'text-orange-400': '#fb923c',
+    'text-green-400':  '#4ade80',
+    'text-blue-400':   '#60a5fa',
+    'text-white':      '#ffffff',
+}
+
+const twBgColor   = (cls: string) => TW_BG[cls?.trim()]   ?? 'rgba(255,255,255,0.08)'
+const twTextColor = (cls: string) => TW_TEXT[cls?.trim()]  ?? '#ffffff'
 </script>

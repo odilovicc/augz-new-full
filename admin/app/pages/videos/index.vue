@@ -87,7 +87,17 @@
         </div>
 
         <UFormField label="Название">
-          <UInput v-model="editForm.title" class="w-full" />
+          <div class="flex gap-2">
+            <UInput v-model="editForm.title" class="flex-1" />
+            <UButton
+              type="button"
+              variant="outline"
+              icon="i-lucide-refresh-cw"
+              :loading="syncing"
+              title="Обновить название с YouTube"
+              @click="syncTitle"
+            />
+          </div>
         </UFormField>
 
         <UFormField label="Порядок сортировки">
@@ -119,6 +129,7 @@ const saveError = ref('')
 
 const newUrl = ref('')
 const editForm = reactive({ title: '', sort_order: 0 })
+const syncing = ref(false)
 
 const { data, pending, refresh } = await useAsyncData(
   'admin-videos',
@@ -155,6 +166,21 @@ async function create() {
   }
   finally {
     saving.value = false
+  }
+}
+
+async function syncTitle() {
+  syncing.value = true
+  saveError.value = ''
+  try {
+    const res = await apiFetch<{ title: string }>(`/admin/videos/${editItem.value.id}/sync-title`, { method: 'POST' })
+    editForm.title = res.title
+  }
+  catch (e: any) {
+    saveError.value = e?.data?.message ?? 'Не удалось получить название с YouTube'
+  }
+  finally {
+    syncing.value = false
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gray-950 min-h-[420px] flex items-end">
+    <section class="relative overflow-hidden bg-gray-950 min-h-[320px] md:min-h-[420px] flex items-end">
       <!-- Background image with overlay -->
       <div class="absolute inset-0">
         <img
@@ -13,32 +13,32 @@
       </div>
 
       <!-- Diagonal white cut at bottom -->
-      <div class="absolute bottom-0 left-0 right-0 h-24 bg-white" style="clip-path: polygon(0 100%, 100% 100%, 100% 40%, 0 100%)" />
+      <div class="absolute bottom-0 left-0 right-0 h-12 md:h-24 hidden bg-white" style="clip-path: polygon(0 100%, 100% 100%, 100% 40%, 0 100%)" />
 
-      <div class="relative container mx-auto px-4 pb-20 pt-32">
+      <div class="relative container mx-auto px-4 pb-14 md:pb-20 pt-24 md:pt-32">
         <!-- Breadcrumb -->
-        <nav class="flex items-center gap-2 text-sm text-white/50 mb-8">
+        <nav class="flex items-center gap-2 text-xs md:text-sm text-white/50 mb-5 md:mb-8">
           <a href="/" class="hover:text-white transition-colors">{{ t('nav.home') }}</a>
           <span>/</span>
           <span class="text-white/80">{{ t('news_page.title_plain') }}</span>
         </nav>
 
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 md:gap-8">
           <div class="max-w-lg">
-            <h1 class="text-5xl md:text-6xl font-black uppercase leading-[1.05] tracking-tight">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase leading-[1.05] tracking-tight">
               <span class="text-white block">{{ t('news_page.heading_1') }}</span>
-              <span class="text-(--theme-color) block">{{ t('news_page.heading_2') }}</span>
+              <span class="text-(--theme-color) block mt-2">{{ t('news_page.heading_2') }}</span>
             </h1>
-            <p class="mt-5 text-sm leading-relaxed text-white/60 max-w-sm">
+            <p class="mt-3 md:mt-5 text-xs md:text-sm leading-relaxed text-white/60 max-w-sm">
               {{ t('news_page.subtitle') }}
             </p>
           </div>
 
           <!-- Stats row -->
-          <div class="flex gap-10 pb-1">
+          <div class="flex gap-6 md:gap-10 pb-1">
             <div v-for="stat in heroStats" :key="stat.value" class="flex flex-col gap-1">
-              <span class="text-3xl font-black text-white">{{ stat.value }}</span>
-              <span class="text-xs text-white/40 uppercase tracking-wider">{{ stat.label }}</span>
+              <span class="text-xl md:text-3xl font-black text-white">{{ stat.value }}</span>
+              <span class="text-[10px] md:text-xs text-white/40 uppercase tracking-wider">{{ stat.label }}</span>
             </div>
           </div>
         </div>
@@ -58,18 +58,18 @@
             v-for="article in featuredArticles"
             :key="article.id"
             :to="localePath(`/news/${article.id}`)"
-            class="group py-8 md:px-8 first:pl-0 last:pr-0 flex flex-col gap-3"
+            class="group py-5 md:py-8 md:px-8 first:pl-0 last:pr-0 flex flex-col gap-2 md:gap-3"
           >
             <span class="text-[10px] font-bold uppercase tracking-widest" :style="{ color: categoryColor(article.category) }">
               {{ t(`news_page.category.${article.category}`) }}
             </span>
-            <h3 class="font-bold text-base leading-snug group-hover:text-(--theme-color) transition-colors line-clamp-3">
+            <h3 class="font-bold text-sm md:text-base leading-snug group-hover:text-(--theme-color) transition-colors line-clamp-2 md:line-clamp-3">
               {{ article.title }}
             </h3>
-            <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">{{ article.excerpt }}</p>
-            <div class="flex items-center justify-between mt-auto pt-2">
+            <p class="hidden md:block text-sm text-gray-500 leading-relaxed line-clamp-3">{{ article.excerpt }}</p>
+            <div class="flex items-center justify-between mt-auto pt-1 md:pt-2">
               <span class="text-xs text-gray-400">{{ formatDate(article.published_at) }}</span>
-              <span class="text-sm font-semibold text-(--theme-color) flex items-center gap-1 group-hover:gap-2 transition-all">
+              <span class="text-xs md:text-sm font-semibold text-(--theme-color) flex items-center gap-1 group-hover:gap-2 transition-all">
                 {{ t('news_page.read') }} →
               </span>
             </div>
@@ -83,7 +83,7 @@
       <div class="container mx-auto px-4">
 
         <!-- Filter bar -->
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-4 mb-8 flex flex-col gap-3">
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-3 md:p-4 mb-6 md:mb-8 flex flex-col gap-3">
           <!-- Search input -->
           <div class="relative">
             <Icon name="heroicons:magnifying-glass" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -96,12 +96,12 @@
             />
           </div>
 
-          <!-- Category tabs -->
-          <div class="flex flex-wrap items-center gap-2">
+          <!-- Category tabs — horizontal scroll on mobile -->
+          <div class="flex items-center gap-2 overflow-x-auto scrollbar-none -mx-3 px-3 md:mx-0 md:px-0 md:flex-wrap">
             <button
               v-for="cat in categories"
               :key="cat.id"
-              class="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer"
+              class="flex items-center gap-1.5 px-3 md:px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0"
               :class="activeCategory === cat.id
                 ? 'bg-gray-900 text-white shadow-sm'
                 : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'"
@@ -109,26 +109,26 @@
             >
               <span
                 v-if="cat.id !== 'all'"
-                class="w-2 h-2 rounded-full shrink-0"
+                class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full shrink-0"
                 :style="{ background: categoryColor(cat.id) }"
               />
               {{ t(`news_page.category.${cat.id}`) }}
             </button>
+          </div>
 
-            <!-- Sort buttons on the right -->
-            <div class="ml-auto flex items-center gap-1">
-              <button
-                v-for="sort in sorts"
-                :key="sort.id"
-                class="px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer"
-                :class="activeSort === sort.id
-                  ? 'bg-gray-900 text-white'
-                  : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'"
-                @click="activeSort = sort.id"
-              >
-                {{ t(`news_page.sort.${sort.id}`) }}
-              </button>
-            </div>
+          <!-- Sort buttons -->
+          <div class="flex items-center gap-1 overflow-x-auto scrollbar-none -mx-3 px-3 md:mx-0 md:px-0">
+            <button
+              v-for="sort in sorts"
+              :key="sort.id"
+              class="px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0"
+              :class="activeSort === sort.id
+                ? 'bg-gray-900 text-white'
+                : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'"
+              @click="activeSort = sort.id"
+            >
+              {{ t(`news_page.sort.${sort.id}`) }}
+            </button>
           </div>
         </div>
 
@@ -142,7 +142,7 @@
         </div>
 
         <!-- Results count -->
-        <p class="text-sm text-gray-500 mb-6">
+        <p class="text-xs md:text-sm text-gray-500 mb-4 md:mb-6">
           <span class="font-semibold text-gray-900">{{ totalCount }}</span>
           {{ ' ' }}{{ t('news_page.materials') }}
         </p>
@@ -157,37 +157,64 @@
                 v-for="article in filteredArticles"
                 :key="article.id"
                 :to="localePath(`/news/${article.id}`)"
-                class="group flex flex-col gap-2 p-6 hover:bg-gray-50 transition-colors"
+                class="group flex flex-col sm:flex-row gap-3 p-4 sm:p-6 hover:bg-gray-50 transition-colors"
               >
-                <div class="flex items-center gap-3">
-                  <span class="text-[10px] font-bold uppercase tracking-widest" :style="{ color: categoryColor(article.category) }">
-                    {{ t(`news_page.category.${article.category}`) }}
-                  </span>
-                  <span class="text-xs text-gray-300">·</span>
-                  <span class="text-xs text-gray-400">{{ article.source }}</span>
-                  <span class="text-xs text-gray-300 ml-auto">{{ formatDate(article.published_at) }}</span>
+                <!-- Image: top on mobile, right on sm+ -->
+                <div v-if="article.image" class="sm:hidden w-full h-40 rounded-xl overflow-hidden bg-gray-100 shrink-0">
+                  <img
+                    :src="article.image"
+                    :alt="article.title"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h3 class="font-bold text-base leading-snug group-hover:text-(--theme-color) transition-colors">
-                  {{ article.title }}
-                </h3>
-                <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">{{ article.excerpt }}</p>
-                <div class="flex items-center justify-between pt-1">
-                  <div class="flex flex-wrap gap-2">
-                    <span
-                      v-for="tag in article.tags"
-                      :key="tag"
-                      class="text-xs rounded-full px-2.5 py-0.5 transition-colors cursor-pointer"
-                      :class="activeTag === tag
-                        ? 'bg-(--theme-color) text-white'
-                        : 'text-gray-500 bg-gray-100 hover:bg-gray-200'"
-                      @click.stop="setTag(tag)"
-                    >
-                      {{ tag }}
+
+                <div class="flex flex-col gap-2 flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-[10px] font-bold uppercase tracking-widest" :style="{ color: categoryColor(article.category) }">
+                      {{ t(`news_page.category.${article.category}`) }}
+                    </span>
+                    <span class="text-xs text-gray-300">·</span>
+                    <span class="text-xs text-gray-400 truncate max-w-[120px]">{{ article.source }}</span>
+                    <span class="text-xs text-gray-400 ml-auto">{{ formatDate(article.published_at) }}</span>
+                  </div>
+                  <h3 class="font-bold text-sm sm:text-base leading-snug group-hover:text-(--theme-color) transition-colors">
+                    {{ article.title }}
+                  </h3>
+                  <span
+                    v-if="article.source_url"
+                    role="link"
+                    class="text-xs text-gray-400 hover:text-(--theme-color) transition-colors truncate cursor-pointer"
+                    @click.prevent.stop="openUrl(article.source_url)"
+                  >{{ article.source_url }}</span>
+                  <p class="text-xs sm:text-sm text-gray-500 leading-relaxed line-clamp-2">{{ article.excerpt }}</p>
+                  <div class="flex items-center justify-between pt-1">
+                    <div class="flex flex-wrap gap-1.5">
+                      <span
+                        v-for="tag in article.tags"
+                        :key="tag"
+                        class="text-xs rounded-full px-2.5 py-0.5 transition-colors cursor-pointer"
+                        :class="activeTag === tag
+                          ? 'bg-(--theme-color) text-white'
+                          : 'text-gray-500 bg-gray-100 hover:bg-gray-200'"
+                        @click.stop="setTag(tag)"
+                      >
+                        {{ tag }}
+                      </span>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-(--theme-color) flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-4">
+                      {{ t('news_page.read') }} →
                     </span>
                   </div>
-                  <span class="text-sm font-semibold text-(--theme-color) flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-4">
-                    {{ t('news_page.read') }} →
-                  </span>
+                </div>
+
+                <!-- Image: right column on sm+ -->
+                <div class="hidden sm:block shrink-0 w-28 h-20 rounded-xl overflow-hidden bg-gray-100 self-start mt-1">
+                  <img
+                    v-if="article.image"
+                    :src="article.image"
+                    :alt="article.title"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
               </NuxtLink>
             </TransitionGroup>
@@ -357,8 +384,10 @@ interface Article {
   id: number
   title: string
   excerpt: string
+  image: string | null
   category: string
   source: string | null
+  source_url: string | null
   tags: string[]
   views: number
   is_featured: boolean
@@ -530,6 +559,10 @@ function categoryColor(cat: string): string {
 function formatDate(iso: string | null): string {
   if (!iso) return ''
   return new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+}
+
+function openUrl(url: string) {
+  window.open(url, '_blank', 'noopener,noreferrer')
 }
 </script>
 

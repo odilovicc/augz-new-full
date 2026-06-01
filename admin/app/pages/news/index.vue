@@ -206,6 +206,10 @@
           </UFormField>
         </div>
 
+        <UFormField label="Ссылка на источник">
+          <UInput v-model="form.source_url" class="w-full" placeholder="https://gazeta.uz/ru/2026/..." />
+        </UFormField>
+
         <!-- Tags -->
         <UFormField label="Теги">
           <div class="flex flex-col gap-2">
@@ -343,7 +347,7 @@ const { data, pending, refresh } = await useAsyncData(
     `/admin/news?page=${page.value}&sort=${filterSort.value}` +
     (filterCategory.value ? `&category=${filterCategory.value}` : ''),
   ),
-  { watch: [page, filterCategory, filterSort] },
+  { watch: [page, filterCategory, filterSort], server: false },
 )
 
 const articles = computed(() => data.value?.data ?? [])
@@ -389,14 +393,14 @@ interface LangFields { title: string; excerpt: string; content: string }
 interface FormState {
   ru: LangFields; uz: LangFields; en: LangFields
   image: string; published_at: string; is_featured: boolean
-  category: string; source: string; tags: string[]
+  category: string; source: string; source_url: string; tags: string[]
 }
 
 const emptyLang  = (): LangFields => ({ title: '', excerpt: '', content: '' })
 const emptyForm  = (): FormState => ({
   ru: emptyLang(), uz: emptyLang(), en: emptyLang(),
   image: '', published_at: '', is_featured: false,
-  category: 'news', source: '', tags: [],
+  category: 'news', source: '', source_url: '', tags: [],
 })
 
 const form = reactive<FormState>(emptyForm())
@@ -460,6 +464,7 @@ function openEdit(item: any) {
   form.is_featured  = item.is_featured ?? false
   form.category     = item.category ?? 'news'
   form.source       = item.source ?? ''
+  form.source_url   = item.source_url ?? ''
   form.tags         = item.tags ?? []
   imagePreview.value = null
   saveError.value = ''
@@ -528,6 +533,7 @@ async function save() {
       is_featured:  form.is_featured,
       category:     form.category,
       source:       form.source || null,
+      source_url:   form.source_url || null,
       tags:         form.tags,
       translations: {
         uz: { title: form.uz.title, excerpt: form.uz.excerpt, content: form.uz.content },

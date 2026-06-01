@@ -395,14 +395,6 @@
 
         <UDivider label="Мета-данные" />
         <div>
-          <p class="text-sm text-gray-500 mb-1">Лейбл «Категория»</p>
-          <I18nField v-model="content.success_modal.meta_category" />
-        </div>
-        <div>
-          <p class="text-sm text-gray-500 mb-1">Значение категории</p>
-          <I18nField v-model="content.success_modal.category_name" />
-        </div>
-        <div>
           <p class="text-sm text-gray-500 mb-1">Лейбл «Дата подачи»</p>
           <I18nField v-model="content.success_modal.meta_date" />
         </div>

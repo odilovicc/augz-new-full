@@ -104,8 +104,8 @@ export interface ReportPageContent {
   success_modal: {
     title: I18nText; subtitle: I18nText; track_label: I18nText
     btn_copy: I18nText; btn_copied: I18nText; email_prefix: I18nText
-    meta_category: I18nText; meta_date: I18nText; meta_expert: I18nText; meta_deadline: I18nText
-    expert_name: I18nText; category_name: I18nText
+    meta_date: I18nText; meta_expert: I18nText; meta_deadline: I18nText
+    expert_name: I18nText
     progress_steps: Array<{ label: I18nText; time: I18nText }>
     btn_track: I18nText; btn_close: I18nText
   }

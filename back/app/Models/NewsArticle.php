@@ -14,7 +14,7 @@ class NewsArticle extends Model
     protected $fillable = [
         'title', 'excerpt', 'content', 'image',
         'is_featured', 'published_at', 'translations',
-        'category', 'source', 'tags', 'views',
+        'category', 'source', 'source_url', 'tags', 'views',
     ];
 
     protected $casts = [

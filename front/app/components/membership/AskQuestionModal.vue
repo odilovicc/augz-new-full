@@ -88,7 +88,6 @@
                   :class="{ 'q-input-error': errors.phone }"
                   @blur="validatePhone"
                 />
-                {{ form.phone }}
                 <p v-if="errors.phone" class="q-err">{{ $t('ask_modal.err_phone') }}</p>
               </div>
             </div>

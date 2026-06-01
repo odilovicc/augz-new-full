@@ -21,7 +21,7 @@
 
         <div class="flex flex-wrap gap-2">
           <button
-            v-for="(cat, idx) in (hero.categories ?? defaultCategories)"
+            v-for="(cat, idx) in heroCategories"
             :key="idx"
             :class="[
               'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition',
@@ -29,14 +29,15 @@
                 ? 'bg-gray-900 text-white border-gray-900'
                 : 'bg-white/80 text-gray-700 border-gray-200 hover:border-gray-400'
             ]"
-            @click="activeCategory = idx"
+            @click="scrollToSection(idx)"
           >
             <span class="w-2 h-2 rounded-full shrink-0" :style="`background: ${cat.color}`" />
-            {{ t(cat.label) || cat.label }}
+            {{ cat.label }}
           </button>
         </div>
       </div>
     </div>
+
 
     <!-- Sections -->
     <template v-for="section in (sections.length ? sections : defaultSections)" :key="section.id">
@@ -446,7 +447,7 @@
                   <label class="cta-label">{{ t(section.form_service_label) || 'НУЖНАЯ УСЛУГА' }}</label>
                   <select v-model="ctaForm.service" class="cta-input">
                     <option value="" disabled>—</option>
-                    <option v-for="opt in section.form_service_options" :key="opt" :value="opt">{{ opt }}</option>
+                    <option v-for="opt in serviceOptions" :key="opt" :value="opt">{{ opt }}</option>
                   </select>
                 </div>
 
@@ -521,6 +522,24 @@ const ctaContacts = computed(() => [
   { icon: 'heroicons:chat-bubble-left-ellipsis', label: { ru: 'Telegram',uz: 'Telegram', en: 'Telegram'},value: settings.value.contacts.telegram },
 ])
 const activeCategory = ref(0)
+
+const categoryToSection: Record<string, string> = {
+  'Консалтинг':        'consulting',
+  'Цифровые продукты': 'digital-products',
+  'Аналитика':         'analytics',
+  'Сопровождение':     'support',
+  'Сервисы':           'extra-services',
+}
+
+function scrollToSection(idx: number) {
+  activeCategory.value = idx
+  const cat = heroCategories.value[idx]
+  if (!cat) return
+  const sectionId = categoryToSection[cat.label]
+  if (!sectionId) return
+  const el = document.getElementById(sectionId)
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 const ctaForm = reactive({ name: '', phone: '', email: '', service: '' })
 const ctaErrors = reactive({ name: '', phone: '' })
 const ctaSubmitting = ref(false)
@@ -560,17 +579,53 @@ const { data: pageData } = await useFetch<{ content: any }>(
   `${config.public.apiBase}/page/services`,
 )
 const pc = computed(() => pageData.value?.content ?? {})
+const hero = computed(() => pc.value.hero ?? {})
 
-const hero     = computed(() => pc.value.hero ?? {})
+// ── Services from API ────────────────────────────────────────────────────
+interface Service {
+  id: number
+  category: string
+  title: { ru: string; uz: string; en: string }
+  desc: { ru: string; uz: string; en: string }
+  tags: string[]
+  sort_order: number
+}
+
+const { data: servicesData } = await useFetch<{ data: Service[] }>(
+  `${config.public.apiBase}/services`,
+)
+const allServices = computed(() => servicesData.value?.data ?? [])
+
+const categoryColors: Record<string, string> = {
+  'Консалтинг':         '#D1832C',
+  'Цифровые продукты':  '#F59E0B',
+  'Аналитика':          '#3B82F6',
+  'Сопровождение':      '#10B981',
+  'Сервисы':            '#8B5CF6',
+}
+
+const categories = computed(() => {
+  const seen = new Set<string>()
+  const result: { name: string; color: string }[] = [{ name: 'Все', color: '#6b7280' }]
+  for (const svc of allServices.value) {
+    if (svc.category && !seen.has(svc.category)) {
+      seen.add(svc.category)
+      result.push({ name: svc.category, color: categoryColors[svc.category] ?? '#6b7280' })
+    }
+  }
+  return result
+})
+
+// keep hero categories in sync for the filter chips
+const heroCategories = computed(() => categories.value.map(c => ({ label: c.name, color: c.color })))
+
+// service names for the CTA form dropdown
+const serviceOptions = computed(() => allServices.value.map(s => t(s.title)))
+
+// sections array kept for the hardcoded layout sections (flagship, cta-form etc.)
 const sections = computed(() => pc.value.sections ?? [])
 
-const defaultCategories = [
-  { label: { ru: 'Консалтинг', uz: 'Konsalting', en: 'Consulting' }, color: '#D1832C' },
-  { label: { ru: 'Цифровые продукты', uz: 'Raqamli mahsulotlar', en: 'Digital Products' }, color: '#F59E0B' },
-  { label: { ru: 'Аналитика', uz: 'Tahlil', en: 'Analytics' }, color: '#3B82F6' },
-  { label: { ru: 'Сопровождение', uz: "Qo'llab-quvvatlash", en: 'Support' }, color: '#10B981' },
-  { label: { ru: 'Сервис', uz: 'Servis', en: 'Service' }, color: '#8B5CF6' },
-]
+const defaultCategories = heroCategories
 
 const defaultSections: any[] = [
   {

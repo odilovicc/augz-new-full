@@ -70,6 +70,7 @@ Route::get('/services', [ServiceController::class, 'index']);
 Route::get('/trading-platforms', [TradingPlatformController::class, 'index']);
 Route::get('/settings', [SettingsController::class, 'show']);
 Route::post('/complaints', [ComplaintController::class, 'store']);
+Route::get('/complaints/stats', [ComplaintController::class, 'stats']);
 Route::get('/complaints/track/{code}', [ComplaintController::class, 'track']);
 
 /*
@@ -89,13 +90,14 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::put('/services/{service}', [AdminServiceController::class, 'update']);
     Route::delete('/services/{service}', [AdminServiceController::class, 'destroy']);
 
-    Route::get('/news', [AdminNewsController::class, 'index']);
-    Route::post('/news', [AdminNewsController::class, 'store']);
-    Route::put('/news/{newsArticle}', [AdminNewsController::class, 'update']);
-    Route::delete('/news/{newsArticle}', [AdminNewsController::class, 'destroy']);
+    Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
+    Route::post('/news', [AdminNewsController::class, 'store'])->name('admin.news.store');
+    Route::put('/news/{newsArticle}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{newsArticle}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
 
     Route::get('/videos', [AdminVideoController::class, 'index']);
     Route::post('/videos', [AdminVideoController::class, 'store']);
+    Route::post('/videos/{video}/sync-title', [AdminVideoController::class, 'syncTitle']);
     Route::put('/videos/{video}', [AdminVideoController::class, 'update']);
     Route::delete('/videos/{video}', [AdminVideoController::class, 'destroy']);
 

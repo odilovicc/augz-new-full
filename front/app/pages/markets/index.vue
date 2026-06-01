@@ -119,7 +119,6 @@
                       <span class="inline-flex items-center gap-1.5 px-4 py-2 bg-(--theme-color) text-white text-sm font-semibold rounded-lg group-hover:opacity-90 transition-opacity whitespace-nowrap">
                         {{ $t('markets_page_ui.visit_btn') }}
                       </span>
-                      <span class="text-xs text-gray-400">{{ stripProtocol(market.url) }}</span>
                     </div>
                   </a>
                 </div>
@@ -220,17 +219,6 @@
               </div>
             </div>
 
-            <!-- Member benefits -->
-            <div class="bg-white rounded-2xl border border-gray-100 p-5">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">{{ $t('markets_page_ui.members_title') }}</p>
-              <ul class="flex flex-col gap-2">
-                <li v-for="benefit in memberBenefits" :key="benefit" class="flex items-start gap-2 text-sm text-gray-600">
-                  <Icon name="heroicons:check" class="w-4 h-4 text-(--theme-color) shrink-0 mt-0.5" />
-                  {{ benefit }}
-                </li>
-              </ul>
-            </div>
-
           </aside>
         </div>
       </div>
@@ -324,13 +312,6 @@ const categoryGroups = computed(() => [
 const categories = computed(() => [
   { id: 'all', label: $t('markets_page_ui.category_all') },
   ...categoryGroups.value.filter(g => markets.value.some(m => m.category === g.id)),
-])
-
-const memberBenefits = computed(() => [
-  $t('markets_page_ui.benefit_1'),
-  $t('markets_page_ui.benefit_2'),
-  $t('markets_page_ui.benefit_3'),
-  $t('markets_page_ui.benefit_4'),
 ])
 
 // ── Filter state ──────────────────────────────────────────────────────────

@@ -38,6 +38,15 @@ class ComplaintController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    public function stats(): JsonResponse
+    {
+        return response()->json([
+            'total'    => Complaint::count(),
+            'launched' => 'май 2026',
+            'avg_days' => 10,
+        ]);
+    }
+
     public function track(string $code): JsonResponse
     {
         $complaint = Complaint::where('track_code', strtoupper($code))->first();

@@ -58,7 +58,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
     server: {
-      allowedHosts: ['6dea-94-158-58-172.ngrok-free.app', 'e724-2a05-45c2-5037-9200-94e-6baf-23f-f6b9.ngrok-free.app']
+      allowedHosts: ['6dea-94-158-58-172.ngrok-free.app', 'e724-2a05-45c2-5037-9200-94e-6baf-23f-f6b9.ngrok-free.app', 'webmini.pyramide.uz']
     }
   },
 })

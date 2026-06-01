@@ -22,6 +22,7 @@ class NewsArticleResource extends JsonResource
             'is_featured'  => $this->is_featured,
             'category'     => $this->category,
             'source'       => $this->source,
+            'source_url'   => $this->source_url,
             'tags'         => $this->tags ?? [],
             'views'        => $this->views,
             'published_at' => $this->published_at?->toIso8601String(),

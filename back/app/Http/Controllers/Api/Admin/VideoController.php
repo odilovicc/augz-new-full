@@ -55,6 +55,24 @@ class VideoController extends Controller
         return new VideoResource($video->fresh());
     }
 
+    public function syncTitle(Video $video): JsonResponse
+    {
+        if (! preg_match('#(?:v=|/embed/|/shorts/|youtu\.be/)([a-zA-Z0-9_-]{11})#', $video->url, $m)) {
+            return response()->json(['message' => 'Не удалось извлечь YouTube ID из URL.'], 422);
+        }
+
+        $watchUrl = "https://www.youtube.com/watch?v={$m[1]}";
+        $title    = $this->fetchYoutubeTitle($watchUrl);
+
+        if (! $title) {
+            return response()->json(['message' => 'YouTube oEmbed не вернул название.'], 422);
+        }
+
+        $video->update(['title' => $title]);
+
+        return response()->json(['title' => $title]);
+    }
+
     public function destroy(Video $video): JsonResponse
     {
         $video->delete();

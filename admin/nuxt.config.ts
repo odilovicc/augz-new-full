@@ -9,7 +9,13 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: 'https://e422-2a05-45c2-5037-9200-94e-6baf-23f-f6b9.ngrok-free.app/api',
+      apiBase: 'https://mirasoft.pyramide.uz/api',
     },
   },
+
+  vite: {
+    server: {
+      allowedHosts: ['08db-2a05-45c2-1074-4500-99d1-2871-8a5-82f5.ngrok-free.app']
+    }
+  }
 })

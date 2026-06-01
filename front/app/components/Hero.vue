@@ -1,15 +1,19 @@
 <template>
   <div
-    class="relative overflow-hidden min-h-[100svh] md:min-h-[88vh] flex items-start md:items-center"
-    :style="hero?.image ? `background: url('${hero.image}') no-repeat center top / cover` : ''"
+    class="relative overflow-hidden bg-white min-h-85 md:min-h-100 flex items-center"
+    :style="hero?.image ? `background: url('${hero.image}') no-repeat center / cover` : ''"
   >
 
-    <div class="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-white/40 to-transparent pointer-events-none md:hidden" />
+    <div v-if="!hero?.image" class="absolute inset-y-0 right-0 w-1/2 md:w-[55%] pointer-events-none select-none">
+      <div class="absolute inset-0 bg-linear-to-r from-white via-white/60 to-transparent z-10" />
+      <img src="/img/hero.png" alt="АУГЗ здание" class="w-full h-full object-cover object-right" />
+    </div>
+    <div v-else class="absolute inset-0 bg-linear-to-r from-white via-white/70 to-transparent pointer-events-none" />
 
-    <div class="relative container mx-auto px-4 pb-14 pt-28 md:py-24">
-      <div class="flex flex-col gap-y-5 md:gap-y-8 max-w-2xl">
+    <div class="relative container mx-auto px-4 pb-10 pt-24 md:py-24">
+      <div class="flex flex-col gap-y-4 md:gap-y-8 max-w-2xl">
 
-        <h1 class="text-[2.6rem] leading-[1.1] sm:text-5xl md:text-6xl flex flex-col gap-y-1.5 md:gap-y-3">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl leading-[1.1] flex flex-col gap-y-1.5 md:gap-y-3">
           <b>{{ lt(hero?.title_1) }}</b>
           <b class="text-(--theme-color)">{{ lt(hero?.title_2) }}</b>
           <b>{{ lt(hero?.title_3) }}</b>

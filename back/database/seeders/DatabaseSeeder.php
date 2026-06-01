@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             MembershipPlanSeeder::class,
             TestimonialSeeder::class,
             SettingsSeeder::class,
+            TradingPlatformSeeder::class,
         ]);
     }
 }

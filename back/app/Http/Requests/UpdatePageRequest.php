@@ -98,6 +98,7 @@ class UpdatePageRequest extends FormRequest
         return array_merge(
             $this->i18n('content.hero.title'),
             $this->i18n('content.hero.subtitle'),
+            $this->i18n('content.hero.search_placeholder'),
         );
     }
 
@@ -214,12 +215,10 @@ class UpdatePageRequest extends FormRequest
             $this->i18n('content.success_modal.btn_copy', 50),
             $this->i18n('content.success_modal.btn_copied', 50),
             $this->i18n('content.success_modal.email_prefix'),
-            $this->i18n('content.success_modal.meta_category', 100),
             $this->i18n('content.success_modal.meta_date', 100),
             $this->i18n('content.success_modal.meta_expert', 100),
             $this->i18n('content.success_modal.meta_deadline', 100),
             $this->i18n('content.success_modal.expert_name'),
-            $this->i18n('content.success_modal.category_name'),
             $this->i18n('content.success_modal.btn_track'),
             $this->i18n('content.success_modal.btn_close', 50),
         );

@@ -24,6 +24,7 @@ class UpdateNewsRequest extends FormRequest
             'is_featured'              => ['boolean'],
             'category'                 => ['sometimes', Rule::in(NewsArticle::CATEGORIES)],
             'source'                   => ['nullable', 'string', 'max:128'],
+            'source_url'               => ['nullable', 'url', 'max:512'],
             'tags'                     => ['nullable', 'array'],
             'tags.*'                   => ['string', 'max:64'],
             'published_at'             => ['nullable', 'date'],

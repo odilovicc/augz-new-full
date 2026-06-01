@@ -109,7 +109,9 @@
                   <Icon :name="stat.icon" class="w-4 h-4 text-(--theme-color)" />
                 </div>
                 <div>
-                  <p class="text-lg font-black text-gray-900 leading-none">{{ stat.value }}</p>
+                  <p class="text-lg font-black text-gray-900 leading-none">
+                    {{ stat.dynamic ? (complaintStats?.total ?? 0) : stat.value }}
+                  </p>
                   <p class="text-xs text-gray-400 mt-0.5">{{ t(stat.label) }}</p>
                 </div>
               </div>
@@ -274,9 +276,9 @@
                   </button>
                   <p class="text-xs text-gray-500 leading-relaxed">
                     {{ t(c?.form?.agree_text) }}
-                    <a href="#" class="text-(--theme-color) underline underline-offset-2 hover:no-underline">{{ t(c?.form?.agree_privacy) }}</a>
+                    <NuxtLink :to="localePath('/privacy')" class="text-(--theme-color) underline underline-offset-2 hover:no-underline">{{ t(c?.form?.agree_privacy) }}</NuxtLink>
                     {{ t(c?.form?.agree_and) }}
-                    <a href="#" class="text-(--theme-color) underline underline-offset-2 hover:no-underline">{{ t(c?.form?.agree_rules) }}</a>
+                    <NuxtLink :to="localePath('/appeals-rules')" class="text-(--theme-color) underline underline-offset-2 hover:no-underline">{{ t(c?.form?.agree_rules) }}</NuxtLink>
                     АУГЗ
                   </p>
                 </div>
@@ -332,7 +334,7 @@
             <div class="rounded-2xl border border-gray-200 bg-white p-5 space-y-4">
               <p class="text-xs font-bold uppercase tracking-widest text-gray-400">{{ $t('report_page.statuses_title') }}</p>
               <div v-for="(legend, i) in c?.track?.status_legend" :key="i" class="flex items-center gap-3">
-                <div class="w-2.5 h-2.5 rounded-full shrink-0" :class="legend.color" />
+                <div class="w-2.5 h-2.5 rounded-full shrink-0" :style="{ backgroundColor: legendColor(legend.color) }" />
                 <div>
                   <p class="text-sm font-semibold text-gray-900">{{ t(legend.label) }}</p>
                   <p class="text-xs text-gray-400">{{ t(legend.desc) }}</p>
@@ -452,11 +454,7 @@
                     </div>
                   </div>
 
-                  <div class="grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-                    <div class="px-5 py-4">
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_category) }}</p>
-                      <p class="text-sm font-semibold text-gray-900">{{ resolvedTrackResult.category }}</p>
-                    </div>
+                  <div class="grid sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
                     <div class="px-5 py-4">
                       <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_date) }}</p>
                       <p class="text-sm font-semibold text-gray-900">{{ resolvedTrackResult.submitted }}</p>
@@ -576,11 +574,7 @@
                 </p>
               </div>
 
-              <div class="grid grid-cols-2 gap-3">
-                <div class="rounded-xl border border-gray-200 bg-gray-50 p-3.5">
-                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_category) }}</p>
-                  <p class="text-sm font-semibold text-gray-900">{{ t(c?.success_modal?.category_name) }}</p>
-                </div>
+              <div class="grid grid-cols-3 gap-3">
                 <div class="rounded-xl border border-gray-200 bg-gray-50 p-3.5">
                   <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_date) }}</p>
                   <p class="text-sm font-semibold text-gray-900">{{ submittedAt }}</p>
@@ -648,10 +642,16 @@ const { data: pageData } = await useFetch<{ slug: string; content: ReportPageCon
   { key: 'report-page', server: true },
 )
 
+const { data: complaintStats, refresh: refreshStats } = await useFetch<{ total: number; launched: string; avg_days: number }>(
+  `${config.public.apiBase}/complaints/stats`,
+  { key: 'complaint-stats', server: true },
+)
+
 const c = computed(() => pageData.value?.content ?? null)
 const t = useLocaleText()
 const { t: $t, locale } = useI18n()
 const settings = useSettings()
+const localePath = useLocalePath()
 const hoursLabel = useHoursLabel()
 const phoneRaw = computed(() => settings.value.contacts.phone.replace(/[\s\-()]/g, ''))
 
@@ -871,6 +871,20 @@ function addFiles(files: File[]) {
 
 function removeFile(i: number) { uploadedFiles.value.splice(i, 1) }
 
+const TAILWIND_COLOR_MAP: Record<string, string> = {
+  'bg-blue-400':   '#60a5fa',
+  'bg-indigo-400': '#818cf8',
+  'bg-violet-400': '#a78bfa',
+  'bg-yellow-400': '#facc15',
+  'bg-orange-400': '#fb923c',
+  'bg-orange-500': '#f97316',
+  'bg-green-400':  '#4ade80',
+  'bg-green-500':  '#22c55e',
+  'bg-red-400':    '#f87171',
+}
+
+const legendColor = (cls: string) => TAILWIND_COLOR_MAP[cls?.trim()] ?? '#9ca3af'
+
 function onPhoneBlur() {
   if (!form.phone) fieldErrors.value.phone = $t('report_page.err_required')
 }
@@ -909,6 +923,7 @@ async function submitComplaint() {
     createdComplaint.value = res.data
     saveTrackCode(res.data.track_code, res.data.created_at)
     showSuccess.value = true
+    refreshStats()
   } catch {
     submitError.value = $t('report_page.err_submit')
   } finally {
@@ -971,7 +986,7 @@ async function searchTrack() {
   }
 }
 
-const resolvedTrackResult = computed<{ stages: Stage[]; statusLabel: string; statusColor: string; submitted: string; expert: string; deadline: string; category: string; [key: string]: any } | null>(() => {
+const resolvedTrackResult = computed<{ stages: Stage[]; statusLabel: string; statusColor: string; submitted: string; expert: string; deadline: string; [key: string]: any } | null>(() => {
   const tr = trackResult.value
   if (!tr) return null
   const st = statusMap.value[tr.status] ?? { label: tr.status, color: 'bg-gray-100 text-gray-600' }
@@ -980,9 +995,8 @@ const resolvedTrackResult = computed<{ stages: Stage[]; statusLabel: string; sta
     statusLabel: st.label,
     statusColor: st.color,
     submitted: new Date(tr.created_at).toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-    expert:   t(c.value?.success_modal?.expert_name)   || 'AUGZ',
+    expert:   t(c.value?.success_modal?.expert_name) || 'AUGZ',
     deadline: (() => { const d = new Date(tr.created_at); d.setDate(d.getDate() + 10); return $t('report_page.deadline_prefix') + d.toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric' }) })(),
-    category: t(c.value?.success_modal?.category_name) || '',
     stages: buildStages(tr),
   }
 })

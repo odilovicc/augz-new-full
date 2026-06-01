@@ -22,7 +22,7 @@
         </div>
 
         <!-- Mobile burger -->
-        <button @click="open = !open" class="lg:hidden p-2 -mr-2 rounded-md hover:bg-gray-50 transition">
+        <button type="button" @click="open = !open" class="lg:hidden cursor-pointer p-2 -mr-2 rounded-md hover:bg-gray-50 transition">
           <svg v-if="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -33,7 +33,7 @@
       </div>
 
       <!-- Mobile dropdown -->
-      <div v-if="open" class="lg:hidden pb-5 border-t border-gray-100 pt-4 flex flex-col gap-y-5">
+      <div v-show="open" class="lg:hidden pb-5 border-t border-gray-100 pt-4 flex flex-col gap-y-5">
         <ul class="flex flex-col gap-y-1">
           <li v-for="link in links" :key="link.href">
             <NuxtLink :to="localePath(link.href)" @click="open = false"

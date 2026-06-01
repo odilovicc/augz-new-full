@@ -6,10 +6,12 @@
       </p>
     </div>
 
-    <div class="relative overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
-      <div class="flex gap-20 items-center animate-marquee w-max">
-        <img v-for="(logo, i) in [...logos, ...logos]" :key="i"
-             :src="logo.src" :alt="logo.alt" class="h-12 w-auto object-contain" />
+    <div class="relative overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+      <div class="marquee-track">
+        <div v-for="n in 4" :key="n" class="marquee-content" :aria-hidden="n > 1 ? 'true' : undefined">
+          <img v-for="(logo, i) in logos" :key="i"
+               :src="logo.src" :alt="logo.alt" class="h-12 w-auto object-contain flex-shrink-0" />
+        </div>
       </div>
     </div>
   </section>
@@ -26,8 +28,20 @@ const logos = computed(() => partners.value?.logos ?? [])
 <style scoped>
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-25%); }
 }
-.animate-marquee { animation: marquee 22s linear infinite; }
-.animate-marquee:hover { animation-play-state: paused; }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+  will-change: transform;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  padding-right: 5rem;
+}
 </style>

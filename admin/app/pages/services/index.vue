@@ -16,26 +16,27 @@
       <table v-else class="w-full text-sm">
         <thead class="border-b border-gray-100 dark:border-gray-800">
           <tr class="text-left text-gray-400 text-xs uppercase tracking-wide">
-            <th class="px-5 py-3 font-medium w-16">Фото</th>
             <th class="px-5 py-3 font-medium">Название</th>
-            <th class="px-5 py-3 font-medium">Тег</th>
+            <th class="px-5 py-3 font-medium">Категория</th>
+            <th class="px-5 py-3 font-medium">Теги</th>
             <th class="px-5 py-3 font-medium w-16 text-center">№</th>
             <th class="px-5 py-3 font-medium text-right">Действия</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-50 dark:divide-gray-800">
           <tr v-for="item in services" :key="item.id" class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-            <td class="px-5 py-3">
-              <div class="w-12 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 overflow-hidden shrink-0">
-                <img v-if="item.image" :src="item.image" :alt="item.title.ru" class="w-full h-full object-cover" />
-              </div>
-            </td>
             <td class="px-5 py-3 max-w-xs">
               <p class="font-medium text-gray-900 dark:text-white line-clamp-1">{{ item.title.ru }}</p>
               <p class="text-gray-400 text-xs line-clamp-1 mt-0.5">{{ item.desc.ru }}</p>
             </td>
             <td class="px-5 py-3">
-              <UBadge v-if="item.tag.ru" variant="soft" color="neutral" size="xs">{{ item.tag.ru }}</UBadge>
+              <UBadge v-if="item.category" variant="soft" color="neutral" size="xs">{{ item.category }}</UBadge>
+            </td>
+            <td class="px-5 py-3 max-w-[200px]">
+              <div class="flex flex-wrap gap-1">
+                <UBadge v-for="tag in (item.tags ?? []).slice(0, 3)" :key="tag" variant="outline" color="neutral" size="xs">{{ tag }}</UBadge>
+                <span v-if="(item.tags ?? []).length > 3" class="text-xs text-gray-400">+{{ item.tags.length - 3 }}</span>
+              </div>
             </td>
             <td class="px-5 py-3 text-center text-gray-400">{{ item.sort_order }}</td>
             <td class="px-5 py-3">
@@ -56,6 +57,24 @@
   <USlideover v-model:open="slideOpen" :title="editItem ? 'Редактировать услугу' : 'Новая услуга'" side="right" class="w-full max-w-2xl">
     <template #body>
       <form class="flex flex-col gap-5 p-6" @submit.prevent="save">
+
+        <!-- Category + Sort -->
+        <div class="grid grid-cols-2 gap-4">
+          <UFormField label="Категория">
+            <USelect v-model="form.category" class="w-full" :items="categoryOptions" placeholder="Выберите категорию" />
+          </UFormField>
+          <UFormField label="Порядок сортировки">
+            <UInput v-model.number="form.sort_order" type="number" min="0" class="w-full" />
+          </UFormField>
+        </div>
+
+        <!-- Tags -->
+        <UFormField label="Теги (через запятую)">
+          <UInput v-model="tagsInput" class="w-full" placeholder="КОНСАЛТИНГ, АУДИТ, РИСКИ" />
+          <template #hint>
+            <span class="text-xs text-gray-400">Введите теги через запятую</span>
+          </template>
+        </UFormField>
 
         <!-- Language tabs -->
         <div class="flex gap-1 p-1 bg-gray-100 dark:bg-gray-800 rounded-xl">
@@ -78,51 +97,32 @@
         <!-- RU -->
         <template v-if="activeLang === 'ru'">
           <UFormField label="Название (RU)" required>
-            <UInput v-model="form.ru.title" class="w-full" placeholder="Консультационные услуги" />
-          </UFormField>
-          <UFormField label="Тег (RU)">
-            <UInput v-model="form.ru.tag" class="w-full" placeholder="Консультации" />
+            <UInput v-model="form.ru.title" class="w-full" placeholder="Тендерная стратегия" />
           </UFormField>
           <UFormField label="Описание (RU)">
-            <UTextarea v-model="form.ru.desc" :rows="3" class="w-full" placeholder="Краткое описание услуги" />
+            <UTextarea v-model="form.ru.desc" :rows="4" class="w-full" placeholder="Краткое описание услуги" />
           </UFormField>
         </template>
 
         <!-- UZ -->
         <template v-if="activeLang === 'uz'">
           <UFormField label="Nomi (UZ)" required>
-            <UInput v-model="form.uz.title" class="w-full" placeholder="Maslahat xizmatlari" />
-          </UFormField>
-          <UFormField label="Teg (UZ)">
-            <UInput v-model="form.uz.tag" class="w-full" placeholder="Maslahat" />
+            <UInput v-model="form.uz.title" class="w-full" placeholder="Tender strategiyasi" />
           </UFormField>
           <UFormField label="Tavsif (UZ)">
-            <UTextarea v-model="form.uz.desc" :rows="3" class="w-full" placeholder="Xizmatning qisqacha tavsifi" />
+            <UTextarea v-model="form.uz.desc" :rows="4" class="w-full" placeholder="Xizmatning qisqacha tavsifi" />
           </UFormField>
         </template>
 
         <!-- EN -->
         <template v-if="activeLang === 'en'">
           <UFormField label="Title (EN)" required>
-            <UInput v-model="form.en.title" class="w-full" placeholder="Consulting services" />
-          </UFormField>
-          <UFormField label="Tag (EN)">
-            <UInput v-model="form.en.tag" class="w-full" placeholder="Consulting" />
+            <UInput v-model="form.en.title" class="w-full" placeholder="Tender strategy" />
           </UFormField>
           <UFormField label="Description (EN)">
-            <UTextarea v-model="form.en.desc" :rows="3" class="w-full" placeholder="Short service description" />
+            <UTextarea v-model="form.en.desc" :rows="4" class="w-full" placeholder="Short service description" />
           </UFormField>
         </template>
-
-        <UDivider />
-
-        <UFormField label="Изображение">
-          <ImageUpload v-model="form.image" />
-        </UFormField>
-
-        <UFormField label="Порядок сортировки">
-          <UInput v-model.number="form.sort_order" type="number" min="0" class="w-32" />
-        </UFormField>
 
         <p v-if="saveError" class="text-sm text-red-500">{{ saveError }}</p>
 
@@ -148,6 +148,9 @@ const deleting = ref<number | null>(null)
 const saving = ref(false)
 const saveError = ref('')
 const activeLang = ref<'ru' | 'uz' | 'en'>('ru')
+const tagsInput = ref('')
+
+const categoryOptions = ['Консалтинг', 'Цифровые продукты', 'Аналитика', 'Сопровождение', 'Сервисы']
 
 const langs = [
   { code: 'ru' as const, label: 'Русский',  flag: '🇷🇺' },
@@ -155,15 +158,15 @@ const langs = [
   { code: 'en' as const, label: 'English',  flag: '🇬🇧' },
 ]
 
-interface LangFields { title: string; tag: string; desc: string }
+interface LangFields { title: string; desc: string }
 interface FormState {
   ru: LangFields; uz: LangFields; en: LangFields
-  image: string
+  category: string
   sort_order: number
 }
 
-const emptyLang = (): LangFields => ({ title: '', tag: '', desc: '' })
-const emptyForm = (): FormState => ({ ru: emptyLang(), uz: emptyLang(), en: emptyLang(), image: '', sort_order: 0 })
+const emptyLang = (): LangFields => ({ title: '', desc: '' })
+const emptyForm = (): FormState => ({ ru: emptyLang(), uz: emptyLang(), en: emptyLang(), category: '', sort_order: 0 })
 const form = reactive<FormState>(emptyForm())
 
 function isLangFilled(code: 'ru' | 'uz' | 'en') {
@@ -180,6 +183,7 @@ const services = computed(() => data.value?.data ?? [])
 function openCreate() {
   editItem.value = null
   Object.assign(form, emptyForm())
+  tagsInput.value = ''
   saveError.value = ''
   activeLang.value = 'ru'
   slideOpen.value = true
@@ -188,16 +192,14 @@ function openCreate() {
 function openEdit(item: any) {
   editItem.value = item
   form.ru.title = item.title?.ru ?? ''
-  form.ru.tag   = item.tag?.ru   ?? ''
   form.ru.desc  = item.desc?.ru  ?? ''
   form.uz.title = item.translations?.uz?.title ?? ''
-  form.uz.tag   = item.translations?.uz?.tag   ?? ''
   form.uz.desc  = item.translations?.uz?.desc  ?? ''
   form.en.title = item.translations?.en?.title ?? ''
-  form.en.tag   = item.translations?.en?.tag   ?? ''
   form.en.desc  = item.translations?.en?.desc  ?? ''
-  form.image      = item.image      ?? ''
+  form.category   = item.category   ?? ''
   form.sort_order = item.sort_order ?? 0
+  tagsInput.value = (item.tags ?? []).join(', ')
   saveError.value = ''
   activeLang.value = 'ru'
   slideOpen.value = true
@@ -207,15 +209,20 @@ async function save() {
   saving.value = true
   saveError.value = ''
   try {
+    const tags = tagsInput.value
+      .split(',')
+      .map((t: string) => t.trim().toUpperCase())
+      .filter(Boolean)
+
     const body = {
-      title: form.ru.title,
-      tag:   form.ru.tag,
-      desc:  form.ru.desc,
-      image: form.image,
+      category:   form.category,
+      title:      form.ru.title,
+      desc:       form.ru.desc,
+      tags,
       sort_order: form.sort_order,
       translations: {
-        uz: { title: form.uz.title, tag: form.uz.tag, desc: form.uz.desc },
-        en: { title: form.en.title, tag: form.en.tag, desc: form.en.desc },
+        uz: { title: form.uz.title, desc: form.uz.desc },
+        en: { title: form.en.title, desc: form.en.desc },
       },
     }
     if (editItem.value) {

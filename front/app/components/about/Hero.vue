@@ -17,7 +17,7 @@
         <span class="text-gray-700">О нас</span>
       </nav>
 
-      <h1 class="text-5xl md:text-6xl font-black uppercase tracking-tight leading-none mb-5">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-none mb-5">
         {{ lt(hero?.heading) || 'О НАС' }}
       </h1>
 
@@ -63,7 +63,7 @@
             <div class="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center shrink-0">
               <Icon :name="stat.icon" class="w-5 h-5 text-(--theme-color)" />
             </div>
-            <div class="text-4xl font-black text-gray-900 leading-none mt-2">{{ stat.value }}</div>
+            <div class="text-2xl md:text-4xl font-black text-gray-900 leading-none mt-2">{{ stat.value }}</div>
             <div class="text-xs text-gray-400 font-medium leading-snug">{{ lt(stat.label) }}</div>
           </div>
         </div>
@@ -114,25 +114,9 @@
 
       <div ref="timelineRef" class="relative">
         <!-- Horizontal line (desktop) -->
-        <div class="hidden md:block absolute top-2.75 left-0 right-0 h-px bg-gray-200 z-0">
-          <div
-            class="h-full bg-(--theme-color) origin-left"
-            :style="{
-              width: timelineVisible ? '100%' : '0%',
-              transition: timelineVisible ? 'width 800ms cubic-bezier(0.4,0,0.2,1) 100ms' : 'none',
-            }"
-          />
-        </div>
+        <div class="hidden md:block absolute top-2.75 left-0 right-0 h-px bg-orange-100 z-0" />
         <!-- Vertical line (mobile) -->
-        <div class="md:hidden absolute left-2.5 top-0 bottom-0 w-px bg-gray-200 z-0">
-          <div
-            class="w-full bg-(--theme-color) origin-top"
-            :style="{
-              height: timelineVisible ? '100%' : '0%',
-              transition: timelineVisible ? 'height 800ms cubic-bezier(0.4,0,0.2,1) 100ms' : 'none',
-            }"
-          />
-        </div>
+        <div class="md:hidden absolute left-2.5 top-0 bottom-0 w-px bg-orange-100 z-0" />
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-0 md:gap-6">
           <div
@@ -148,20 +132,27 @@
             }"
           >
             <div
-              class="absolute left-0 top-0 md:static shrink-0 w-5.5 h-5.5 rounded-full border-2 border-(--theme-color) bg-white z-10 flex items-center justify-center md:mb-3"
+              class="absolute left-0 top-0 md:static shrink-0 rounded-full border-2 z-10 flex items-center justify-center md:mb-3"
+              :class="event.year === '2026'
+                ? 'w-4 h-4 border-(--theme-color) bg-white'
+                : 'w-5.5 h-5.5 border-orange-200 bg-orange-200'"
               :style="{
                 transform: timelineVisible ? 'scale(1)' : 'scale(0)',
                 transition: timelineVisible
                   ? `transform 300ms cubic-bezier(0.34,1.56,0.64,1) ${300 + i * 120}ms`
                   : 'none',
               }"
-            >
-              <div class="w-2 h-2 rounded-full bg-(--theme-color)" />
-            </div>
+            />
             <div class="flex flex-col gap-1">
-              <span class="text-2xl font-black text-gray-900 leading-none">{{ event.year }}</span>
-              <span class="text-[11px] font-bold text-(--theme-color) uppercase tracking-wider mt-0.5">{{ lt(event.title) }}</span>
-              <p class="text-xs text-gray-500 leading-relaxed mt-1 max-w-45">{{ lt(event.desc) }}</p>
+              <span
+                class="text-2xl font-black leading-none"
+                :class="event.year === '2026' ? 'text-gray-900' : 'text-gray-400'"
+              >{{ event.year }}</span>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wider mt-0.5"
+                :class="event.year === '2026' ? 'text-(--theme-color)' : 'text-gray-400'"
+              >{{ lt(event.title) }}</span>
+              <p class="text-xs text-gray-500 leading-relaxed mt-1 max-w-45 hidden">{{ lt(event.desc) }}</p>
             </div>
           </div>
         </div>
@@ -184,7 +175,7 @@
             <div class="w-6 h-px bg-(--theme-color)" />
             <span class="text-xs font-bold uppercase tracking-widest text-(--theme-color)">{{ lt(leadersSection?.label) || 'Руководство АУГЗ' }}</span>
           </div>
-          <h2 class="text-4xl md:text-5xl font-black leading-tight text-white uppercase whitespace-pre-line">
+          <h2 class="text-2xl sm:text-4xl md:text-5xl font-black leading-tight text-white uppercase whitespace-pre-line">
             {{ lt(leadersSection?.heading) || "ЛИДЕРЫ\nКОТОРЫЕ РАЗВИВАЮТ\nБУДУЩЕЕ" }}
           </h2>
         </div>
@@ -204,7 +195,7 @@
             v-if="leader.photo"
             :src="leader.photo"
             :alt="leader.name"
-            class="absolute bottom-0 right-0 h-full w-1/2 object-cover object-top select-none pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+            class="absolute bottom-0 right-0 h-[90%] w-[55%] object-cover object-top select-none pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300"
           />
           <div class="absolute inset-0 bg-linear-to-r from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent" />
           <div class="absolute inset-0 bg-linear-to-t from-[#1a1a1a]/60 via-transparent to-transparent" />
@@ -253,7 +244,7 @@
         >
           <div
             v-if="activeLeader"
-            class="relative z-10 w-full sm:max-w-lg bg-[#1a1a1a] border border-white/10 rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl"
+            class="relative z-10 w-full sm:max-w-2xl bg-[#1a1a1a] border border-white/10 rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl"
           >
             <!-- close -->
             <button
@@ -265,7 +256,7 @@
 
             <div class="flex flex-col sm:flex-row">
               <!-- photo -->
-              <div v-if="activeLeader.photo" class="relative sm:w-48 shrink-0 h-52 sm:h-auto overflow-hidden">
+              <div v-if="activeLeader.photo" class="relative sm:w-52 shrink-0 h-56 sm:h-auto overflow-hidden">
                 <img
                   :src="activeLeader.photo"
                   :alt="activeLeader.name"
@@ -275,7 +266,7 @@
               </div>
 
               <!-- content -->
-              <div class="flex flex-col gap-4 p-6 flex-1 min-w-0">
+              <div class="flex flex-col gap-4 p-6 flex-1 min-w-0 sm:max-h-[70vh] sm:overflow-y-auto">
                 <div>
                   <h3 class="text-xl font-black text-white leading-tight whitespace-pre-line">{{ activeLeader.name }}</h3>
                   <div class="w-8 h-0.5 bg-(--theme-color) mt-2 mb-2" />
@@ -339,7 +330,10 @@ interface Leader {
 const { data: leadersData } = await useAsyncData(
   'leaders-list',
   () => $fetch<{ data: Leader[] }>(`${config.public.apiBase}/leaders`),
-  { default: () => ({ data: [] }) },
+  {
+    default: () => ({ data: [] }),
+    getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key] ?? nuxtApp.static.data[key],
+  },
 )
 
 const leaders = computed(() => leadersData.value?.data ?? [])
