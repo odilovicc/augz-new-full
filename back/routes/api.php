@@ -28,6 +28,8 @@ use App\Http\Controllers\Api\ComplaintController;
 use App\Http\Controllers\Api\Admin\ComplaintController as AdminComplaintController;
 use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\Admin\SettingsController as AdminSettingsController;
+use App\Http\Controllers\Api\FooterController;
+use App\Http\Controllers\Api\Admin\FooterController as AdminFooterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,6 +71,7 @@ Route::get('/page/{slug}', [PageController::class, 'show']);
 Route::get('/services', [ServiceController::class, 'index']);
 Route::get('/trading-platforms', [TradingPlatformController::class, 'index']);
 Route::get('/settings', [SettingsController::class, 'show']);
+Route::get('/footer', [FooterController::class, 'index']);
 Route::post('/complaints', [ComplaintController::class, 'store']);
 Route::get('/complaints/stats', [ComplaintController::class, 'stats']);
 Route::get('/complaints/track/{code}', [ComplaintController::class, 'track']);
@@ -131,6 +134,15 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
 
     Route::get('/settings', [AdminSettingsController::class, 'show']);
     Route::put('/settings', [AdminSettingsController::class, 'update']);
+
+    Route::get('/footer/columns', [AdminFooterController::class, 'indexColumns']);
+    Route::post('/footer/columns', [AdminFooterController::class, 'storeColumn']);
+    Route::put('/footer/columns/{footerColumn}', [AdminFooterController::class, 'updateColumn']);
+    Route::delete('/footer/columns/{footerColumn}', [AdminFooterController::class, 'destroyColumn']);
+
+    Route::post('/footer/columns/{footerColumn}/links', [AdminFooterController::class, 'storeLink']);
+    Route::put('/footer/columns/{footerColumn}/links/{link}', [AdminFooterController::class, 'updateLink']);
+    Route::delete('/footer/columns/{footerColumn}/links/{link}', [AdminFooterController::class, 'destroyLink']);
 
     Route::get('/trading-platforms', [AdminTradingPlatformController::class, 'index']);
     Route::post('/trading-platforms', [AdminTradingPlatformController::class, 'store']);

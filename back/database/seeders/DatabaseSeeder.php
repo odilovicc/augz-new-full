@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             TestimonialSeeder::class,
             SettingsSeeder::class,
             TradingPlatformSeeder::class,
+            FooterSeeder::class,
         ]);
     }
 }

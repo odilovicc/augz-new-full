@@ -73,6 +73,16 @@
           <p class="text-xs text-gray-400">Контент страницы /tenderzone</p>
         </div>
       </NuxtLink>
+
+      <NuxtLink to="/footer" class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 flex items-center gap-4 hover:border-primary-300 transition-colors group">
+        <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-950 flex items-center justify-center text-primary-500">
+          <UIcon name="i-lucide-layout-panel-top" class="w-5 h-5" />
+        </div>
+        <div>
+          <p class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">Футер</p>
+          <p class="text-xs text-gray-400">Колонки и ссылки в подвале сайта</p>
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

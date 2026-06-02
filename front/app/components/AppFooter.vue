@@ -10,13 +10,16 @@
           <p class="text-sm text-gray-500 leading-relaxed max-w-xs">{{ lt(footer?.description) }}</p>
         </div>
 
-        <div v-for="(col, i) in navColumns" :key="i" class="flex flex-col gap-3">
-          <h4 class="text-sm font-bold text-gray-900">{{ t(col.titleKey) }}</h4>
+        <div v-for="col in footerColumns" :key="col.id" class="flex flex-col gap-3">
+          <h4 class="text-sm font-bold text-gray-900">{{ lt(col.title) }}</h4>
           <ul class="flex flex-col gap-2">
-            <li v-for="(linkKey, j) in col.linkKeys" :key="j">
-              <a href="#" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-                {{ t(linkKey) }}
-              </a>
+            <li v-for="link in col.links" :key="link.id">
+              <NuxtLink
+                :to="localePath(link.href)"
+                class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                {{ lt(link.label) }}
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -37,6 +40,20 @@
 </template>
 
 <script setup lang="ts">
+interface FooterLink {
+  id: number
+  label: { ru: string; uz: string; en: string }
+  href: string
+  position: number
+}
+
+interface FooterColumn {
+  id: number
+  title: { ru: string; uz: string; en: string }
+  position: number
+  links: FooterLink[]
+}
+
 const { t } = useI18n()
 const localePath = useLocalePath()
 const pageContent = usePageContent()
@@ -44,22 +61,12 @@ const lt = useLocaleText()
 
 const footer = computed(() => pageContent.value?.footer)
 
-const navColumns = [
-  {
-    titleKey: 'footer.col_about',
-    linkKeys: ['footer.col_about_links[0]', 'footer.col_about_links[1]', 'footer.col_about_links[2]', 'footer.col_about_links[3]'],
-  },
-  {
-    titleKey: 'footer.col_services',
-    linkKeys: ['footer.col_services_links[0]', 'footer.col_services_links[1]', 'footer.col_services_links[2]', 'footer.col_services_links[3]'],
-  },
-  {
-    titleKey: 'footer.col_membership',
-    linkKeys: ['footer.col_membership_links[0]', 'footer.col_membership_links[1]'],
-  },
-  {
-    titleKey: 'footer.col_info',
-    linkKeys: ['footer.col_info_links[0]', 'footer.col_info_links[1]', 'footer.col_info_links[2]', 'footer.col_info_links[3]'],
-  },
-]
+const config = useRuntimeConfig()
+
+const { data: footerColumns } = await useAsyncData<FooterColumn[]>(
+  'footer-columns',
+  () => $fetch<{ data: FooterColumn[] }>(`${config.public.apiBase}/footer`)
+    .then(res => res.data),
+  { default: () => [] }
+)
 </script>

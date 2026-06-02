@@ -30,4 +30,5 @@ body {
 }
 .scrollbar-none::-webkit-scrollbar {
     display: none;
+    animation: nameofanimation 3s linear;
 }
