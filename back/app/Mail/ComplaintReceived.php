@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Mail;
+
+use App\Models\Complaint;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
+
+class ComplaintReceived extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public function __construct(public Complaint $complaint) {}
+
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            from: new \Illuminate\Mail\Mailables\Address('info@augz.uz', 'АУГЗ'),
+            subject: 'Ваша жалоба принята — ' . $this->complaint->track_code,
+        );
+    }
+
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.complaint-received',
+        );
+    }
+}

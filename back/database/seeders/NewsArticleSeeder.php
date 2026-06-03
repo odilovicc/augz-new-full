@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\NewsArticle;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class NewsArticleSeeder extends Seeder
 {
@@ -436,6 +437,16 @@ class NewsArticleSeeder extends Seeder
                 ],
             ],
         ];
+
+        $assetsPath = database_path('seeders/assets/news');
+        if (is_dir($assetsPath)) {
+            foreach (glob("{$assetsPath}/seed_*.png") as $file) {
+                $filename = basename($file);
+                if (!Storage::disk('public')->exists("news/{$filename}")) {
+                    Storage::disk('public')->put("news/{$filename}", file_get_contents($file));
+                }
+            }
+        }
 
         foreach ($articles as $data) {
             NewsArticle::updateOrCreate(

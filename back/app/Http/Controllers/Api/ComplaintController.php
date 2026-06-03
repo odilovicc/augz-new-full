@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreComplaintRequest;
 use App\Http\Resources\ComplaintResource;
+use App\Mail\ComplaintReceived;
 use App\Models\Complaint;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
 class ComplaintController extends Controller
 {
@@ -32,6 +34,10 @@ class ComplaintController extends Controller
             $data,
             ['track_code' => Complaint::generateTrackCode()]
         ));
+
+        if (!empty($data['email'])) {
+            Mail::to($data['email'])->send(new ComplaintReceived($complaint->fresh()));
+        }
 
         return (new ComplaintResource($complaint->fresh()))
             ->response()
