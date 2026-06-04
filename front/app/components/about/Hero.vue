@@ -194,7 +194,7 @@
           <img
             v-if="leader.photo"
             :src="leader.photo"
-            :alt="leader.name"
+            :alt="lt(leader.name)"
             class="absolute bottom-0 right-0 h-[90%] w-[55%] object-cover object-top select-none pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300"
           />
           <div class="absolute inset-0 bg-linear-to-r from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent" />
@@ -202,7 +202,7 @@
 
           <div class="relative z-10 flex flex-col h-full p-6 gap-3 min-h-72">
             <div class="flex-1 flex flex-col gap-3">
-              <h3 class="text-lg font-black text-white leading-tight whitespace-pre-line">{{ leader.name }}</h3>
+              <h3 class="text-lg font-black text-white leading-tight whitespace-pre-line">{{ lt(leader.name) }}</h3>
               <div class="w-8 h-0.5 bg-(--theme-color)" />
               <p class="text-xs text-gray-400 leading-relaxed max-w-45">{{ lt(leader.role) }}</p>
             </div>
@@ -259,7 +259,7 @@
               <div v-if="activeLeader.photo" class="relative sm:w-52 shrink-0 h-56 sm:h-auto overflow-hidden">
                 <img
                   :src="activeLeader.photo"
-                  :alt="activeLeader.name"
+                  :alt="lt(activeLeader.name)"
                   class="w-full h-full object-cover object-top"
                 />
                 <div class="absolute inset-0 bg-linear-to-t from-[#1a1a1a] via-transparent to-transparent sm:bg-linear-to-r sm:from-transparent sm:via-transparent sm:to-[#1a1a1a]" />
@@ -268,7 +268,7 @@
               <!-- content -->
               <div class="flex flex-col gap-4 p-6 flex-1 min-w-0 sm:max-h-[70vh] sm:overflow-y-auto">
                 <div>
-                  <h3 class="text-xl font-black text-white leading-tight whitespace-pre-line">{{ activeLeader.name }}</h3>
+                  <h3 class="text-xl font-black text-white leading-tight whitespace-pre-line">{{ lt(activeLeader.name) }}</h3>
                   <div class="w-8 h-0.5 bg-(--theme-color) mt-2 mb-2" />
                   <p class="text-sm text-(--theme-color) font-semibold">{{ lt(activeLeader.role) }}</p>
                 </div>

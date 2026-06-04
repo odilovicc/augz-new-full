@@ -95,6 +95,7 @@ const dynamicLinks = [
   { to: '/applications',icon: 'i-lucide-inbox',          label: 'Заявки' },
   { to: '/questions',   icon: 'i-lucide-message-circle', label: 'Вопросы' },
   { to: '/leads',       icon: 'i-lucide-zap',            label: 'Лиды' },
+  { to: '/navbar',      icon: 'i-lucide-menu',           label: 'Навигация' },
   { to: '/footer',      icon: 'i-lucide-layout-panel-top', label: 'Футер' },
 ]
 </script>

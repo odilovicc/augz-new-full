@@ -8,7 +8,7 @@
         <ul class="hidden lg:flex items-center gap-x-5">
           <li v-for="link in links" :key="link.href">
             <NuxtLink :to="localePath(link.href)" class="px-1 py-0.5 hover:text-(--theme-color) transition">
-              {{ link.label }}
+              {{ lt(link.label) }}
             </NuxtLink>
           </li>
         </ul>
@@ -38,7 +38,7 @@
           <li v-for="link in links" :key="link.href">
             <NuxtLink :to="localePath(link.href)" @click="open = false"
                class="block px-2 py-2 rounded-md hover:bg-gray-50 hover:text-(--theme-color) transition">
-              {{ link.label }}
+              {{ lt(link.label) }}
             </NuxtLink>
           </li>
         </ul>
@@ -56,14 +56,15 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const config = useRuntimeConfig()
+const lt = useLocaleText()
+
 const open = ref(false)
 
-const links = computed(() => [
-  { href: '/about',      label: t('nav.about') },
-  { href: '/news',       label: t('nav.news') },
-  { href: '/services',   label: t('nav.services') },
-  { href: '/markets',   label: t('nav.markets') },
-  { href: '/membership', label: t('nav.membership') },
-  { href: '/contacts',   label: t('nav.contacts') },
-])
+const { data: links } = await useAsyncData(
+  'navbar-links',
+  () => $fetch<{ data: any[] }>(`${config.public.apiBase}/navbar`)
+    .then(res => res.data),
+  { default: () => [] }
+)
 </script>

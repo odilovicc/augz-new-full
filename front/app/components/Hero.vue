@@ -27,7 +27,7 @@
           <UiButton class="w-full sm:w-auto" @click="scrollTo(hero?.btn_primary?.href ?? '#about')">
             {{ lt(hero?.btn_primary?.label) }}
           </UiButton>
-          <UiButton class="w-full sm:w-auto hidden md:block" variant="outlined" @click="scrollTo(hero?.btn_secondary?.href ?? '#services')">
+          <UiButton class="w-full sm:w-auto hidden md:block" variant="outlined" @click="scrollTo(hero?.btn_secondary?.href ?? '/services')">
             {{ lt(hero?.btn_secondary?.label) }}
           </UiButton>
         </div>

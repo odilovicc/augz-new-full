@@ -28,11 +28,11 @@
           <tr v-for="item in leaders" :key="item.id" class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors align-top">
             <td class="px-5 py-3">
               <div class="w-10 h-12 rounded-lg bg-gray-100 dark:bg-gray-800 overflow-hidden shrink-0">
-                <img v-if="item.photo" :src="`${item.photo}?t=${item.updated_at}`" :alt="item.name" class="w-full h-full object-cover object-top" />
+                <img v-if="item.photo" :src="`${item.photo}?t=${item.updated_at}`" :alt="item.name.ru" class="w-full h-full object-cover object-top" />
               </div>
             </td>
             <td class="px-5 py-3 min-w-40">
-              <p class="font-medium text-gray-900 dark:text-white whitespace-pre-line leading-snug">{{ item.name }}</p>
+              <p class="font-medium text-gray-900 dark:text-white whitespace-pre-line leading-snug">{{ item.name.ru }}</p>
               <p class="text-gray-400 text-xs mt-0.5">{{ item.role.ru }}</p>
             </td>
             <td class="px-5 py-3 max-w-56">
@@ -104,6 +104,9 @@
 
         <!-- UZ -->
         <template v-if="activeLang === 'uz'">
+          <UFormField label="Ismi (UZ)" required>
+            <UTextarea v-model="form.uz.name" :rows="2" class="w-full" placeholder="Familiya&#10;Ism Otasining ismi" />
+          </UFormField>
           <UFormField label="Lavozimi (UZ)" required>
             <UInput v-model="form.uz.role" class="w-full" placeholder="AUGZ raisi" />
           </UFormField>
@@ -114,6 +117,9 @@
 
         <!-- EN -->
         <template v-if="activeLang === 'en'">
+          <UFormField label="Name (EN)" required>
+            <UTextarea v-model="form.en.name" :rows="2" class="w-full" placeholder="First Name&#10;Last Name" />
+          </UFormField>
           <UFormField label="Role (EN)" required>
             <UInput v-model="form.en.role" class="w-full" placeholder="Chairman of AUGZ" />
           </UFormField>
@@ -185,8 +191,8 @@ interface SocialLink { label: string; url: string }
 
 interface FormState {
   ru: { name: string; role: string; bio: string }
-  uz: { role: string; bio: string }
-  en: { role: string; bio: string }
+  uz: { name: string; role: string; bio: string }
+  en: { name: string; role: string; bio: string }
   photo: string
   sort_order: number
   social_links: SocialLink[]
@@ -194,8 +200,8 @@ interface FormState {
 
 const emptyForm = (): FormState => ({
   ru: { name: '', role: '', bio: '' },
-  uz: { role: '', bio: '' },
-  en: { role: '', bio: '' },
+  uz: { name: '', role: '', bio: '' },
+  en: { name: '', role: '', bio: '' },
   photo: '',
   sort_order: 0,
   social_links: [],
@@ -203,9 +209,9 @@ const emptyForm = (): FormState => ({
 const form = reactive<FormState>(emptyForm())
 
 function isLangFilled(code: 'ru' | 'uz' | 'en') {
-  if (code === 'ru') return !!form.ru.role
-  if (code === 'uz') return !!form.uz.role
-  return !!form.en.role
+  if (code === 'ru') return !!form.ru.name && !!form.ru.role
+  if (code === 'uz') return !!form.uz.name && !!form.uz.role
+  return !!form.en.name && !!form.en.role
 }
 
 function addSocialLink() {
@@ -233,12 +239,14 @@ function openCreate() {
 
 function openEdit(item: any) {
   editItem.value = item
-  form.ru.name      = item.name ?? ''
+  form.ru.name      = item.name?.ru ?? ''
   form.ru.role      = item.role?.ru ?? ''
   form.ru.bio       = item.bio?.ru ?? ''
-  form.uz.role      = item.translations?.uz?.role ?? ''
+  form.uz.name      = item.name?.uz ?? ''
+  form.uz.role      = item.role?.uz ?? ''
   form.uz.bio       = item.bio?.uz ?? ''
-  form.en.role      = item.translations?.en?.role ?? ''
+  form.en.name      = item.name?.en ?? ''
+  form.en.role      = item.role?.en ?? ''
   form.en.bio       = item.bio?.en ?? ''
   form.photo        = item.photo ?? ''
   form.sort_order   = item.sort_order ?? 0
@@ -264,8 +272,8 @@ async function save() {
       },
       social_links: form.social_links.filter(l => l.label && l.url),
       translations: {
-        uz: { role: form.uz.role },
-        en: { role: form.en.role },
+        uz: { role: form.uz.role, name: form.uz.name },
+        en: { role: form.en.role, name: form.en.name },
       },
     }
     if (editItem.value) {

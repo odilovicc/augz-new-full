@@ -15,7 +15,11 @@ class LeaderResource extends JsonResource
             'id'         => $this->id,
             'slug'       => $this->slug,
             'photo'      => $this->photo,
-            'name'       => $this->name,
+            'name'       => [
+                'ru' => $this->name,
+                'uz' => $translations['uz']['name'] ?? $this->name,
+                'en' => $translations['en']['name'] ?? $this->name,
+            ],
             'role'       => [
                 'ru' => $this->role,
                 'uz' => $translations['uz']['role'] ?? $this->role,

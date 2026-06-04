@@ -1521,7 +1521,6 @@ const sectionsBySlug: Record<string, { key: string; label: string }[]> = {
     { key: 'intro',    label: 'Ассоциация' },
     { key: 'mission',  label: 'Миссия' },
     { key: 'values',   label: 'Ценности' },
-    { key: 'leaders',  label: 'Руководство' },
     { key: 'timeline', label: 'История' },
   ],
   news:       [{ key: 'hero', label: 'Hero' }],

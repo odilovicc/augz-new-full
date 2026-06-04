@@ -30,8 +30,14 @@ class LeaderSeeder extends Seeder
                 'role'         => 'Председатель АУГЗ',
                 'photo'        => "{$base}/storage/leaders/muhitdinov.jpg",
                 'translations' => [
-                    'uz' => ['role' => 'AUGZ raisi'],
-                    'en' => ['role' => 'Chairman of AUGZ'],
+                    'uz' => [
+                        'name' => "Muhitdinov\nAnvar Omonullayevich",
+                        'role' => 'AUGZ raisi'
+                    ],
+                    'en' => [
+                        'name' => "Muhitdinov\nAnvar Omonullayevich",
+                        'role' => 'Chairman of AUGZ'
+                    ],
                 ],
                 'bio' => [
                     'ru' => 'Эксперт в области государственных закупок, тендерного законодательства и антикоррупционной методологии с более чем 20-летним опытом. Основал и возглавляет АУГЗ с 2018 года. Разрабатывает программы обучения и нормативно-правовые инициативы. Куратор Тендерной академии: многоязычные программы (RU, UZ, EN) по вопросам соответствия законодательству и антикоррупционным рискам. Ранее — брокер и юридический консультант на UzRTSB (2005–2018), более 10 лет биржевой практики.',
@@ -46,8 +52,14 @@ class LeaderSeeder extends Seeder
                 'role'         => 'Заместитель председателя АУГЗ',
                 'photo'        => "{$base}/storage/leaders/abidov.jpg",
                 'translations' => [
-                    'uz' => ['role' => "AUGZ rais o'rinbosari"],
-                    'en' => ['role' => 'Deputy Chairman of AUGZ'],
+                    'uz' => [
+                        'name' => "Abidov\nMarat Shavkatovich",
+                        'role' => "AUGZ rais o'rinbosari"
+                    ],
+                    'en' => [
+                        'name' => "Abidov\nMarat Shavkatovich",
+                        'role' => 'Deputy Chairman of AUGZ'
+                    ],
                 ],
                 'bio' => [
                     'ru' => 'Эксперт в области государственных и корпоративных закупок с более чем 12-летним практическим опытом. Один из первых в стране специалистов, систематизировавших обучение по тендерной тематике. Обучил более 1 000 предпринимателей и брокеров. Развивает AI-платформу обучения в сфере госзакупок в рамках Тендерной академии. Применяет методику обучения на реальных кейсах.',
@@ -62,8 +74,14 @@ class LeaderSeeder extends Seeder
                 'role'         => 'Независимый эксперт · Основатель Тендерной академии и TenderZone',
                 'photo'        => "{$base}/storage/leaders/niyazov.jpg",
                 'translations' => [
-                    'uz' => ['role' => 'Mustaqil ekspert · Tender akademiyasi va TenderZone asoschisi'],
-                    'en' => ['role' => 'Independent Expert · Founder of Tender Academy & TenderZone'],
+                    'uz' => [
+                        'name' => "Niyazov\nKamol Dilshodovich",
+                        'role' => 'Mustaqil ekspert · Tender akademiyasi va TenderZone asoschisi'
+                    ],
+                    'en' => [
+                        'name' => "Niyazov\nKamol Dilshodovich",
+                        'role' => 'Independent Expert · Founder of Tender Academy & TenderZone'
+                    ],
                 ],
                 'bio' => [
                     'ru' => 'Предприниматель и инноватор в сфере закупок с более чем 13-летним опытом. Основатель Тендерной академии — AI-платформы обучения по госзакупкам. Провёл более 5 000 тендеров, обучил более 3 000 специалистов по всему СНГ. Основатель TenderZone LLC — ведущего агрегатора тендерных данных для СНГ. Аккредитованный брокер UzRTSB. Международная экспансия: США (NASPO Exchange 2026) и Китай (Canton Fair). Автор книги «Тендерчи: тизим сири».',
@@ -78,8 +96,14 @@ class LeaderSeeder extends Seeder
                 'role'         => 'Руководитель отдела ВЭД АУГЗ · Куратор Тендерной академии',
                 'photo'        => "{$base}/storage/leaders/hodjaev.jpg",
                 'translations' => [
-                    'uz' => ['role' => 'AUGZ tashqi iqtisodiy faoliyat bo\'limi boshlig\'i · Tender akademiyasi kuratori'],
-                    'en' => ['role' => 'Head of Foreign Economic Activity · Curator of Tender Academy'],
+                    'uz' => [
+                        'name' => "Xodjayev\nFeyruz Baxodirovich",
+                        'role' => 'AUGZ tashqi iqtisodiy faoliyat bo\'limi boshlig\'i · Tender akademiyasi kuratori'
+                    ],
+                    'en' => [
+                        'name' => "Hodjaev\nFeyruz Bahodirovich",
+                        'role' => 'Head of Foreign Economic Activity · Curator of Tender Academy'
+                    ],
                 ],
                 'bio' => [
                     'ru' => 'Специалист по государственным закупкам и внешнеэкономической деятельности с опытом более 5 лет. Участвовал в крупных проектах суммарным объёмом свыше 1 500 000 долларов США. Член рабочей группы по вопросам государственных закупок. Курирует тендеры и обучение участников в АУГЗ, ведёт переговоры с иностранными партнёрами. Ранее — заместитель директора ООО Hiblak Printex (2001–2023), руководил отделом ВЭД.',
@@ -94,8 +118,14 @@ class LeaderSeeder extends Seeder
                 'role'         => 'Куратор АУГЗ · Аккредитованный брокер UzRTSB',
                 'photo'        => "{$base}/storage/leaders/muratov.jpg",
                 'translations' => [
-                    'uz' => ['role' => 'AUGZ kuratori · UzRTSB akkreditatsiyalangan brokeri'],
-                    'en' => ['role' => 'AUGZ Curator · Accredited Broker UzRTSB'],
+                    'uz' => [
+                        'name' => "Muratov\nOdiljon Maxmud o'g'li",
+                        'role' => 'AUGZ kuratori · UzRTSB akkreditatsiyalangan brokeri'
+                    ],
+                    'en' => [
+                        'name' => "Muratov\nOdiljon Makhmud ugli",
+                        'role' => 'AUGZ Curator · Accredited Broker UzRTSB'
+                    ],
                 ],
                 'bio' => [
                     'ru' => 'Эксперт по государственным закупкам и Узбекской республиканской товарно-сырьевой бирже с более чем 14-летним опытом. Специализируется на сопровождении закупочных процедур, биржевых торгах и работе с крупными лотами. Обучил более 1 000 участников. Сопровождает крупные тендеры и госзакупки на миллиарды сум. Лауреат награды за выдающиеся экспортные сделки (UZEX) и звания «Лучший куратор АУГЗ».',
@@ -110,12 +140,18 @@ class LeaderSeeder extends Seeder
                 'role'         => 'Помощник председателя АУГЗ',
                 'photo'        => "{$base}/storage/leaders/irmatova.jpg",
                 'translations' => [
-                    'uz' => ['role' => 'AUGZ raisi yordamchisi'],
-                    'en' => ['role' => 'Assistant to the Chairman of AUGZ'],
+                    'uz' => [
+                        'name' => "Irmatova\nNigora Abduvayitovna",
+                        'role' => 'AUGZ raisi yordamchisi'
+                    ],
+                    'en' => [
+                        'name' => "Irmatova\nNigora Abduvayitovna",
+                        'role' => 'Assistant to the Chairman of AUGZ'
+                    ],
                 ],
                 'bio' => [
                     'ru' => 'Обеспечивает организационную и административную поддержку деятельности председателя АУГЗ. Координирует взаимодействие между структурными подразделениями ассоциации, ведёт документооборот и сопровождает протокольные мероприятия. Участвует в подготовке официальных встреч, форумов и переговоров с государственными органами и партнёрами. Контролирует исполнение поручений и решений руководства.',
-                    'uz' => 'AUGZ raisi faoliyatiga tashkiliy va ma\'muriy yordam ko\'rsatadi. Assotsiatsiya bo\'limlari o\'rtasidagi hamkorlikni muvofiqlashtiradi, hujjat aylanmasini yuritadi va protokol tadbirlarini ta\'minlaydi. Rasmiy uchrashuvlar, forumlar va davlat organlari bilan muzokaralar tayyorlashda ishtirok etadi.',
+                    'uz' => 'AUGZ raisi faoliyatiga tashkiliy va ma\'muriy yordam ko\'rsatadi. Assotsiatsiya bo\'limlari o\'rtasidagi hamkorlikni muvohiqlashtiradi, hujjat aylanmasini yuritadi va protokol tadbirlarini ta\'minlaydi. Rasmiy uchrashuvlar, forumlar va davlat organlari bilan muzokaralar tayyorlashda ishtirok etadi.',
                     'en' => 'Provides organizational and administrative support to the Chairman of AUGZ. Coordinates interaction between association divisions, manages document flow, and supports protocol events. Participates in preparing official meetings, forums, and negotiations with government bodies and partners.',
                 ],
             ],

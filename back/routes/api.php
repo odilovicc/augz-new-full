@@ -29,7 +29,9 @@ use App\Http\Controllers\Api\Admin\ComplaintController as AdminComplaintControll
 use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\Admin\SettingsController as AdminSettingsController;
 use App\Http\Controllers\Api\FooterController;
+use App\Http\Controllers\Api\NavbarController;
 use App\Http\Controllers\Api\Admin\FooterController as AdminFooterController;
+use App\Http\Controllers\Api\Admin\NavbarController as AdminNavbarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +74,7 @@ Route::get('/services', [ServiceController::class, 'index']);
 Route::get('/trading-platforms', [TradingPlatformController::class, 'index']);
 Route::get('/settings', [SettingsController::class, 'show']);
 Route::get('/footer', [FooterController::class, 'index']);
+Route::get('/navbar', [NavbarController::class, 'index']);
 Route::post('/complaints', [ComplaintController::class, 'store']);
 Route::get('/complaints/stats', [ComplaintController::class, 'stats']);
 Route::get('/complaints/track/{code}', [ComplaintController::class, 'track']);
@@ -84,6 +87,11 @@ Route::get('/complaints/track/{code}', [ComplaintController::class, 'track']);
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::post('/upload/image', [UploadController::class, 'image']);
+
+    Route::get('/navbar', [AdminNavbarController::class, 'index']);
+    Route::post('/navbar', [AdminNavbarController::class, 'store']);
+    Route::put('/navbar/{navbarLink}', [AdminNavbarController::class, 'update']);
+    Route::delete('/navbar/{navbarLink}', [AdminNavbarController::class, 'destroy']);
 
     Route::get('/page/{slug}', [AdminPageController::class, 'show']);
     Route::put('/page/{slug}', [AdminPageController::class, 'update']);

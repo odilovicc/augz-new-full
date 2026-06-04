@@ -68,8 +68,8 @@ class PageSeeder extends Seeder
                     'uz' => "O'zbekiston bozori ishtirokchilarining professional darajasini oshirish va davlat xaridlari tizimini rivojlantirishga ko'maklashamiz.",
                     'en' => 'We promote the development of the public procurement system and raise the professional level of market participants in Uzbekistan.',
                 ],
-                'btn_primary'   => ['label' => ['ru' => 'О нас',       'uz' => 'Biz haqimizda', 'en' => 'About us'],      'href' => '#about'],
-                'btn_secondary' => ['label' => ['ru' => 'Наши услуги', 'uz' => 'Xizmatlarimiz', 'en' => 'Our services'],  'href' => '#services'],
+                'btn_primary'   => ['label' => ['ru' => 'О нас',       'uz' => 'Biz haqimizda', 'en' => 'About us'],      'href' => '/about'],
+                'btn_secondary' => ['label' => ['ru' => 'Наши услуги', 'uz' => 'Xizmatlarimiz', 'en' => 'Our services'],  'href' => '/services'],
             ],
 
             'about' => [
