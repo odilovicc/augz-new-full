@@ -1515,7 +1515,6 @@ const sectionsBySlug: Record<string, { key: string; label: string }[]> = {
     { key: 'stats',    label: 'Статистика' },
     { key: 'partners', label: 'Партнёры' },
     { key: 'contacts', label: 'Контакты' },
-    { key: 'footer',   label: 'Подвал' },
   ],
   about: [
     { key: 'hero',     label: 'Hero' },
