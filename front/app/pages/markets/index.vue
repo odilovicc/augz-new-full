@@ -88,8 +88,7 @@
                   >
                     <!-- Logo -->
                     <div
-                      class="w-16 h-16 rounded-xl shrink-0 flex items-center justify-center overflow-hidden text-white font-black text-lg select-none"
-                      :style="market.logo_color ? `background:${market.logo_color}` : 'background:#e5e7eb'"
+                      class="w-16 h-16 rounded-xl shrink-0 flex items-center justify-center overflow-hidden font-black text-lg select-none bg-white border border-gray-100 shadow-md shadow-gray-200/80"
                     >
                       <img
                         v-if="market.logo"
@@ -176,8 +175,7 @@
                 >
                   <div class="flex items-center gap-2.5">
                     <div
-                      class="w-7 h-7 rounded-md shrink-0 flex items-center justify-center overflow-hidden text-white text-[10px] font-black"
-                      :style="market.logo_color ? `background:${market.logo_color}` : 'background:#e5e7eb'"
+                      class="w-7 h-7 rounded-md shrink-0 flex items-center justify-center overflow-hidden text-[10px] font-black bg-white border border-gray-100 shadow-sm shadow-gray-200/80"
                     >
                       <img v-if="market.logo" :src="market.logo" :alt="market.name" class="w-full h-full object-contain" />
                       <span v-else class="text-gray-400">{{ market.name.slice(0, 1) }}</span>

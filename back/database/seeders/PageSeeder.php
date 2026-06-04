@@ -591,6 +591,7 @@ class PageSeeder extends Seeder
                 'title_1'  => ['ru' => 'НАЙДИ НУЖНЫЙ',      'uz' => 'KERAKLI',           'en' => 'FIND THE RIGHT'],
                 'title_2'  => ['ru' => 'ТЕНДЕР',             'uz' => 'TENDERNI',          'en' => 'TENDER'],
                 'title_3'  => ['ru' => 'ПЕРВЫМ',             'uz' => 'BIRINCHI TOP',      'en' => 'FIRST'],
+                'title_accent' => ['ru' => 'с TenderZone',    'uz' => 'TenderZone bilan',  'en' => 'with TenderZone'],
                 'subtitle' => [
                     'ru' => 'Агрегатор государственных и корпоративных тендеров Узбекистана и СНГ. Уведомления, аналитика, статистика — всё в одной платформе.',
                     'uz' => "O'zbekiston va MDH davlat va korporativ tenderlarining agregatori. Bildirishnomalar, tahlil, statistika — barchasi bitta platformada.",

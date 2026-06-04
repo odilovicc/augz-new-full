@@ -1305,6 +1305,10 @@
           <I18nField v-model="content.hero.title_3" />
         </div>
         <div>
+          <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Заголовок — строка 4 (акцент, оранжевая)</p>
+          <I18nField v-model="content.hero.title_accent" />
+        </div>
+        <div>
           <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Подзаголовок</p>
           <I18nField v-model="content.hero.subtitle" textarea />
         </div>
@@ -1564,6 +1568,55 @@ onMounted(async () => {
   try {
     const res = await apiFetch<{ slug: string; content: any }>(`/admin/page/${slug.value}`)
     content.value = res.content
+
+    // Initialize missing tenderzone fields to avoid v-model errors and validation failures
+    if (slug.value === 'tenderzone') {
+      const emptyI18n = () => ({ ru: '', uz: '', en: '' })
+      
+      if (!content.value.hero) content.value.hero = {}
+      if (!content.value.hero.badge) content.value.hero.badge = emptyI18n()
+      if (!content.value.hero.title_1) content.value.hero.title_1 = emptyI18n()
+      if (!content.value.hero.title_2) content.value.hero.title_2 = emptyI18n()
+      if (!content.value.hero.title_3) content.value.hero.title_3 = emptyI18n()
+      if (!content.value.hero.title_accent) content.value.hero.title_accent = emptyI18n()
+      if (!content.value.hero.subtitle) content.value.hero.subtitle = emptyI18n()
+      if (!content.value.hero.btn_primary) content.value.hero.btn_primary = { label: emptyI18n(), href: '' }
+      if (!content.value.hero.btn_secondary) content.value.hero.btn_secondary = { label: emptyI18n(), href: '' }
+
+      if (!content.value.hero.stats || content.value.hero.stats.length === 0) {
+        content.value.hero.stats = Array(3).fill(null).map(() => ({ value: '', label: emptyI18n() }))
+      }
+      
+      if (!content.value.features) content.value.features = {}
+      if (!content.value.features.badge) content.value.features.badge = emptyI18n()
+      if (!content.value.features.heading) content.value.features.heading = emptyI18n()
+      if (!content.value.features.subtitle) content.value.features.subtitle = emptyI18n()
+      if (!content.value.features.items || content.value.features.items.length === 0) {
+        content.value.features.items = Array(6).fill(null).map(() => ({
+          icon: '', icon_color: '', border_color: '',
+          title: emptyI18n(), desc: emptyI18n(),
+          badge: emptyI18n(), badge_color: ''
+        }))
+      }
+      
+      if (!content.value.how) content.value.how = {}
+      if (!content.value.how.badge) content.value.how.badge = emptyI18n()
+      if (!content.value.how.heading) content.value.how.heading = emptyI18n()
+      if (!content.value.how.cta_hint) content.value.how.cta_hint = emptyI18n()
+      if (!content.value.how.btn_primary) content.value.how.btn_primary = { label: emptyI18n(), href: '' }
+      if (!content.value.how.btn_secondary) content.value.how.btn_secondary = { label: emptyI18n(), href: '' }
+      if (!content.value.how.steps || content.value.how.steps.length === 0) {
+        content.value.how.steps = Array(5).fill(null).map(() => ({
+          title: emptyI18n(), desc: emptyI18n()
+        }))
+      }
+      
+      if (!content.value.modal) content.value.modal = {}
+      if (!content.value.modal.free_title) content.value.modal.free_title = emptyI18n()
+      if (!content.value.modal.free_desc) content.value.modal.free_desc = emptyI18n()
+      if (!content.value.modal.demo_title) content.value.modal.demo_title = emptyI18n()
+      if (!content.value.modal.demo_desc) content.value.modal.demo_desc = emptyI18n()
+    }
   }
   catch (e) {
     console.error('Failed to load page content:', e)

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class PageController extends Controller
 {
-    private const KNOWN_SLUGS = ['home', 'about', 'news', 'services', 'membership', 'markets', 'contacts', 'report'];
+    private const KNOWN_SLUGS = ['home', 'about', 'news', 'services', 'membership', 'markets', 'contacts', 'report', 'tenderzone'];
 
     public function show(string $slug): JsonResponse
     {

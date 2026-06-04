@@ -540,88 +540,74 @@
     <!-- ─── SUCCESS MODAL ─── -->
     <Teleport to="body">
       <Transition name="modal">
-        <div v-if="showSuccess" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showSuccess = false" />
-          <div class="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div v-if="showSuccess" class="fixed top-20 inset-0 z-50 overflow-y-auto px-4">
+          <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" @click="showSuccess = false" />
+          <div class="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden mx-auto my-8">
 
-            <div class="bg-[#1e6b45] px-8 pt-10 pb-8 flex flex-col items-center text-center">
-              <div class="w-16 h-16 rounded-full border-2 border-white/40 flex items-center justify-center mb-5">
-                <Icon name="heroicons:check" class="w-8 h-8 text-white" />
+            <div class="bg-[#1e6b45] px-6 pt-7 pb-6 flex flex-col items-center text-center">
+              <div class="w-12 h-12 rounded-full border-2 border-white/40 flex items-center justify-center mb-3">
+                <Icon name="heroicons:check" class="w-6 h-6 text-white" />
               </div>
-              <h2 class="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight leading-tight mb-2">
+              <h2 class="text-xl font-black uppercase text-white tracking-tight leading-tight mb-1">
                 {{ t(c?.success_modal?.title) }}
               </h2>
-              <p class="text-sm text-white/70">{{ t(c?.success_modal?.subtitle) }}</p>
+              <p class="text-xs text-white/70">{{ t(c?.success_modal?.subtitle) }}</p>
             </div>
 
-            <div class="px-6 py-6 space-y-4">
-              <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+            <div class="px-5 py-5 space-y-3">
+              <div class="rounded-xl border border-gray-200 bg-gray-50 p-3.5">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">{{ t(c?.success_modal?.track_label) }}</p>
                 <div class="flex items-center gap-3">
-                  <span class="text-2xl font-black text-gray-900 tracking-wide flex-1 font-mono">{{ trackCodeForModal }}</span>
+                  <span class="text-xl font-black text-gray-900 tracking-wide flex-1 font-mono">{{ trackCodeForModal }}</span>
                   <button
-                    class="shrink-0 px-4 py-2 rounded-lg bg-(--theme-color) text-white text-sm font-bold hover:brightness-110 active:scale-95 transition flex items-center gap-1.5"
+                    class="shrink-0 px-3 py-1.5 rounded-lg bg-(--theme-color) text-white text-xs font-bold hover:brightness-110 active:scale-95 transition flex items-center gap-1.5"
                     @click="copyTrackCode"
                   >
-                    <Icon name="ph:copy" class="w-4 h-4" />
+                    <Icon name="ph:copy" class="w-3.5 h-3.5" />
                     {{ copied ? t(c?.success_modal?.btn_copied) : t(c?.success_modal?.btn_copy) }}
                   </button>
                 </div>
-                <p class="text-xs text-gray-400 mt-2 flex items-center gap-1">
+                <p v-if="form.email && !form.anonymous" class="text-xs text-gray-400 mt-2 flex items-center gap-1">
                   <Icon name="ph:envelope" class="w-3.5 h-3.5" />
                   {{ t(c?.success_modal?.email_prefix) }}
-                  <span class="text-gray-600 ml-0.5">{{ form.email || 'example@mail.com' }}</span>
+                  <span class="text-gray-600 ml-0.5">{{ form.email }}</span>
+                </p>
+                <p v-else class="text-xs text-gray-400 mt-2 flex items-center gap-1">
+                  <Icon name="ph:envelope-slash" class="w-3.5 h-3.5" />
+                  {{ $t('report_page.no_email_sent') }}
                 </p>
               </div>
 
-              <div class="grid grid-cols-3 gap-3">
-                <div class="rounded-xl border border-gray-200 bg-gray-50 p-3.5">
-                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_date) }}</p>
-                  <p class="text-sm font-semibold text-gray-900">{{ submittedAt }}</p>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-2.5">
+                  <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_date) }}</p>
+                  <p class="text-xs font-semibold text-gray-900">{{ submittedAt }}</p>
                 </div>
-                <div class="rounded-xl border border-gray-200 bg-gray-50 p-3.5">
-                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_expert) }}</p>
-                  <p class="text-sm font-semibold text-gray-900">{{ t(c?.success_modal?.expert_name) }}</p>
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-2.5">
+                  <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_expert) }}</p>
+                  <p class="text-xs font-semibold text-gray-900">{{ t(c?.success_modal?.expert_name) }}</p>
                 </div>
-                <div class="rounded-xl border border-gray-200 bg-gray-50 p-3.5">
-                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_deadline) }}</p>
-                  <p class="text-sm font-semibold text-gray-900">{{ deadlineAt }}</p>
-                </div>
-              </div>
-
-              <div class="rounded-xl border border-gray-200 bg-gray-50 px-4 py-4">
-                <div class="flex items-start justify-between gap-1">
-                  <div v-for="(ps, i) in (progressSteps as ProgressStep[])" :key="ps.label" class="flex flex-col items-center flex-1 gap-1.5">
-                    <div
-                      class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 shrink-0"
-                      :class="
-                        ps.status === 'done'   ? 'bg-green-500 border-green-500 text-white'
-                        : ps.status === 'active' ? 'bg-(--theme-color) border-(--theme-color) text-white'
-                        : 'bg-white border-gray-300 text-gray-400'
-                      "
-                    >
-                      <Icon v-if="ps.status === 'done'" name="heroicons:check" class="w-3.5 h-3.5" />
-                      <span v-else>{{ (i as number) + 1 }}</span>
-                    </div>
-                    <p class="text-[10px] font-semibold text-center leading-tight" :class="ps.status === 'pending' ? 'text-gray-400' : 'text-gray-700'">{{ ps.label }}</p>
-                    <p class="text-[10px] text-gray-400 text-center leading-tight">{{ ps.time }}</p>
-                  </div>
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-2.5">
+                  <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(c?.success_modal?.meta_deadline) }}</p>
+                  <p class="text-xs font-semibold text-gray-900">{{ deadlineAt }}</p>
                 </div>
               </div>
 
-              <button
-                class="w-full py-3.5 rounded-xl bg-(--theme-color) text-white text-sm font-bold hover:brightness-110 transition flex items-center justify-center gap-2"
-                @click="goToTrack"
-              >
-                <Icon name="ph:magnifying-glass" class="w-4 h-4" />
-                {{ t(c?.success_modal?.btn_track) }}
-              </button>
-              <button
-                class="w-full py-3.5 rounded-xl border-2 border-gray-200 text-gray-600 text-sm font-semibold hover:border-gray-300 hover:text-gray-800 transition"
-                @click="showSuccess = false"
-              >
-                {{ t(c?.success_modal?.btn_close) }}
-              </button>
+              <div class="flex gap-2">
+                <button
+                  class="flex-1 py-3 rounded-xl bg-(--theme-color) text-white text-sm font-bold hover:brightness-110 transition flex items-center justify-center gap-2"
+                  @click="goToTrack"
+                >
+                  <Icon name="ph:magnifying-glass" class="w-4 h-4" />
+                  {{ t(c?.success_modal?.btn_track) }}
+                </button>
+                <button
+                  class="flex-1 py-3 rounded-xl border-2 border-gray-200 text-gray-600 text-sm font-semibold hover:border-gray-300 hover:text-gray-800 transition"
+                  @click="showSuccess = false"
+                >
+                  {{ t(c?.success_modal?.btn_close) }}
+                </button>
+              </div>
             </div>
           </div>
         </div>

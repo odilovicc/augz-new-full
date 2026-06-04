@@ -30,7 +30,7 @@
               <div class="flex items-center gap-3">
                 <div
                   class="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center text-white text-xs font-black"
-                  :style="item.logo_color ? `background:${item.logo_color}` : 'background:#e5e7eb'"
+                  style="background: white; border: 1px solid #e5e7eb"
                 >
                   <span v-if="!item.logo" class="text-gray-400">{{ item.name.slice(0, 2).toUpperCase() }}</span>
                   <img v-else :src="item.logo" :alt="item.name" class="w-full h-full object-contain rounded-lg" />
@@ -134,17 +134,9 @@
           <UInput v-model="form.url" class="w-full" placeholder="https://e-xarid.uz" />
         </UFormField>
 
-        <div class="grid grid-cols-2 gap-4">
-          <UFormField label="Цвет логотипа">
-            <div class="flex items-center gap-2">
-              <input v-model="form.logo_color" type="color" class="w-10 h-9 rounded border border-gray-200 cursor-pointer p-0.5" />
-              <UInput v-model="form.logo_color" class="w-full" placeholder="#1a56db" />
-            </div>
-          </UFormField>
-          <UFormField label="Категория" required>
-            <USelect v-model="form.category" :items="categoryOptions" class="w-full" />
-          </UFormField>
-        </div>
+        <UFormField label="Категория" required>
+          <USelect v-model="form.category" :items="categoryOptions" class="w-full" />
+        </UFormField>
 
         <div class="flex items-center gap-3">
           <UCheckbox v-model="form.is_official" label="Официальная площадка" />
@@ -163,14 +155,16 @@
         </UFormField>
 
         <p v-if="saveError" class="text-sm text-red-500">{{ saveError }}</p>
-
-        <div class="flex gap-3 pt-2">
-          <UButton type="submit" :loading="saving" class="flex-1 justify-center">
-            {{ editItem ? 'Сохранить' : 'Создать' }}
-          </UButton>
-          <UButton variant="outline" @click="slideOpen = false">Отмена</UButton>
-        </div>
       </form>
+    </template>
+
+    <template #footer>
+      <div class="flex gap-3 p-4 border-t border-gray-100 dark:border-gray-800">
+        <UButton type="button" :loading="saving" class="flex-1 justify-center" @click="save">
+          {{ editItem ? 'Сохранить' : 'Создать' }}
+        </UButton>
+        <UButton variant="outline" @click="slideOpen = false">Отмена</UButton>
+      </div>
     </template>
   </USlideover>
 </template>

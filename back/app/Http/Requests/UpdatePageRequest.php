@@ -34,9 +34,9 @@ class UpdatePageRequest extends FormRequest
     private function i18n(string $prefix, int $max = 500): array
     {
         return [
-            "{$prefix}.ru" => ['required', 'string', "max:{$max}"],
-            "{$prefix}.uz" => ['required', 'string', "max:{$max}"],
-            "{$prefix}.en" => ['required', 'string', "max:{$max}"],
+            "{$prefix}.ru" => ['sometimes', 'nullable', 'string', "max:{$max}"],
+            "{$prefix}.uz" => ['sometimes', 'nullable', 'string', "max:{$max}"],
+            "{$prefix}.en" => ['sometimes', 'nullable', 'string', "max:{$max}"],
         ];
     }
 
@@ -130,15 +130,29 @@ class UpdatePageRequest extends FormRequest
             $this->i18n('content.hero.title_1'),
             $this->i18n('content.hero.title_2'),
             $this->i18n('content.hero.title_3'),
+            $this->i18n('content.hero.title_accent'),
             $this->i18n('content.hero.subtitle', 1000),
             $this->i18n('content.hero.btn_primary.label'),
             ['content.hero.btn_primary.href'   => ['required', 'string', 'max:255']],
             $this->i18n('content.hero.btn_secondary.label'),
             ['content.hero.btn_secondary.href' => ['required', 'string', 'max:255']],
+            ['content.hero.stats'             => ['required', 'array', 'size:3']],
+            ['content.hero.stats.*.value'     => ['required', 'string', 'max:50']],
+            $this->i18n('content.hero.stats.*.label'),
+
             // Features section
             $this->i18n('content.features.badge'),
             $this->i18n('content.features.heading'),
             $this->i18n('content.features.subtitle', 1000),
+            ['content.features.items'          => ['required', 'array', 'size:6']],
+            ['content.features.items.*.icon'   => ['required', 'string']],
+            ['content.features.items.*.icon_color' => ['required', 'string']],
+            ['content.features.items.*.border_color' => ['required', 'string']],
+            $this->i18n('content.features.items.*.title'),
+            $this->i18n('content.features.items.*.desc'),
+            $this->i18n('content.features.items.*.badge'),
+            ['content.features.items.*.badge_color' => ['required', 'string']],
+
             // How it works
             $this->i18n('content.how.badge'),
             $this->i18n('content.how.heading'),
@@ -147,6 +161,10 @@ class UpdatePageRequest extends FormRequest
             $this->i18n('content.how.btn_secondary.label'),
             ['content.how.btn_secondary.href' => ['required', 'string', 'max:255']],
             $this->i18n('content.how.cta_hint', 1000),
+            ['content.how.steps'              => ['required', 'array', 'size:5']],
+            $this->i18n('content.how.steps.*.title'),
+            $this->i18n('content.how.steps.*.desc'),
+
             // Modal
             $this->i18n('content.modal.free_title'),
             $this->i18n('content.modal.demo_title'),

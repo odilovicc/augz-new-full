@@ -4,7 +4,7 @@
       <span class="shrink-0 mt-2 text-xs font-bold uppercase text-gray-400 w-6 text-center">{{ lang.code }}</span>
       <UTextarea
         v-if="textarea"
-        :model-value="modelValue[lang.code]"
+        :model-value="modelValue ? modelValue[lang.code] : ''"
         :rows="3"
         class="flex-1"
         :placeholder="lang.placeholder"
@@ -12,7 +12,7 @@
       />
       <UInput
         v-else
-        :model-value="modelValue[lang.code]"
+        :model-value="modelValue ? modelValue[lang.code] : ''"
         class="flex-1"
         :placeholder="lang.placeholder"
         @update:model-value="update(lang.code, $event)"
@@ -38,6 +38,7 @@ const langs = [
 ]
 
 function update(code: 'ru' | 'uz' | 'en', value: string) {
-  emit('update:modelValue', { ...props.modelValue, [code]: value })
+  const current = props.modelValue || { ru: '', uz: '', en: '' }
+  emit('update:modelValue', { ...current, [code]: value })
 }
 </script>

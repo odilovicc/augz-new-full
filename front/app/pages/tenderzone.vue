@@ -17,7 +17,7 @@
         <h1 class="text-5xl md:text-6xl font-black uppercase tracking-tight leading-none mb-5">
           {{ t(c?.hero?.title_1) }}<br>
           <span class="text-(--theme-color)">{{ t(c?.hero?.title_2) }}</span> {{ t(c?.hero?.title_3) }}<br>
-          <span class="text-(--theme-color)">с TenderZone</span>
+          <span class="text-(--theme-color)">{{ t(c?.hero?.title_accent) }}</span>
         </h1>
 
         <p class="text-sm sm:text-base leading-relaxed text-gray-600 max-w-sm mb-8">

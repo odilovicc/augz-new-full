@@ -283,6 +283,7 @@ export default defineI18nConfig(() => ({
         err_email: 'Неверный формат email',
         err_max5files: 'Максимум 5 файлов',
         err_submit: 'Не удалось отправить жалобу. Попробуйте ещё раз.',
+        no_email_sent: 'Код не отправлен на почту (анонимно или email не указан)',
         char_min: '/мин. 10',
         status: {
           new: 'Принята',
@@ -692,6 +693,7 @@ export default defineI18nConfig(() => ({
         err_email: 'Email formati noto\'g\'ri',
         err_max5files: 'Ko\'pi bilan 5 ta fayl',
         err_submit: 'Shikoyat yuborib bo\'lmadi. Keyinroq urinib ko\'ring.',
+        no_email_sent: 'Kod pochta manziliga yuborilmadi (anonim yoki email ko\'rsatilmagan)',
         char_min: '/min. 10',
         status: {
           new: 'Qabul qilindi',
@@ -1101,6 +1103,7 @@ export default defineI18nConfig(() => ({
         err_email: 'Invalid email format',
         err_max5files: 'Maximum 5 files',
         err_submit: 'Failed to submit complaint. Please try again.',
+        no_email_sent: 'Code not sent by email (anonymous or no email provided)',
         char_min: '/min. 10',
         status: {
           new: 'Received',

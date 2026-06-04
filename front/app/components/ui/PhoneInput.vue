@@ -1,13 +1,12 @@
 <template>
   <IMaskComponent
-    :mask="'+{998} (00) 000-00-00'"
+    mask="+{0}000000000000"
     :unmask="false"
     :model-value="modelValue"
     type="tel"
-    placeholder="+998 (00) 000-00-00"
+    placeholder="+_ ___ ___ ____"
     v-bind="$attrs"
-    @complete="(val: string) => emit('update:modelValue', val)"
-    @accept="(val: string) => { if (val !== modelValue) emit('update:modelValue', '') }"
+    @accept="(val: string) => emit('update:modelValue', val)"
     @blur="$emit('blur')"
   />
 </template>
