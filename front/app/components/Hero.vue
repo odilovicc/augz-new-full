@@ -5,7 +5,7 @@
   >
 
     <div v-if="!hero?.image" class="absolute inset-y-0 right-0 w-2/5 sm:w-1/2 md:w-[55%] pointer-events-none select-none">
-      <div class="absolute inset-0 bg-linear-to-r from-white via-white/80 sm:via-white/60 to-transparent z-10" />
+      <div class="absolute inset-0 bg-linear-to-r from-white via-white/90 to-transparent to-60% z-10" />
       <img src="/img/Hero.png" alt="АУГЗ здание" class="w-full h-full object-cover object-right" />
     </div>
     <div v-else class="absolute inset-0 bg-linear-to-r from-white via-white/70 to-transparent pointer-events-none" />

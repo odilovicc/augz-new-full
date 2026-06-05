@@ -60,12 +60,6 @@ class UpdatePageRequest extends FormRequest
             ['content.about.features.*.icon'   => ['required', 'string']],
             $this->i18n('content.about.features.*.title'),
             $this->i18n('content.about.features.*.desc'),
-            ['content.about.services'                => ['required', 'array', 'size:5']],
-            ['content.about.services.*.image'        => ['required', 'string', 'max:500']],
-            $this->i18n('content.about.services.*.tag'),
-            $this->i18n('content.about.services.*.title'),
-            $this->i18n('content.about.services.*.desc'),
-
             // Stats
             $this->i18n('content.stats.label'),
             $this->i18n('content.stats.heading'),
