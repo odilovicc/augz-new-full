@@ -17,6 +17,24 @@
 
     <template v-else>
 
+      <!-- ── LOGO ── -->
+      <section class="mb-8">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
+          <UIcon name="i-lucide-type" class="w-3.5 h-3.5" /> Подпись логотипа
+        </h2>
+        <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 flex flex-col gap-4">
+          <UFormField label="Подпись (RU)">
+            <UInput v-model="form.logo_desc.ru" class="w-full" placeholder="Ассоциация участников государственных закупок (АУГЗ)" />
+          </UFormField>
+          <UFormField label="Подпись (UZ)">
+            <UInput v-model="form.logo_desc.uz" class="w-full" placeholder="Davlat zakazlarining ishtrokchilari assotsiatsiyasi" />
+          </UFormField>
+          <UFormField label="Подпись (EN)">
+            <UInput v-model="form.logo_desc.en" class="w-full" placeholder="Association of Participants in Government Procurements (AUGZ)" />
+          </UFormField>
+        </div>
+      </section>
+
       <!-- ── CONTACTS ── -->
       <section class="mb-8">
         <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
@@ -222,6 +240,11 @@ interface Department {
 }
 
 const form = reactive({
+  logo_desc: {
+    ru: 'Ассоциация участников государственных закупок (АУГЗ)',
+    uz: 'Davlat zakazlarining ishtrokchilari assotsiatsiyasi',
+    en: 'Association of Participants in Government Procurements (AUGZ)',
+  },
   contacts: { phone: '', email: '', telegram: '', telegram_url: '' },
   address:  { text: '', zip: '', maps_url: '', lat: 0, lng: 0 },
   hours:    { days: '', from: '', to: '' },
@@ -255,6 +278,7 @@ function parseCoords() {
 onMounted(async () => {
   try {
     const data = await apiFetch<any>('/admin/settings')
+    if (data?.logo_desc)   Object.assign(form.logo_desc, data.logo_desc)
     if (data?.contacts)    Object.assign(form.contacts, data.contacts)
     if (data?.address)     Object.assign(form.address, data.address)
     if (data?.hours)       Object.assign(form.hours, data.hours)

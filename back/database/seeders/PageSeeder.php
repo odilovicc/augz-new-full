@@ -150,7 +150,7 @@ class PageSeeder extends Seeder
                     'en' => 'The Association of Public Procurement Participants of Uzbekistan unites professionals and companies working in the field of public and corporate procurement.',
                 ],
                 'btn_label' => ['ru' => 'Связаться с нами', 'uz' => "Biz bilan bog'laning", 'en' => 'Contact us'],
-                'btn_href'  => '#contacts',
+                'btn_href'  => '/contacts',
             ],
 
             'intro' => [

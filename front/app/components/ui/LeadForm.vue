@@ -59,7 +59,9 @@
       {{ $t('lead_form.btn_demo') }}
     </button>
 
-    <p class="text-center text-[11px] text-gray-400">{{ $t('lead_form.disclaimer') }}</p>
+    <p class="text-center text-[11px] text-gray-400">
+      <NuxtLink :to="localePath('/privacy')" class="underline underline-offset-2 hover:no-underline">{{ $t('lead_form.disclaimer') }}</NuxtLink>
+    </p>
   </div>
 
   <!-- Success -->
@@ -75,6 +77,7 @@
 </template>
 
 <script setup lang="ts">
+const localePath = useLocalePath()
 const props = defineProps<{
   source: string          // page identifier sent to backend: 'tenderzone', 'membership', etc.
   showDemo?: boolean      // show "Запросить демо" button

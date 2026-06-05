@@ -210,7 +210,9 @@
                             </button>
 
                             <p class="text-center text-[11px] text-gray-600">
-                                {{ t(ui.form_disclaimer) || 'Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности АУГЗ' }}
+                                <NuxtLink :to="localePath('/privacy')" class="underline underline-offset-2 hover:text-gray-400 transition-colors">
+                                    {{ t(ui.form_disclaimer) || 'Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности АУГЗ' }}
+                                </NuxtLink>
                             </p>
                         </form>
                     </div>
@@ -325,6 +327,7 @@ const ctaData         = computed(() => pc.value.cta          ?? {})
 const ui              = computed(() => pc.value.ui           ?? {})
 
 const { locale } = useI18n()
+const localePath = useLocalePath()
 
 function t(obj: any): string {
     if (!obj) return ''

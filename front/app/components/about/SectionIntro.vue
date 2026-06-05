@@ -21,7 +21,7 @@
           </p>
 
           <a
-            :href="intro?.btn_href || '#contacts'"
+            :href="intro?.btn_href || '/contacts'"
             class="self-start flex items-center gap-2 px-6 py-3 rounded-md border-2 border-(--theme-color) text-(--theme-color) text-sm font-semibold hover:bg-(--theme-color) hover:text-white transition-colors duration-200"
           >
             {{ lt(intro?.btn_label) || 'Вступить в ассоциацию' }}

@@ -122,7 +122,9 @@
               <span>{{ submitting ? $t('ask_modal.btn_submitting') : txt('btn_submit') }}</span>
             </button>
 
-            <p class="text-center text-[11px] text-gray-600">{{ txt('disclaimer') }}</p>
+            <p class="text-center text-[11px] text-gray-600">
+              <NuxtLink :to="localePath('/privacy')" class="underline underline-offset-2 hover:text-gray-400 transition-colors">{{ txt('disclaimer') }}</NuxtLink>
+            </p>
           </div>
 
           <!-- Success state -->
@@ -236,6 +238,7 @@ defineProps<{ modelValue: boolean }>()
 defineEmits<{ (e: 'update:modelValue', val: boolean): void }>()
 
 const { t, locale } = useI18n()
+const localePath = useLocalePath()
 const config   = useRuntimeConfig()
 const settings = useSettings()
 
