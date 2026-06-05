@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             SettingsSeeder::class,
             TradingPlatformSeeder::class,
             FooterSeeder::class,
+            NavbarSeeder::class,
+            RegulatoryDocumentSeeder::class,
         ]);
     }
 }

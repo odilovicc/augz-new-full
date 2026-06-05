@@ -82,7 +82,8 @@ const navLinks = [
   { to: '/pages/markets',    icon: 'i-lucide-store',       label: 'Стр. площадок' },
   { to: '/pages/contacts',   icon: 'i-lucide-phone',       label: 'Стр. контактов' },
   { to: '/pages/report',      icon: 'i-lucide-alert-triangle', label: 'Портал жалоб' },
-  { to: '/pages/tenderzone',  icon: 'i-lucide-search',         label: 'TenderZone' },
+  { to: '/pages/tenderzone',   icon: 'i-lucide-search',      label: 'TenderZone' },
+  { to: '/pages/regulations', icon: 'i-lucide-scroll-text', label: 'Норм. документы' },
 ]
 
 const dynamicLinks = [
@@ -95,7 +96,8 @@ const dynamicLinks = [
   { to: '/applications',icon: 'i-lucide-inbox',          label: 'Заявки' },
   { to: '/questions',   icon: 'i-lucide-message-circle', label: 'Вопросы' },
   { to: '/leads',       icon: 'i-lucide-zap',            label: 'Лиды' },
-  { to: '/navbar',      icon: 'i-lucide-menu',           label: 'Навигация' },
-  { to: '/footer',      icon: 'i-lucide-layout-panel-top', label: 'Футер' },
+  { to: '/navbar',       icon: 'i-lucide-menu',             label: 'Навигация' },
+  { to: '/footer',       icon: 'i-lucide-layout-panel-top', label: 'Футер' },
+  { to: '/regulations',  icon: 'i-lucide-scroll-text',      label: 'Норм. документы' },
 ]
 </script>

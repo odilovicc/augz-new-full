@@ -25,7 +25,8 @@ class PageSeeder extends Seeder
             'markets'    => $this->marketsContent(),
             'contacts'   => $this->contactsContent(),
             'report'     => $this->reportContent(),
-            'tenderzone' => $this->tenderzoneContent(),
+            'tenderzone'  => $this->tenderzoneContent(),
+            'regulations' => $this->regulationsContent(),
         ];
 
         foreach ($pages as $slug => $content) {
@@ -678,6 +679,22 @@ class PageSeeder extends Seeder
                 'demo_desc'   => ['ru' => 'Наш менеджер свяжется с вами и проведёт демонстрацию',               'uz' => 'Menejerimiz siz bilan bog\'lanadi va namoyish o\'tkazadi',                    'en' => 'Our manager will contact you and conduct a demonstration'],
                 'btn_free'    => ['ru' => 'Начать бесплатно →', 'uz' => 'Bepul boshlash →', 'en' => 'Get started free →'],
                 'btn_demo'    => ['ru' => 'Запросить демо',     'uz' => 'Demo so\'rash',     'en' => 'Request a demo'],
+            ],
+        ];
+    }
+
+    private function regulationsContent(): array
+    {
+        return [
+            'hero' => [
+                'badge'    => ['ru' => 'ПРАВОВАЯ БАЗА',    'uz' => 'HUQUQIY BAZA',   'en' => 'LEGAL FRAMEWORK'],
+                'title_1'  => ['ru' => 'НОРМАТИВНЫЕ',      'uz' => 'NORMATIV',        'en' => 'REGULATORY'],
+                'title_2'  => ['ru' => 'ДОКУМЕНТЫ',        'uz' => 'HUJJATLAR',       'en' => 'DOCUMENTS'],
+                'subtitle' => [
+                    'ru' => 'Законодательство о государственных закупках Узбекистана: законы, указы Президента, постановления Кабинета Министров и ведомственные приказы',
+                    'uz' => "O'zbekiston davlat xaridlari qonunchiligi: qonunlar, Prezident farmonlari, Vazirlar Mahkamasi qarorlari va idoraviy buyruqlar",
+                    'en' => 'Public procurement legislation of Uzbekistan: laws, presidential decrees, cabinet resolutions and ministerial orders',
+                ],
             ],
         ];
     }

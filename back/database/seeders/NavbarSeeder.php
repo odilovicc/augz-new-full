@@ -9,6 +9,8 @@ class NavbarSeeder extends Seeder
 {
     public function run(): void
     {
+        NavbarLink::truncate();
+
         $links = [
             [
                 'label' => ['ru' => 'О нас', 'uz' => 'Biz haqimizda', 'en' => 'About'],
@@ -36,9 +38,14 @@ class NavbarSeeder extends Seeder
                 'position' => 5,
             ],
             [
+                'label' => ['ru' => 'Нормативные документы', 'uz' => 'Normativ hujjatlar', 'en' => 'Regulatory documents'],
+                'href'  => '/regulations',
+                'position' => 6,
+            ],
+            [
                 'label' => ['ru' => 'Контакты', 'uz' => 'Aloqa', 'en' => 'Contacts'],
                 'href'  => '/contacts',
-                'position' => 6,
+                'position' => 7,
             ],
         ];
 

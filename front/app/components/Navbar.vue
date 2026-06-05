@@ -1,20 +1,13 @@
 <template>
   <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
     <div class="container mx-auto px-4">
-      <div class="py-4 flex justify-between items-center">
+
+      <!-- Row 1: Logo + actions -->
+      <div class="py-3 flex justify-between items-center border-b border-gray-50">
         <Logo />
 
-        <!-- Desktop nav -->
-        <ul class="hidden lg:flex items-center gap-x-5">
-          <li v-for="link in links" :key="link.href">
-            <NuxtLink :to="localePath(link.href)" class="px-1 py-0.5 hover:text-(--theme-color) transition">
-              {{ lt(link.label) }}
-            </NuxtLink>
-          </li>
-        </ul>
-
         <!-- Desktop actions -->
-        <div class="hidden lg:flex items-center gap-x-6">
+        <div class="hidden lg:flex items-center gap-x-5">
           <LocaleSwitcher />
           <NuxtLink :to="localePath('/report')">
             <UiButton>{{ t('nav.report') || 'Подать жалобу' }}</UiButton>
@@ -32,12 +25,28 @@
         </button>
       </div>
 
+      <!-- Row 2: Nav links (desktop only) -->
+      <nav class="hidden lg:flex items-center gap-x-1 py-1.5 overflow-x-auto scrollbar-none">
+        <NuxtLink
+          v-for="link in links"
+          :key="link.href"
+          :to="localePath(link.href)"
+          class="px-3 py-1.5 rounded-md text-sm whitespace-nowrap hover:text-(--theme-color) hover:bg-orange-50 transition-colors"
+          :class="$route.path === localePath(link.href) || $route.path.startsWith(localePath(link.href) + '/') ? 'text-(--theme-color) font-semibold' : 'text-gray-600'"
+        >
+          {{ lt(link.label) }}
+        </NuxtLink>
+      </nav>
+
       <!-- Mobile dropdown -->
       <div v-show="open" class="lg:hidden pb-5 border-t border-gray-100 pt-4 flex flex-col gap-y-5">
         <ul class="flex flex-col gap-y-1">
           <li v-for="link in links" :key="link.href">
-            <NuxtLink :to="localePath(link.href)" @click="open = false"
-               class="block px-2 py-2 rounded-md hover:bg-gray-50 hover:text-(--theme-color) transition">
+            <NuxtLink
+              :to="localePath(link.href)"
+              @click="open = false"
+              class="block px-2 py-2 rounded-md hover:bg-gray-50 hover:text-(--theme-color) transition"
+            >
               {{ lt(link.label) }}
             </NuxtLink>
           </li>
@@ -49,6 +58,7 @@
           </NuxtLink>
         </div>
       </div>
+
     </div>
   </header>
 </template>
@@ -58,6 +68,7 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const lt = useLocaleText()
+const route = useRoute()
 
 const open = ref(false)
 

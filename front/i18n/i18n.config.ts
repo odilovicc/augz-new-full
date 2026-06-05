@@ -15,6 +15,7 @@ export default defineI18nConfig(() => ({
         membership: 'Членство',
         contacts: 'Контакты',
         markets: "Торговые площадки",
+        regulations: 'Нормативные документы',
         contact_us: 'Связаться с нами',
         report: 'Подать жалобу',
       },
@@ -327,6 +328,32 @@ export default defineI18nConfig(() => ({
         visit_btn: 'Перейти →',
         pagination_suffix: 'площадок',
       },
+      regulations_page: {
+        badge: 'ПРАВОВАЯ БАЗА',
+        heading_1: 'НОРМАТИВНЫЕ',
+        heading_2: 'ДОКУМЕНТЫ',
+        subtitle: 'Законодательство о государственных закупках Узбекистана: законы, указы Президента, постановления Кабинета Министров и ведомственные приказы',
+        search_placeholder: 'Поиск по документам...',
+        open_btn: 'Открыть',
+        empty: 'Документы не найдены',
+        type: {
+          all: 'Все',
+          law: 'Законы',
+          decree: 'Указы Президента',
+          resolution: 'Постановления КМ',
+          order: 'Приказы',
+        },
+        dot_color: {
+          all: '#9ca3af',
+          law: '#3b82f6',
+          decree: '#D1832C',
+          resolution: '#10b981',
+          order: '#8b5cf6',
+        },
+        seo_title: 'Нормативные документы — АУГЗ',
+        seo_desc: 'Нормативно-правовая база государственных закупок Узбекистана: законы, указы, постановления и приказы.',
+      },
+
       logo_desc: "Ассоциация участников государственных закупок (АУГЗ)",
 
       lead_form: {
@@ -425,6 +452,7 @@ export default defineI18nConfig(() => ({
         markets: "Tijorat platformalari",
         membership: "A'zolik",
         contacts: 'Aloqa',
+        regulations: 'Normativ hujjatlar',
         contact_us: "Biz bilan bog'laning",
         report: "Shikoyat yuborish",
       },
@@ -737,6 +765,32 @@ export default defineI18nConfig(() => ({
         visit_btn: "O'tish →",
         pagination_suffix: 'ta maydon',
       },
+      regulations_page: {
+        badge: 'HUQUQIY BAZA',
+        heading_1: 'NORMATIV',
+        heading_2: 'HUJJATLAR',
+        subtitle: "O'zbekiston davlat xaridlari qonunchiligi: qonunlar, Prezident farmonlari, Vazirlar Mahkamasi qarorlari va idoraviy buyruqlar",
+        search_placeholder: 'Hujjatlar bo\'yicha qidirish...',
+        open_btn: 'Ochish',
+        empty: 'Hujjatlar topilmadi',
+        type: {
+          all: 'Hammasi',
+          law: 'Qonunlar',
+          decree: 'Prezident farmonlari',
+          resolution: 'VMQ qarorlari',
+          order: 'Buyruqlar',
+        },
+        dot_color: {
+          all: '#9ca3af',
+          law: '#3b82f6',
+          decree: '#D1832C',
+          resolution: '#10b981',
+          order: '#8b5cf6',
+        },
+        seo_title: "Normativ hujjatlar — AUGZ",
+        seo_desc: "O'zbekiston davlat xaridlari huquqiy bazasi: qonunlar, farmonlar, qarorlar va buyruqlar.",
+      },
+
       logo_desc: "Davlat zakazlarining ishtrokchilari assotsiatsiyasi",
 
       lead_form: {
@@ -835,6 +889,7 @@ export default defineI18nConfig(() => ({
         membership: 'Membership',
         markets: "Trading platforms",
         contacts: 'Contacts',
+        regulations: 'Regulatory documents',
         contact_us: 'Contact us',
         report: 'File a complaint',
       },
@@ -1147,6 +1202,32 @@ export default defineI18nConfig(() => ({
         visit_btn: 'Visit →',
         pagination_suffix: 'platforms',
       },
+      regulations_page: {
+        badge: 'LEGAL FRAMEWORK',
+        heading_1: 'REGULATORY',
+        heading_2: 'DOCUMENTS',
+        subtitle: 'Public procurement legislation of Uzbekistan: laws, presidential decrees, cabinet resolutions and ministerial orders',
+        search_placeholder: 'Search documents...',
+        open_btn: 'Open',
+        empty: 'No documents found',
+        type: {
+          all: 'All',
+          law: 'Laws',
+          decree: 'Presidential Decrees',
+          resolution: 'Cabinet Resolutions',
+          order: 'Orders',
+        },
+        dot_color: {
+          all: '#9ca3af',
+          law: '#3b82f6',
+          decree: '#D1832C',
+          resolution: '#10b981',
+          order: '#8b5cf6',
+        },
+        seo_title: 'Regulatory Documents — AUGZ',
+        seo_desc: 'Legal framework for public procurement in Uzbekistan: laws, decrees, resolutions and orders.',
+      },
+
       logo_desc: "Association of Participants in Government Procurements (AUGZ)",
 
       lead_form: {

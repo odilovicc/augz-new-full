@@ -26,6 +26,8 @@ use App\Http\Controllers\Api\Admin\TradingPlatformController as AdminTradingPlat
 use App\Http\Controllers\Api\TradingPlatformController;
 use App\Http\Controllers\Api\ComplaintController;
 use App\Http\Controllers\Api\Admin\ComplaintController as AdminComplaintController;
+use App\Http\Controllers\Api\RegulatoryDocumentController;
+use App\Http\Controllers\Api\Admin\RegulatoryDocumentController as AdminRegulatoryDocumentController;
 use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\Admin\SettingsController as AdminSettingsController;
 use App\Http\Controllers\Api\FooterController;
@@ -75,6 +77,7 @@ Route::get('/trading-platforms', [TradingPlatformController::class, 'index']);
 Route::get('/settings', [SettingsController::class, 'show']);
 Route::get('/footer', [FooterController::class, 'index']);
 Route::get('/navbar', [NavbarController::class, 'index']);
+Route::get('/regulatory-documents', [RegulatoryDocumentController::class, 'index']);
 Route::post('/complaints', [ComplaintController::class, 'store']);
 Route::get('/complaints/stats', [ComplaintController::class, 'stats']);
 Route::get('/complaints/track/{code}', [ComplaintController::class, 'track']);
@@ -156,6 +159,11 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::post('/trading-platforms', [AdminTradingPlatformController::class, 'store']);
     Route::put('/trading-platforms/{tradingPlatform}', [AdminTradingPlatformController::class, 'update']);
     Route::delete('/trading-platforms/{tradingPlatform}', [AdminTradingPlatformController::class, 'destroy']);
+
+    Route::get('/regulatory-documents', [AdminRegulatoryDocumentController::class, 'index']);
+    Route::post('/regulatory-documents', [AdminRegulatoryDocumentController::class, 'store']);
+    Route::put('/regulatory-documents/{regulatoryDocument}', [AdminRegulatoryDocumentController::class, 'update']);
+    Route::delete('/regulatory-documents/{regulatoryDocument}', [AdminRegulatoryDocumentController::class, 'destroy']);
 
     Route::get('/complaints', [AdminComplaintController::class, 'index']);
     Route::get('/complaints/{complaint}', [AdminComplaintController::class, 'show']);

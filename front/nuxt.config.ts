@@ -3,6 +3,14 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
+  experimental: {
+    // After hydration, purge useAsyncData cache from static.data so that
+    // subsequent client-side navigations always re-fetch from the API.
+    // The SSR payload is still used on the very first page load — no extra
+    // request on initial hydration.
+    purgeCachedData: true,
+  },
   modules: ['@nuxt/icon', '@nuxt/fonts', '@nuxtjs/i18n', '@nuxtjs/sitemap'],
 
   i18n: {
