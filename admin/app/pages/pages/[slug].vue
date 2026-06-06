@@ -154,6 +154,7 @@
             <I18nField v-model="content.hero.subtitle" textarea />
           </div>
         </template>
+        <SaveBar :saving="saving" :error="saveError" @save="save" />
       </div>
 
       <!-- hero section (home / news) -->

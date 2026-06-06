@@ -123,7 +123,7 @@
             </button>
 
             <p class="text-center text-[11px] text-gray-600">
-              <NuxtLink :to="localePath('/privacy')" class="underline underline-offset-2 hover:text-gray-400 transition-colors">{{ txt('disclaimer') }}</NuxtLink>
+              <NuxtLink :to="localePath('/privacy')" target="_blank" class="underline underline-offset-2 hover:text-gray-400 transition-colors">{{ txt('disclaimer') }}</NuxtLink>
             </p>
           </div>
 

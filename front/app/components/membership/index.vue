@@ -143,7 +143,7 @@
                                     <input
                                         v-model="appForm.name"
                                         type="text"
-                                        :placeholder="t(ui.form_name_placeholder) || 'Фамилия Имя Отчество'"
+                                        :placeholder="'Фамилия Имя'"
                                         class="field-input"
                                         :class="{ 'field-input-error': fieldErrors.name }"
                                         @blur="validateField('name')"
@@ -154,7 +154,7 @@
                                 <!-- Org -->
                                 <div class="form-field">
                                     <label class="field-label">{{ t(ui.form_org_label) || 'Организация' }}</label>
-                                    <input v-model="appForm.organization" type="text" :placeholder="t(ui.form_org_placeholder) || 'Название компании или ИП'" class="field-input" />
+                                    <input v-model="appForm.organization" type="text" :placeholder="'Название компании'" class="field-input" />
                                 </div>
 
                                 <!-- Phone + Email: vertical on mobile, side-by-side on sm+ -->
@@ -170,7 +170,7 @@
                                         <p v-if="fieldErrors.phone" class="field-error">{{ t(ui.err_phone) || fieldErrors.phone }}</p>
                                     </div>
                                     <div class="form-field">
-                                        <label class="field-label">{{ t(ui.form_email_label) || 'Email' }} <span class="text-red-400">*</span></label>
+                                        <label class="field-label">{{ t(ui.form_email_label) || 'Email' }}</label>
                                         <input
                                             v-model="appForm.email"
                                             type="email"
@@ -210,7 +210,7 @@
                             </button>
 
                             <p class="text-center text-[11px] text-gray-600">
-                                <NuxtLink :to="localePath('/privacy')" class="underline underline-offset-2 hover:text-gray-400 transition-colors">
+                                <NuxtLink :to="localePath('/privacy')" target="_blank" class="underline underline-offset-2 hover:text-gray-400 transition-colors">
                                     {{ t(ui.form_disclaimer) || 'Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности АУГЗ' }}
                                 </NuxtLink>
                             </p>

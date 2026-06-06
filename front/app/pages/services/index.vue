@@ -200,10 +200,10 @@
 
                 <!-- CTAs -->
                 <div class="flex flex-wrap gap-3 mt-2">
-                  <a :href="section.cta_primary_href" class="px-6 py-3 bg-(--theme-color) text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity">
+                  <a :href="section.cta_primary_href" target="_blank" class="px-6 py-3 bg-(--theme-color) text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity">
                     {{ t(section.cta_primary_label) }} →
                   </a>
-                  <a :href="section.cta_secondary_href" class="px-6 py-3 border border-white/20 text-white text-sm font-semibold rounded-xl hover:border-white/40 transition-colors">
+                  <a :href="section.cta_secondary_href" target="_blank" class="px-6 py-3 border border-white/20 text-white text-sm font-semibold rounded-xl hover:border-white/40 transition-colors">
                     {{ t(section.cta_secondary_label) }}
                   </a>
                 </div>
