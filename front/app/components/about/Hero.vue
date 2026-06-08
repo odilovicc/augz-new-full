@@ -12,9 +12,9 @@
 
     <div class="relative z-10 container mx-auto px-4 py-20 md:py-28 mr-auto">
       <nav class="flex items-center gap-1.5 text-xs text-gray-400 mb-8">
-        <a href="/" class="hover:text-(--theme-color) transition-colors">Главная</a>
+        <NuxtLink :to="localePath('/')" class="hover:text-(--theme-color) transition-colors">{{ t('nav.home') }}</NuxtLink>
         <span>/</span>
-        <span class="text-gray-700">О нас</span>
+        <span class="text-gray-700">{{ t('nav.about') }}</span>
       </nav>
 
       <h1 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-none mb-5">
@@ -303,6 +303,8 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
 const lt = useLocaleText()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const aboutContent = useAboutPageContent()
 
 // ── API sections ──────────────────────────────────────────────

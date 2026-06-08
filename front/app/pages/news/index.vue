@@ -134,9 +134,9 @@
 
         <!-- Active tag indicator -->
         <div v-if="activeTag" class="flex items-center gap-2 mb-4">
-          <span class="text-sm text-gray-500">Тег:</span>
+          <span class="text-sm text-gray-500">{{ t('news_page.tag_label') }}:</span>
           <span class="flex items-center gap-1 text-sm font-semibold bg-(--theme-color) text-white px-3 py-1 rounded-full">
-            {{ activeTag }}
+            {{ translateTag(activeTag) }}
             <button class="hover:opacity-70 transition-opacity cursor-pointer ml-1" @click="activeTag = null">×</button>
           </span>
         </div>
@@ -198,7 +198,7 @@
                           : 'text-gray-500 bg-gray-100 hover:bg-gray-200'"
                         @click.stop="setTag(tag)"
                       >
-                        {{ tag }}
+                        {{ translateTag(tag) }}
                       </span>
                     </div>
                     <span class="text-xs sm:text-sm font-semibold text-(--theme-color) flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-4">
@@ -318,7 +318,7 @@
                     : 'bg-gray-100 text-gray-600 hover:bg-(--theme-color) hover:text-white'"
                   @click="setTag(tag)"
                 >
-                  {{ tag }}
+                  {{ translateTag(tag) }}
                 </span>
               </div>
             </div>
@@ -529,6 +529,12 @@ const popularArticles = computed(() =>
 )
 
 const allTags = computed(() => (tagsData.value ?? []).map(t => t.tag))
+
+function translateTag(tag: string): string {
+  const key = `news_page_tags.${tag}`
+  const translated = t(key)
+  return translated === key ? tag : translated
+}
 
 // ── Actions ───────────────────────────────────────────────────────────────
 

@@ -5,18 +5,25 @@
       class="relative overflow-hidden min-h-[60vh] md:min-h-[72vh] flex items-center"
       :style="hero.image ? `background: url('${hero.image}') no-repeat center top / cover` : 'background: url(/img/Hero.png) no-repeat center top / cover'"
     >
-      <div class="relative container mx-auto px-4 pb-16 pt-1">
+      <div class="relative container mx-auto px-4 pb-16 pt-24 md:pt-32">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6">
+          <NuxtLink :to="localePath('/')" class="hover:text-(--theme-color) transition-colors">{{ t('nav.home') }}</NuxtLink>
+          <span>/</span>
+          <span class="text-gray-700">{{ t('services_page.breadcrumb_current') }}</span>
+        </nav>
+
         <div class="flex items-center gap-2 mb-6">
           <span class="w-8 h-0.5 bg-(--theme-color)" />
-          <span class="text-xs font-bold uppercase tracking-[0.2em] text-gray-700">{{ t(hero.badge) || 'УСЛУГИ И ПРОЕКТЫ АУГЗ' }}</span>
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-gray-700">{{ lt(hero.badge) || t('services_page.hero_badge') }}</span>
         </div>
 
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-none mb-4">
-          {{ t(hero.title_1) || 'УСЛУГИ ' }} <span class="text-(--theme-color)">{{ t(hero.title_2) || 'АУГЗ' }}</span>
+          {{ lt(hero.title_1) || t('services_page.hero_title_1') }} <span class="text-(--theme-color)">{{ lt(hero.title_2) || t('services_page.hero_title_2') }}</span>
         </h1>
 
         <p class="text-sm sm:text-base text-gray-700 max-w-sm leading-relaxed mb-8">
-          {{ t(hero.subtitle) || 'Консалтинг, цифровые продукты, аналитика и сопровождение для участников государственных и корпоративных закупок Узбекистана' }}
+          {{ lt(hero.subtitle) || t('services_page.hero_subtitle') }}
         </p>
 
         <div class="flex flex-wrap gap-2">
@@ -48,10 +55,10 @@
           <div class="mb-10">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-6 h-0.5 bg-(--theme-color)" />
-              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ t(section.heading) }}</h2>
-            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ t(section.subtitle) }}</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ lt(section.heading) }}</h2>
+            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ lt(section.subtitle) }}</p>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-8">
@@ -59,10 +66,10 @@
               <div v-for="(item, j) in section.items" :key="j" class="group py-6 flex gap-5">
                 <span class="text-xs text-gray-300 font-bold mt-1 shrink-0 w-5">{{ item.number }}</span>
                 <div class="flex flex-col gap-2 flex-1">
-                  <h3 class="font-bold text-gray-900 group-hover:text-(--theme-color) transition-colors leading-snug">{{ t(item.title) }}</h3>
-                  <p class="text-sm text-gray-500 leading-relaxed">{{ t(item.desc) }}</p>
+                  <h3 class="font-bold text-gray-900 group-hover:text-(--theme-color) transition-colors leading-snug">{{ lt(item.title) }}</h3>
+                  <p class="text-sm text-gray-500 leading-relaxed">{{ lt(item.desc) }}</p>
                   <div class="flex flex-wrap gap-1.5 mt-1">
-                    <span v-for="tag in item.tags" :key="tag" class="px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-wide rounded">{{ tag }}</span>
+                    <span v-for="(tag, ti) in item.tags" :key="ti" class="px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-wide rounded">{{ lt(tag) }}</span>
                   </div>
                 </div>
               </div>
@@ -71,26 +78,26 @@
             <div class="lg:col-span-2 flex flex-col gap-4">
               <div class="rounded-2xl border border-gray-200 overflow-hidden">
                 <div class="px-5 py-4 border-b border-gray-100">
-                  <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">{{ t(section.stats_label) }}</span>
+                  <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">{{ lt(section.stats_label) }}</span>
                 </div>
                 <div class="grid grid-cols-2 divide-x divide-y divide-gray-100">
                   <div v-for="(stat, k) in section.stats" :key="k" class="px-5 py-4 flex flex-col gap-0.5">
                     <span class="text-2xl font-black text-gray-900 leading-none">{{ stat.value }}</span>
-                    <span class="text-xs text-gray-500 leading-snug">{{ t(stat.label) }}</span>
+                    <span class="text-xs text-gray-500 leading-snug">{{ lt(stat.label) }}</span>
                   </div>
                 </div>
                 <div class="px-5 py-4 border-t border-gray-100 bg-gray-50">
-                  <p class="text-xs text-gray-500 leading-relaxed">{{ t(section.stats_desc) }}</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">{{ lt(section.stats_desc) }}</p>
                 </div>
               </div>
               <a :href="section.cta_href" class="block w-full text-center px-5 py-3 bg-gray-900 text-white text-sm font-semibold rounded-xl hover:bg-(--theme-color) transition-colors">
-                {{ t(section.cta_label) }} →
+                {{ lt(section.cta_label) }} →
               </a>
               <div class="rounded-2xl bg-gray-900 px-5 py-5 flex flex-col gap-3">
-                <h4 class="text-white font-bold text-sm">{{ t(section.express_title) }}</h4>
-                <p class="text-gray-400 text-xs leading-relaxed">{{ t(section.express_desc) }}</p>
+                <h4 class="text-white font-bold text-sm">{{ lt(section.express_title) }}</h4>
+                <p class="text-gray-400 text-xs leading-relaxed">{{ lt(section.express_desc) }}</p>
                 <button class="w-full px-4 py-2.5 bg-(--theme-color) text-white text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">
-                  {{ t(section.express_btn) }}
+                  {{ lt(section.express_btn) }}
                 </button>
               </div>
             </div>
@@ -104,10 +111,10 @@
           <div class="mb-10">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-6 h-0.5 bg-(--theme-color)" />
-              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ t(section.heading) }}</h2>
-            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ t(section.subtitle) }}</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ lt(section.heading) }}</h2>
+            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ lt(section.subtitle) }}</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -123,19 +130,19 @@
                   <Icon :name="product.icon" />
                 </div>
                 <div>
-                  <p class="font-bold text-gray-900 text-sm leading-tight">{{ t(product.name) }}</p>
-                  <p class="text-xs text-gray-400">{{ t(product.tagline) }}</p>
+                  <p class="font-bold text-gray-900 text-sm leading-tight">{{ lt(product.name) }}</p>
+                  <p class="text-xs text-gray-400">{{ lt(product.tagline) }}</p>
                 </div>
               </div>
 
               <!-- Description -->
-              <p class="text-sm text-gray-600 leading-relaxed">{{ t(product.desc) }}</p>
+              <p class="text-sm text-gray-600 leading-relaxed">{{ lt(product.desc) }}</p>
 
               <!-- Features -->
               <ul class="flex flex-col gap-1.5">
-                <li v-for="f in product.features" :key="f" class="flex items-center gap-2 text-sm text-gray-700">
+                <li v-for="(f, fi) in product.features" :key="fi" class="flex items-center gap-2 text-sm text-gray-700">
                   <Icon name="heroicons:check" class="w-4 h-4 shrink-0" :style="`color: ${product.accent ?? '#D1832C'}`" />
-                  {{ f }}
+                  {{ lt(f) }}
                 </li>
               </ul>
 
@@ -145,10 +152,10 @@
                   v-if="product.status"
                   class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide text-white"
                   :style="`background: ${product.status_color ?? '#6b7280'}`"
-                >{{ product.status }}</span>
+                >{{ lt(product.status) }}</span>
                 <span v-else class="flex-1" />
                 <a v-if="product.link" :href="product.link" class="text-sm font-semibold hover:underline" :style="`color: ${product.accent ?? '#D1832C'}`">
-                  {{ t(product.link_label) }} →
+                  {{ lt(product.link_label) }} →
                 </a>
               </div>
             </div>
@@ -162,9 +169,9 @@
           <div class="mb-8">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-6 h-0.5 bg-(--theme-color)" />
-              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight">{{ t(section.heading) }}</h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight">{{ lt(section.heading) }}</h2>
           </div>
 
           <div class="rounded-3xl bg-gray-900 overflow-hidden">
@@ -174,14 +181,14 @@
               <div class="lg:col-span-3 p-8 md:p-10 flex flex-col gap-6">
                 <div class="flex items-center gap-2">
                   <span class="w-5 h-0.5 bg-(--theme-color)" />
-                  <span class="text-xs text-gray-400 uppercase tracking-widest">{{ t(section.product_label) }}</span>
+                  <span class="text-xs text-gray-400 uppercase tracking-widest">{{ lt(section.product_label) }}</span>
                 </div>
                 <h3 class="text-4xl md:text-5xl font-black uppercase text-white leading-none">
-                  {{ t(section.product_title_1) }}<br>
-                  {{ t(section.product_title_2) }}<br>
-                  <span class="text-(--theme-color)">{{ t(section.product_title_3) }}</span>
+                  {{ lt(section.product_title_1) }}<br>
+                  {{ lt(section.product_title_2) }}<br>
+                  <span class="text-(--theme-color)">{{ lt(section.product_title_3) }}</span>
                 </h3>
-                <p class="text-sm text-gray-400 leading-relaxed max-w-sm">{{ t(section.product_desc) }}</p>
+                <p class="text-sm text-gray-400 leading-relaxed max-w-sm">{{ lt(section.product_desc) }}</p>
 
                 <!-- Mini feature grid -->
                 <div class="grid grid-cols-2 gap-3">
@@ -192,19 +199,19 @@
                   >
                     <div class="flex items-center gap-2">
                       <Icon :name="feat.icon" class="w-4 h-4 text-(--theme-color) shrink-0" />
-                      <span class="text-xs font-semibold text-white">{{ t(feat.title) }}</span>
+                      <span class="text-xs font-semibold text-white">{{ lt(feat.title) }}</span>
                     </div>
-                    <span class="text-[11px] text-gray-500">{{ t(feat.desc) }}</span>
+                    <span class="text-[11px] text-gray-500">{{ lt(feat.desc) }}</span>
                   </div>
                 </div>
 
                 <!-- CTAs -->
                 <div class="flex flex-wrap gap-3 mt-2">
                   <a :href="section.cta_primary_href" target="_blank" class="px-6 py-3 bg-(--theme-color) text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity">
-                    {{ t(section.cta_primary_label) }} →
+                    {{ lt(section.cta_primary_label) }} →
                   </a>
                   <a :href="section.cta_secondary_href" target="_blank" class="px-6 py-3 border border-white/20 text-white text-sm font-semibold rounded-xl hover:border-white/40 transition-colors">
-                    {{ t(section.cta_secondary_label) }}
+                    {{ lt(section.cta_secondary_label) }}
                   </a>
                 </div>
               </div>
@@ -221,7 +228,7 @@
                   </div>
                   <div>
                     <p class="text-xl font-black text-white leading-none">{{ stat.value }}</p>
-                    <p class="text-xs text-gray-500 mt-0.5">{{ t(stat.label) }}</p>
+                    <p class="text-xs text-gray-500 mt-0.5">{{ lt(stat.label) }}</p>
                   </div>
                 </div>
               </div>
@@ -237,16 +244,16 @@
           <div class="mb-10">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-6 h-0.5 bg-(--theme-color)" />
-              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ t(section.heading) }}</h2>
-            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ t(section.subtitle) }}</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ lt(section.heading) }}</h2>
+            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ lt(section.subtitle) }}</p>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <!-- Left: directions -->
             <div class="lg:col-span-2 flex flex-col gap-3">
-              <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(section.directions_label) }}</p>
+              <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">{{ lt(section.directions_label) }}</p>
               <div
                 v-for="(dir, d) in section.directions"
                 :key="d"
@@ -256,34 +263,32 @@
                   <div class="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
                     <Icon :name="dir.icon" class="w-4 h-4 text-gray-500" />
                   </div>
-                  <p class="font-bold text-gray-900 text-sm">{{ t(dir.title) }}</p>
+                  <p class="font-bold text-gray-900 text-sm">{{ lt(dir.title) }}</p>
                 </div>
-                <p class="text-xs text-gray-500 leading-relaxed">{{ t(dir.desc) }}</p>
+                <p class="text-xs text-gray-500 leading-relaxed">{{ lt(dir.desc) }}</p>
                 <div class="flex flex-wrap gap-1.5">
                   <span
-                    v-for="tag in dir.tags" :key="tag"
+                    v-for="(tag, ti) in dir.tags" :key="ti"
                     class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded"
-                    :class="tag === 'ЗАКРЫТАЯ БД' || tag === 'ЧЛЕНЫ АУГЗ' || tag === 'НА ЗАКАЗ'
-                      ? 'bg-gray-900 text-white'
-                      : 'bg-green-50 text-green-700'"
-                  >{{ tag }}</span>
+                    :class="tag.dark ? 'bg-gray-900 text-white' : 'bg-green-50 text-green-700'"
+                  >{{ lt(tag) }}</span>
                 </div>
               </div>
             </div>
 
             <!-- Right: report cards -->
             <div class="lg:col-span-3 flex flex-col gap-4">
-              <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">{{ t(section.reports_label) }}</p>
+              <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">{{ lt(section.reports_label) }}</p>
               <div
                 v-for="(report, r) in section.reports"
                 :key="r"
                 class="bg-white rounded-xl p-5 flex flex-col gap-3 border border-gray-100"
               >
                 <div class="flex items-start justify-between gap-4">
-                  <p class="font-bold text-gray-900 text-sm leading-snug">{{ t(report.title) }}</p>
+                  <p class="font-bold text-gray-900 text-sm leading-snug">{{ lt(report.title) }}</p>
                   <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wide whitespace-nowrap">{{ report.meta }}</span>
                 </div>
-                <p class="text-xs text-gray-500 leading-relaxed">{{ t(report.desc) }}</p>
+                <p class="text-xs text-gray-500 leading-relaxed">{{ lt(report.desc) }}</p>
                 <div class="flex items-center justify-between">
                   <span class="text-[11px] text-gray-400">{{ report.date }} · {{ report.downloads }}</span>
                   <a
@@ -291,7 +296,7 @@
                     class="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-semibold text-gray-700 hover:border-gray-400 transition-colors"
                   >
                     <Icon name="heroicons:arrow-down-tray" class="w-3.5 h-3.5" />
-                    {{ t(report.btn) }}
+                    {{ lt(report.btn) }}
                   </a>
                 </div>
               </div>
@@ -306,10 +311,10 @@
           <div class="mb-10">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-6 h-0.5 bg-(--theme-color)" />
-              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ t(section.heading) }}</h2>
-            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ t(section.subtitle) }}</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ lt(section.heading) }}</h2>
+            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ lt(section.subtitle) }}</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -324,19 +329,19 @@
               </div>
 
               <div>
-                <p class="font-bold text-gray-900 text-base mb-2">{{ t(plan.name) }}</p>
-                <p class="text-sm text-gray-500 leading-relaxed">{{ t(plan.desc) }}</p>
+                <p class="font-bold text-gray-900 text-base mb-2">{{ lt(plan.name) }}</p>
+                <p class="text-sm text-gray-500 leading-relaxed">{{ lt(plan.desc) }}</p>
               </div>
 
               <ul class="flex flex-col gap-2 flex-1">
-                <li v-for="f in plan.features" :key="f" class="flex items-center gap-2 text-sm text-gray-700">
+                <li v-for="(f, fi) in plan.features" :key="fi" class="flex items-center gap-2 text-sm text-gray-700">
                   <Icon name="heroicons:check" class="w-4 h-4 shrink-0" :style="`color: ${plan.accent ?? '#D1832C'}`" />
-                  {{ f }}
+                  {{ lt(f) }}
                 </li>
               </ul>
 
               <div class="pt-4 border-t border-gray-100 mt-auto">
-                <p class="text-sm font-semibold text-gray-500">{{ t(plan.price) }}</p>
+                <p class="text-sm font-semibold text-gray-500">{{ lt(plan.price) }}</p>
               </div>
             </div>
           </div>
@@ -349,10 +354,10 @@
           <div class="mb-10">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-6 h-0.5 bg-(--theme-color)" />
-              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+              <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ t(section.heading) }}</h2>
-            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ t(section.subtitle) }}</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight mb-3">{{ lt(section.heading) }}</h2>
+            <p class="text-sm text-gray-500 max-w-lg leading-relaxed">{{ lt(section.subtitle) }}</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -363,11 +368,11 @@
             >
               <div class="text-2xl">{{ svc.emoji }}</div>
               <div>
-                <p class="font-bold text-gray-900 text-sm mb-2">{{ t(svc.name) }}</p>
-                <p class="text-sm text-gray-500 leading-relaxed">{{ t(svc.desc) }}</p>
+                <p class="font-bold text-gray-900 text-sm mb-2">{{ lt(svc.name) }}</p>
+                <p class="text-sm text-gray-500 leading-relaxed">{{ lt(svc.desc) }}</p>
               </div>
               <a :href="svc.href ?? '#'" class="mt-auto text-sm font-semibold text-(--theme-color) hover:underline">
-                {{ t(svc.link_label) }} →
+                {{ lt(svc.link_label) }} →
               </a>
             </div>
           </div>
@@ -384,14 +389,14 @@
               <div>
                 <div class="flex items-center gap-2 mb-5">
                   <span class="w-6 h-0.5 bg-(--theme-color)" />
-                  <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ t(section.badge) }}</span>
+                  <span class="text-xs font-bold uppercase tracking-[0.18em] text-(--theme-color)">{{ lt(section.badge) }}</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-black uppercase text-white leading-tight">
-                  {{ t(section.heading_1) }}<br>
-                  {{ t(section.heading_2) }}<br>
-                  <span class="text-(--theme-color)">{{ t(section.heading_3) }}</span>
+                  {{ lt(section.heading_1) }}<br>
+                  {{ lt(section.heading_2) }}<br>
+                  <span class="text-(--theme-color)">{{ lt(section.heading_3) }}</span>
                 </h2>
-                <p class="mt-5 text-sm text-gray-400 leading-relaxed max-w-sm">{{ t(section.desc) }}</p>
+                <p class="mt-5 text-sm text-gray-400 leading-relaxed max-w-sm">{{ lt(section.desc) }}</p>
               </div>
 
               <div class="flex flex-col gap-4">
@@ -400,7 +405,7 @@
                     <Icon :name="contact.icon" class="w-5 h-5 text-(--theme-color)" />
                   </div>
                   <div>
-                    <p class="text-[11px] text-gray-500 uppercase tracking-wide">{{ t(contact.label) }}</p>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-wide">{{ lt(contact.label) }}</p>
                     <p class="text-sm text-white font-medium">{{ contact.value }}</p>
                   </div>
                 </div>
@@ -412,11 +417,11 @@
               <form v-if="!ctaSent" class="flex flex-col gap-4" @submit.prevent="submitCtaForm">
                 <!-- Name -->
                 <div class="flex flex-col gap-1.5">
-                  <label class="cta-label">{{ t(section.form_name_label) || 'ВАШЕ ИМЯ' }} <span class="text-red-500">*</span></label>
+                  <label class="cta-label">{{ lt(section.form_name_label) || 'ВАШЕ ИМЯ' }} <span class="text-red-500">*</span></label>
                   <input
                     v-model="ctaForm.name"
                     type="text"
-                    :placeholder="t(section.form_name_placeholder) || 'Фамилия Имя'"
+                    :placeholder="lt(section.form_name_placeholder) || 'Фамилия Имя'"
                     class="cta-input"
                     :class="{ 'cta-input-error': ctaErrors.name }"
                     @blur="ctaErrors.name = ctaForm.name.trim().length < 2 ? 'Введите имя' : ''"
@@ -426,7 +431,7 @@
 
                 <!-- Phone -->
                 <div class="flex flex-col gap-1.5">
-                  <label class="cta-label">{{ t(section.form_phone_label) || 'ТЕЛЕФОН' }} <span class="text-red-500">*</span></label>
+                  <label class="cta-label">{{ lt(section.form_phone_label) || 'ТЕЛЕФОН' }} <span class="text-red-500">*</span></label>
                   <UiPhoneInput
                     v-model="ctaForm.phone"
                     class="cta-input"
@@ -438,13 +443,13 @@
 
                 <!-- Email -->
                 <div class="flex flex-col gap-1.5">
-                  <label class="cta-label">{{ t(section.form_email_label) || 'EMAIL' }}</label>
+                  <label class="cta-label">{{ lt(section.form_email_label) || 'EMAIL' }}</label>
                   <input v-model="ctaForm.email" type="email" placeholder="email@uz" class="cta-input" />
                 </div>
 
                 <!-- Service -->
                 <div class="flex flex-col gap-1.5">
-                  <label class="cta-label">{{ t(section.form_service_label) || 'НУЖНАЯ УСЛУГА' }}</label>
+                  <label class="cta-label">{{ lt(section.form_service_label) || 'НУЖНАЯ УСЛУГА' }}</label>
                   <select v-model="ctaForm.service" class="cta-input">
                     <option value="" disabled>—</option>
                     <option v-for="opt in serviceOptions" :key="opt" :value="opt">{{ opt }}</option>
@@ -459,9 +464,9 @@
                   class="w-full py-3.5 rounded-xl text-sm font-bold text-white transition-all disabled:opacity-60 bg-(--theme-color) hover:opacity-90"
                 >
                   <span v-if="ctaSubmitting" class="flex items-center justify-center gap-2">
-                    <Icon name="heroicons:arrow-path" class="w-4 h-4 animate-spin" /> Отправка...
+                    <Icon name="heroicons:arrow-path" class="w-4 h-4 animate-spin" /> {{ t('services_page.sending') }}
                   </span>
-                  <span v-else>{{ t(section.form_btn) || 'Отправить заявку' }} →</span>
+                  <span v-else>{{ lt(section.form_btn) || t('services_page.hero_badge') }} →</span>
                 </button>
               </form>
 
@@ -471,8 +476,8 @@
                   <Icon name="heroicons:check" class="w-7 h-7 text-green-400" />
                 </div>
                 <div>
-                  <p class="font-bold text-white text-base">Заявка отправлена!</p>
-                  <p class="text-sm text-gray-400 mt-1">Мы свяжемся с вами в течение 4 рабочих часов</p>
+                  <p class="font-bold text-white text-base">{{ t('services_page.sent_title') }}</p>
+                  <p class="text-sm text-gray-400 mt-1">{{ t('services_page.sent_subtitle') }}</p>
                 </div>
               </div>
             </div>
@@ -513,7 +518,8 @@
 <script setup lang="ts">
 const config   = useRuntimeConfig()
 const settings = useSettings()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
 
 const ctaContacts = computed(() => [
   { icon: 'heroicons:phone',                     label: { ru: 'Телефон', uz: 'Telefon', en: 'Phone' },   value: settings.value.contacts.phone },
@@ -523,19 +529,11 @@ const ctaContacts = computed(() => [
 ])
 const activeCategory = ref(0)
 
-const categoryToSection: Record<string, string> = {
-  'Консалтинг':        'consulting',
-  'Цифровые продукты': 'digital-products',
-  'Аналитика':         'analytics',
-  'Сопровождение':     'support',
-  'Сервисы':           'extra-services',
-}
-
 function scrollToSection(idx: number) {
   activeCategory.value = idx
-  const cat = heroCategories.value[idx]
+  const cat = categories.value[idx]
   if (!cat) return
-  const sectionId = categoryToSection[cat.label]
+  const sectionId = categoryToSection[cat.name]
   if (!sectionId) return
   const el = document.getElementById(sectionId)
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -547,8 +545,8 @@ const ctaSent = ref(false)
 const ctaServerError = ref('')
 
 async function submitCtaForm() {
-  ctaErrors.name  = ctaForm.name.trim().length < 2 ? 'Введите имя' : ''
-  ctaErrors.phone = !ctaForm.phone ? 'Введите телефон' : ''
+  ctaErrors.name  = ctaForm.name.trim().length < 2 ? t('services_page.err_name') : ''
+  ctaErrors.phone = !ctaForm.phone ? t('services_page.err_phone') : ''
   if (ctaErrors.name || ctaErrors.phone) return
   ctaSubmitting.value = true
   ctaServerError.value = ''
@@ -562,13 +560,13 @@ async function submitCtaForm() {
     const errs = e?.data?.errors
     ctaServerError.value = errs
       ? Object.values(errs).flat().join(' ')
-      : e?.data?.message ?? 'Ошибка отправки. Попробуйте снова.'
+      : e?.data?.message ?? t('services_page.err_submit')
   } finally {
     ctaSubmitting.value = false
   }
 }
 
-function t(obj: any): string {
+function lt(obj: any): string {
   if (!obj) return ''
   if (typeof obj === 'string') return obj
   const lang = locale.value as string
@@ -604,23 +602,44 @@ const categoryColors: Record<string, string> = {
   'Сервисы':            '#8B5CF6',
 }
 
+const categoryI18nKey: Record<string, string> = {
+  'Консалтинг':        'services_page.cat_consulting',
+  'Цифровые продукты': 'services_page.cat_digital',
+  'Аналитика':         'services_page.cat_analytics',
+  'Сопровождение':     'services_page.cat_support',
+  'Сервисы':           'services_page.cat_services',
+}
+
+const categoryToSection: Record<string, string> = {
+  'Консалтинг':        'consulting',
+  'Цифровые продукты': 'digital-products',
+  'Аналитика':         'analytics',
+  'Сопровождение':     'support',
+  'Сервисы':           'extra-services',
+}
+
 const categories = computed(() => {
   const seen = new Set<string>()
-  const result: { name: string; color: string }[] = [{ name: 'Все', color: '#6b7280' }]
+  const result: { name: string; label: string; color: string }[] = [{ name: 'Все', label: t('services_page.cat_all'), color: '#6b7280' }]
   for (const svc of allServices.value) {
     if (svc.category && !seen.has(svc.category)) {
       seen.add(svc.category)
-      result.push({ name: svc.category, color: categoryColors[svc.category] ?? '#6b7280' })
+      const i18nKey = categoryI18nKey[svc.category]
+      result.push({
+        name: svc.category,
+        label: i18nKey ? t(i18nKey) : svc.category,
+        color: categoryColors[svc.category] ?? '#6b7280',
+      })
     }
   }
   return result
 })
 
 // keep hero categories in sync for the filter chips
-const heroCategories = computed(() => categories.value.map(c => ({ label: c.name, color: c.color })))
+const heroCategories = computed(() => categories.value.map(c => ({ label: c.label, color: c.color })))
 
 // service names for the CTA form dropdown
-const serviceOptions = computed(() => allServices.value.map(s => t(s.title)))
+const serviceOptions = computed(() => allServices.value.map(s => lt(s.title)))
 
 // sections array kept for the hardcoded layout sections (flagship, cta-form etc.)
 const sections = computed(() => pc.value.sections ?? [])
@@ -639,25 +658,39 @@ const defaultSections: any[] = [
         number: '01',
         title: { ru: 'Тендерная стратегия и анализ рынка', uz: 'Tender strategiyasi va bozor tahlili', en: 'Tender strategy and market analysis' },
         desc: { ru: 'Разработка индивидуальной стратегии участия в тендерах: анализ конкурентов, выбор перспективных лотов, ценовое позиционирование и прогноз вероятности победы', uz: "Raqobatchilar tahlili, istiqbolli lotlarni tanlash, narx pozitsiyalash va g'alaba ehtimolini prognoz qilish", en: 'Individual tender strategy: competitor analysis, lot selection, price positioning and win probability forecast' },
-        tags: ['СТРАТЕГИЯ', 'АНАЛИЗ КОНКУРЕНТОВ', 'ЦЕНООБРАЗОВАНИЕ'],
+        tags: [
+          { ru: 'СТРАТЕГИЯ', uz: 'STRATEGIYA', en: 'STRATEGY' },
+          { ru: 'АНАЛИЗ КОНКУРЕНТОВ', uz: 'RAQOBATCHILAR TAHLILI', en: 'COMPETITOR ANALYSIS' },
+          { ru: 'ЦЕНООБРАЗОВАНИЕ', uz: 'NARXLASH', en: 'PRICING' },
+        ],
       },
       {
         number: '02',
         title: { ru: 'Подготовка тендерной документации', uz: 'Tender hujjatlarini tayyorlash', en: 'Tender documentation preparation' },
         desc: { ru: 'Полный пакет документов для участия в тендере: техническое предложение, ценовая заявка, банковские гарантии. Соответствие требованиям законодательства и ТЗ', uz: "Tenderda ishtirok etish uchun to'liq hujjatlar paketi: texnik taklif, narx takliflari, bank kafolatlari", en: 'Full document package: technical proposal, price bid, bank guarantees. Legislative compliance' },
-        tags: ['ДОКУМЕНТАЦИЯ', 'ЗАЯВКИ'],
+        tags: [
+          { ru: 'ДОКУМЕНТАЦИЯ', uz: 'HUJJATLAR', en: 'DOCUMENTATION' },
+          { ru: 'ЗАЯВКИ', uz: 'ARIZALAR', en: 'BIDS' },
+        ],
       },
       {
         number: '03',
         title: { ru: 'Правовой консалтинг и обжалование', uz: 'Huquqiy konsalting va shikoyat', en: 'Legal consulting and appeals' },
         desc: { ru: 'Юридическая экспертиза тендерных условий, защита прав участников, подготовка жалоб и представительство интересов клиента в антимонопольных органах', uz: 'Tender shartlarini yuridik ekspertizasi, ishtirokchilar huquqlarini himoya qilish, shikoyatlar tayyorlash', en: "Legal audit of tender conditions, protection of participants' rights, complaint preparation and antitrust representation" },
-        tags: ['ПРАВО', 'ОБЖАЛОВАНИЕ'],
+        tags: [
+          { ru: 'ПРАВО', uz: 'HUQUQ', en: 'LEGAL' },
+          { ru: 'ОБЖАЛОВАНИЕ', uz: 'SHIKOYAT', en: 'APPEALS' },
+        ],
       },
       {
         number: '04',
         title: { ru: 'Аудит закупочных процедур', uz: 'Xarid tartib-qoidalarini audit qilish', en: 'Procurement procedure audit' },
         desc: { ru: 'Независимая проверка закупочных процедур заказчика на соответствие требованиям законодательства, выявление рисков и рекомендации по улучшению', uz: "Buyurtmachining xarid tartib-qoidalarini qonunchilik talablariga muvofiqligini mustaqil tekshirish, xavflarni aniqlash", en: 'Independent audit of procurement procedures for legislative compliance, risk identification and improvement recommendations' },
-        tags: ['АУДИТ', 'КОМПЛАЕНС', 'РИСКИ'],
+        tags: [
+          { ru: 'АУДИТ', uz: 'AUDIT', en: 'AUDIT' },
+          { ru: 'КОМПЛАЕНС', uz: 'MUVOFIQLIK', en: 'COMPLIANCE' },
+          { ru: 'РИСКИ', uz: 'XATARLAR', en: 'RISKS' },
+        ],
       },
     ],
     stats: [
@@ -687,7 +720,12 @@ const defaultSections: any[] = [
         name: { ru: 'TenderZone', uz: 'TenderZone', en: 'TenderZone' },
         tagline: { ru: 'Агрегатор тендеров', uz: 'Tenderlar agregatori', en: 'Tender aggregator' },
         desc: { ru: 'Крупнейший агрегатор государственных и корпоративных тендеров Узбекистана. 15 000+ активных лотов, анализ и Telegram-уведомления в реальном времени', uz: "O'zbekistonning eng yirik davlat va korporativ tenderlar agregatori. 15 000+ faol lot, tahlil va real vaqtda Telegram-bildirishnomalar", en: "Uzbekistan's largest aggregator of state and corporate tenders. 15,000+ active lots, analysis and real-time Telegram notifications" },
-        features: ['150 000+ тендеров в базе', 'Telegram-бот с уведомлениями', 'CRM для отдела закупок', 'Аналитика конкурентов'],
+        features: [
+          { ru: '150 000+ тендеров в базе', uz: '150 000+ tender bazada', en: '150,000+ tenders in database' },
+          { ru: 'Telegram-бот с уведомлениями', uz: 'Telegram-bot bildirishnomalar', en: 'Telegram bot notifications' },
+          { ru: 'CRM для отдела закупок', uz: "Xarid bo'limi uchun CRM", en: 'CRM for procurement team' },
+          { ru: 'Аналитика конкурентов', uz: 'Raqobatchilar tahlili', en: 'Competitor analytics' },
+        ],
         link: 'https://trade.tzone.uz/page/tenders-all',
         link_label: { ru: 'trade.tzone.uz/page/tenders-all', uz: 'trade.tzone.uz/page/tenders-all', en: 'trade.tzone.uz/page/tenders-all' },
       },
@@ -697,8 +735,13 @@ const defaultSections: any[] = [
         name: { ru: 'АУГЗ Аналитика', uz: 'AUGZ Analitika', en: 'AUGZ Analytics' },
         tagline: { ru: 'Платформа данных', uz: "Ma'lumotlar platformasi", en: 'Data platform' },
         desc: { ru: 'Интерактивная платформа с данными о рынке государственных закупок: динамика цен, рейтинги поставщиков, региональная статистика и прогнозные модели', uz: 'Davlat xaridlari bozori haqida ma\'lumotlar bilan interaktiv platforma: narx dinamikasi, yetkazib beruvchilar reytingi, mintaqaviy statistika va prognoz modellari', en: 'Interactive platform with public procurement market data: price dynamics, supplier rankings, regional statistics and forecasting models' },
-        features: ['Интерактивные дашборды', 'Экспорт данных в Excel/PDF', 'API для интеграций', 'Прогнозная аналитика'],
-        status: 'В РАЗРАБОТКЕ · BETA Q3 2026',
+        features: [
+          { ru: 'Интерактивные дашборды', uz: 'Interaktiv dashbordlar', en: 'Interactive dashboards' },
+          { ru: 'Экспорт данных в Excel/PDF', uz: 'Excel/PDF ga eksport', en: 'Export to Excel/PDF' },
+          { ru: 'API для интеграций', uz: 'Integratsiya uchun API', en: 'API for integrations' },
+          { ru: 'Прогнозная аналитика', uz: 'Prognoz tahlili', en: 'Predictive analytics' },
+        ],
+        status: { ru: 'В РАЗРАБОТКЕ · BETA Q3 2026', uz: 'ISHLANMOQDA · BETA Q3 2026', en: 'IN DEVELOPMENT · BETA Q3 2026' },
         status_color: '#3B82F6',
         link_label: { ru: 'Получить доступ', uz: 'Kirish olish', en: 'Get access' },
         link: '/contacts',
@@ -709,8 +752,13 @@ const defaultSections: any[] = [
         name: { ru: 'Compliance Check', uz: 'Compliance Check', en: 'Compliance Check' },
         tagline: { ru: 'Проверка рисков', uz: 'Xatarlarni tekshirish', en: 'Risk checker' },
         desc: { ru: 'Автоматическая проверка тендерной документации заказчика на соответствие законодательству. Выявление дискриминационных требований и коррупционных рисков', uz: 'Buyurtmachining tender hujjatlarini qonunchilikka muvofiqligini avtomatik tekshirish. Kamsituvchi talablar va korrupsion xatarlarni aniqlash', en: 'Automatic compliance check of tender documentation against legislation. Detection of discriminatory requirements and corruption risks' },
-        features: ['Проверка ТЗ за 5 минут', 'База нарушений АУГЗ', 'Генерация жалобы автоматически', 'Юридическая экспертиза'],
-        status: 'PILOT · ДЛЯ ЧЛЕНОВ АУГЗ',
+        features: [
+          { ru: 'Проверка ТЗ за 5 минут', uz: '5 daqiqada texnik shartlar tekshiruvi', en: 'TOR check in 5 minutes' },
+          { ru: 'База нарушений АУГЗ', uz: 'AUGZ buzilishlar bazasi', en: 'AUGZ violations database' },
+          { ru: 'Генерация жалобы автоматически', uz: 'Avtomatik shikoyat generatsiyasi', en: 'Auto-generate complaints' },
+          { ru: 'Юридическая экспертиза', uz: 'Yuridik ekspertiza', en: 'Legal expertise' },
+        ],
+        status: { ru: "PILOT · ДЛЯ ЧЛЕНОВ АУГЗ", uz: "PILOT · AUGZ A'ZOLARI UCHUN", en: 'PILOT · FOR AUGZ MEMBERS' },
         status_color: '#10B981',
         link_label: { ru: 'Список ожидания', uz: 'Kutish ro\'yxati', en: 'Waitlist' },
         link: '/contacts',
@@ -721,8 +769,13 @@ const defaultSections: any[] = [
         name: { ru: 'AI TenderDoc', uz: 'AI TenderDoc', en: 'AI TenderDoc' },
         tagline: { ru: 'Автозаполнение заявок', uz: 'Arizalarni avtoto\'ldirish', en: 'Auto-fill applications' },
         desc: { ru: 'Искусственный интеллект анализирует техническое задание и автоматически генерирует конкурентоспособную заявку на участие в тендере за считанные минуты', uz: 'Sun\'iy intellekt texnik topshiriqni tahlil qiladi va bir necha daqiqada tenderda ishtirok etish uchun raqobatbardosh ariza avtomatik yaratadi', en: 'AI analyses the technical specification and automatically generates a competitive tender application in minutes' },
-        features: ['Анализ ТЗ за 2 минуты', 'Генерация заявки по шаблону', 'На узбекском и русском', 'Интеграция с TenderZone'],
-        status: 'ЗАПУСК СЕНТЯБРЬ 2026',
+        features: [
+          { ru: 'Анализ ТЗ за 2 минуты', uz: '2 daqiqada texnik shartlar tahlili', en: 'TOR analysis in 2 minutes' },
+          { ru: 'Генерация заявки по шаблону', uz: "Shablon bo'yicha ariza generatsiyasi", en: 'Template-based bid generation' },
+          { ru: 'На узбекском и русском', uz: "O'zbek va rus tillarida", en: 'In Uzbek and Russian' },
+          { ru: 'Интеграция с TenderZone', uz: 'TenderZone bilan integratsiya', en: 'TenderZone integration' },
+        ],
+        status: { ru: 'ЗАПУСК СЕНТЯБРЬ 2026', uz: 'ISHGA TUSHIRILISHI SENTYABR 2026', en: 'LAUNCH SEPTEMBER 2026' },
         status_color: '#8B5CF6',
         link_label: { ru: 'Список ожидания', uz: 'Kutish ro\'yxati', en: 'Waitlist' },
         link: '/contacts',
@@ -768,25 +821,32 @@ const defaultSections: any[] = [
         icon: 'heroicons:chart-bar',
         title: { ru: 'Мониторинг рынка закупок', uz: 'Xaridlar bozorini monitoring', en: 'Procurement market monitoring' },
         desc: { ru: 'Ежеквартальные отчёты об объёмах, структуре и динамике рынка государственных закупок по секторам, регионам и типам процедур', uz: 'Davlat xaridlari bozorining hajmi, tuzilishi va dinamikasi bo\'yicha choraklik hisobotlar', en: 'Quarterly reports on volumes, structure and dynamics of the public procurement market by sectors, regions and procedure types' },
-        tags: ['ОБНОВЛЯЕТСЯ'],
+        tags: [{ ru: 'ОБНОВЛЯЕТСЯ', uz: 'YANGILANMOQDA', en: 'UPDATING', dark: false }],
       },
       {
         icon: 'heroicons:magnifying-glass',
         title: { ru: 'Индекс прозрачности закупок', uz: 'Xaridlar shaffoflik indeksi', en: 'Procurement transparency index' },
         desc: { ru: 'Рейтинг 14 регионов и крупнейших заказчиков по уровню прозрачности, конкурентности и цифровизации закупочных процедур', uz: '14 mintaqa va eng yirik buyurtmachilarning shaffoflik, raqobatbardoshlik va raqamlashtirish darajasi bo\'yicha reytingi', en: 'Ranking of 14 regions and major customers by transparency, competitiveness and digitalization of procurement procedures' },
-        tags: ['ОБНОВЛЯЕТСЯ'],
+        tags: [{ ru: 'ОБНОВЛЯЕТСЯ', uz: 'YANGILANMOQDA', en: 'UPDATING', dark: false }],
       },
       {
         icon: 'heroicons:exclamation-triangle',
         title: { ru: 'Реестр нарушений и рисков', uz: 'Buzilishlar va xatarlar reestri', en: 'Violations and risks register' },
         desc: { ru: 'База данных выявленных нарушений в тендерных процедурах — дискриминационные требования, аффилированные победители, манипуляции с ценами', uz: 'Tender tartib-qoidalarida aniqlangan buzilishlar ma\'lumotlar bazasi', en: 'Database of identified violations in tender procedures — discriminatory requirements, affiliated winners, price manipulation' },
-        tags: ['ОБНОВЛЯЕТСЯ', 'ЗАКРЫТАЯ БД', 'ЧЛЕНЫ АУГЗ'],
+        tags: [
+          { ru: 'ОБНОВЛЯЕТСЯ', uz: 'YANGILANMOQDA', en: 'UPDATING', dark: false },
+          { ru: 'ЗАКРЫТАЯ БД', uz: 'YOPIQ MB', en: 'CLOSED DB', dark: true },
+          { ru: 'ЧЛЕНЫ АУГЗ', uz: "AUGZ A'ZOLARI", en: 'AUGZ MEMBERS', dark: true },
+        ],
       },
       {
         icon: 'heroicons:globe-alt',
         title: { ru: 'Международные сравнения', uz: 'Xalqaro taqqoslashlar', en: 'International comparisons' },
         desc: { ru: 'Сравнительный анализ систем госзакупок Узбекистана, Казахстана, России, ОАЭ и других стран — лучшие практики и рекомендации для реформ', uz: "O'zbekiston, Qozog'iston, Rossiya, BAA va boshqa mamlakatlar davlat xaridlari tizimlarining qiyosiy tahlili", en: 'Comparative analysis of procurement systems in Uzbekistan, Kazakhstan, Russia, UAE and other countries — best practices and reform recommendations' },
-        tags: ['ОБНОВЛЯЕТСЯ', 'НА ЗАКАЗ'],
+        tags: [
+          { ru: 'ОБНОВЛЯЕТСЯ', uz: 'YANGILANMOQDA', en: 'UPDATING', dark: false },
+          { ru: 'НА ЗАКАЗ', uz: 'BUYURTMA ASOSIDA', en: 'ON DEMAND', dark: true },
+        ],
       },
     ],
     reports_label: { ru: 'ПОСЛЕДНИЕ ОТЧЁТЫ', uz: 'SO\'NGGI HISOBOTLAR', en: 'LATEST REPORTS' },
@@ -832,7 +892,12 @@ const defaultSections: any[] = [
         accent: '#D1832C',
         name: { ru: 'Базовое сопровождение', uz: 'Asosiy hamrohlik', en: 'Basic support' },
         desc: { ru: 'Поддержка на этапе подготовки и подачи заявки. Проверка документов, консультации по требованиям ТЗ и ценовой стратегии', uz: 'Ariza tayyorlash va topshirish bosqichida yordam. Hujjatlarni tekshirish, texnik shartlar va narx strategiyasi bo\'yicha maslahatlar', en: 'Support at the application preparation and submission stage. Document review, technical specification and pricing strategy consultations' },
-        features: ['Проверка заявки', 'Анализ ТЗ и требований', 'Ценовые рекомендации', 'Консультация до 3 часов'],
+        features: [
+          { ru: 'Проверка заявки', uz: 'Arizani tekshirish', en: 'Application review' },
+          { ru: 'Анализ ТЗ и требований', uz: 'Texnik shartlar va talablarni tahlil', en: 'TOR and requirements analysis' },
+          { ru: 'Ценовые рекомендации', uz: 'Narx tavsiyalari', en: 'Pricing recommendations' },
+          { ru: 'Консультация до 3 часов', uz: '3 soatgacha konsultatsiya', en: 'Consultation up to 3 hours' },
+        ],
         price: { ru: 'от 500 000 сум / тендер', uz: 'tender uchun 500 000 so\'mdan', en: 'from 500,000 UZS / tender' },
       },
       {
@@ -840,7 +905,12 @@ const defaultSections: any[] = [
         accent: '#8B5CF6',
         name: { ru: 'Правовая защита', uz: 'Huquqiy himoya', en: 'Legal protection' },
         desc: { ru: 'Полное юридическое сопровождение: обжалование дискриминационных условий, защита при отклонении заявки, представительство в ГЗКУ и Антимонопольном комитете', uz: 'To\'liq yuridik hamrohlik: kamsituvchi shartlarga shikoyat, ariza rad etilganda himoya, DXKU va Monopoliyaga qarshi qo\'mitada vakillik', en: 'Full legal support: appealing discriminatory conditions, protection against application rejection, representation before GPPA and Antimonopoly Committee' },
-        features: ['Анализ оснований для жалобы', 'Подготовка жалобы', 'Представительство в органах', '98% успешных обжалований'],
+        features: [
+          { ru: 'Анализ оснований для жалобы', uz: 'Shikoyat asoslarini tahlil', en: 'Complaint grounds analysis' },
+          { ru: 'Подготовка жалобы', uz: 'Shikoyat tayyorlash', en: 'Complaint preparation' },
+          { ru: 'Представительство в органах', uz: 'Organlarda vakillik', en: 'Representation before authorities' },
+          { ru: '98% успешных обжалований', uz: '98% muvaffaqiyatli shikoyatlar', en: '98% successful appeals' },
+        ],
         price: { ru: 'от 1 500 000 сум / дело', uz: 'ish uchun 1 500 000 so\'mdan', en: 'from 1,500,000 UZS / case' },
       },
       {
@@ -848,7 +918,12 @@ const defaultSections: any[] = [
         accent: '#3B82F6',
         name: { ru: 'Комплексное VIP-сопровождение', uz: 'Kompleks VIP-hamrohlik', en: 'Comprehensive VIP support' },
         desc: { ru: 'Полный цикл от поиска тендера до исполнения контракта. Персональный менеджер, приоритетная поддержка 24/7 и гарантия качества результата', uz: 'Tenderni topishdan shartnomani bajarishgacha to\'liq tsikl. Shaxsiy menejer, 24/7 ustuvor qo\'llab-quvvatlash va natija sifati kafolati', en: 'Full cycle from tender search to contract execution. Personal manager, priority 24/7 support and quality result guarantee' },
-        features: ['Поиск и отбор тендеров', 'Полный пакет документов', 'Правовая защита включена', 'Персональный менеджер'],
+        features: [
+          { ru: 'Поиск и отбор тендеров', uz: 'Tenderlarni qidirish va tanlash', en: 'Tender search and selection' },
+          { ru: 'Полный пакет документов', uz: "To'liq hujjatlar paketi", en: 'Full document package' },
+          { ru: 'Правовая защита включена', uz: 'Huquqiy himoya kiradi', en: 'Legal protection included' },
+          { ru: 'Персональный менеджер', uz: 'Shaxsiy menejer', en: 'Personal manager' },
+        ],
         price: { ru: 'По договору · индивидуально', uz: 'Shartnoma bo\'yicha · individual', en: 'By agreement · individual' },
       },
     ],

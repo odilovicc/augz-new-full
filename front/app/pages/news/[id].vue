@@ -6,8 +6,8 @@
 
     <div v-else-if="!article" class="min-h-screen flex flex-col items-center justify-center gap-4 text-gray-400">
       <span class="text-6xl">404</span>
-      <p>Материал не найден</p>
-      <NuxtLink :to="localePath('/news')" class="text-sm font-semibold text-(--theme-color) hover:underline">← Все материалы</NuxtLink>
+      <p>{{ t('news_page.not_found') }}</p>
+      <NuxtLink :to="localePath('/news')" class="text-sm font-semibold text-(--theme-color) hover:underline">{{ t('news_page.back_to_news') }}</NuxtLink>
     </div>
 
     <template v-else>
@@ -101,7 +101,7 @@
                   :to="localePath('/news')"
                   class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-(--theme-color) hover:text-white transition-all"
                 >
-                  {{ tag }}
+                  {{ translateTag(tag) }}
                 </NuxtLink>
               </div>
 
@@ -182,6 +182,12 @@ const localePath = useLocalePath()
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
 const route  = useRoute()
+
+function translateTag(tag: string): string {
+  const key = `news_page_tags.${tag}`
+  const translated = t(key)
+  return translated === key ? tag : translated
+}
 
 // id is static per-page — no need for computed
 const articleId = route.params.id as string
