@@ -230,7 +230,7 @@
 
                 <p class="text-xs text-gray-400 text-center">
                   {{ ui('privacy_pre') }}
-                  <a href="#" class="text-(--theme-color) hover:underline">{{ ui('privacy_link') }}</a>
+                  <NuxtLink :to="localePath('/privacy')" class="text-(--theme-color) hover:underline">{{ ui('privacy_link') }}</NuxtLink>
                   {{ ui('privacy_post') }}
                 </p>
               </form>
