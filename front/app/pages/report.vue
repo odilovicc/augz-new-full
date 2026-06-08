@@ -692,25 +692,39 @@ const PIPELINE = computed(() => [
   { key: 'closed',            label: $t('report_page.pipeline.closed_label'),      eta: '',                                         note: '' },
 ])
 
+function fmtDate(d: Date, withTime = false): string {
+  const l = locale.value
+  if (l === 'uz') {
+    const months = ['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr']
+    const base = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`
+    if (!withTime) return base
+    const hh = String(d.getHours()).padStart(2, '0')
+    const mm = String(d.getMinutes()).padStart(2, '0')
+    return `${base} ${hh}:${mm}`
+  }
+  const lc = l === 'en' ? 'en-GB' : 'ru-RU'
+  const opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' }
+  if (withTime) { opts.hour = '2-digit'; opts.minute = '2-digit' }
+  return d.toLocaleString(lc, opts)
+}
+
 function buildStages(complaint: any): Stage[] {
   const createdAt = new Date(complaint.created_at)
-  const loc = locale.value === 'en' ? 'en-GB' : locale.value === 'uz' ? 'uz-UZ' : 'ru-RU'
-  const fmtDay = (d: Date) => d.toLocaleString(loc, { day: 'numeric', month: 'long', year: 'numeric' })
   const addDays = (d: Date, n: number) => { const r = new Date(d); r.setDate(r.getDate() + n); return r }
-  const fmt = (d: Date) => d.toLocaleString(loc, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 
   const currentIdx = PIPELINE.value.findIndex(p => p.key === complaint.status)
+  const lastIdx = PIPELINE.value.length - 1
 
   return PIPELINE.value.map((stage, i) => {
     let status: 'done' | 'active' | 'pending'
     if (i < currentIdx) status = 'done'
-    else if (i === currentIdx) status = currentIdx === PIPELINE.length - 1 ? 'done' : 'active'
+    else if (i === currentIdx) status = currentIdx === lastIdx ? 'done' : 'active'
     else status = 'pending'
 
     const offsetDays = [0, 1, 3, 7, 10, 12][i] ?? i * 2
     const date = i === 0
-      ? fmt(createdAt)
-      : (i < currentIdx ? fmtDay(addDays(createdAt, offsetDays)) : '')
+      ? fmtDate(createdAt, true)
+      : (i < currentIdx ? fmtDate(addDays(createdAt, offsetDays)) : '')
 
     const note = stage.key === 'official_response' && complaint.response_message
       ? complaint.response_message
@@ -820,18 +834,14 @@ const progressSteps = computed<ProgressStep[]>(() =>
   }))
 )
 
-const loc = computed(() => locale.value === 'en' ? 'en-GB' : locale.value === 'uz' ? 'uz-UZ' : 'ru-RU')
-
 const submittedAt = computed(() =>
-  createdComplaint.value
-    ? new Date(createdComplaint.value.created_at).toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-    : new Date().toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+  fmtDate(createdComplaint.value ? new Date(createdComplaint.value.created_at) : new Date(), true)
 )
 
 const deadlineAt = computed(() => {
   const base = createdComplaint.value ? new Date(createdComplaint.value.created_at) : new Date()
   base.setDate(base.getDate() + 10)
-  return $t('report_page.deadline_prefix') + base.toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric' })
+  return $t('report_page.deadline_prefix') + fmtDate(base)
 })
 
 const trackCodeForModal = computed(() => createdComplaint.value?.track_code ?? '')
@@ -980,9 +990,9 @@ const resolvedTrackResult = computed<{ stages: Stage[]; statusLabel: string; sta
     ...tr,
     statusLabel: st.label,
     statusColor: st.color,
-    submitted: new Date(tr.created_at).toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+    submitted: fmtDate(new Date(tr.created_at), true),
     expert:   t(c.value?.success_modal?.expert_name) || 'AUGZ',
-    deadline: (() => { const d = new Date(tr.created_at); d.setDate(d.getDate() + 10); return $t('report_page.deadline_prefix') + d.toLocaleString(loc.value, { day: 'numeric', month: 'long', year: 'numeric' }) })(),
+    deadline: (() => { const d = new Date(tr.created_at); d.setDate(d.getDate() + 10); return $t('report_page.deadline_prefix') + fmtDate(d) })(),
     stages: buildStages(tr),
   }
 })
