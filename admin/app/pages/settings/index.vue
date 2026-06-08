@@ -153,61 +153,71 @@
           <UIcon name="i-lucide-building-2" class="w-3.5 h-3.5" /> Отделы АУГЗ
         </h2>
 
-        <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-          <table class="w-full text-sm">
-            <thead class="border-b border-gray-100 dark:border-gray-800">
-              <tr class="text-left text-gray-400 text-xs uppercase tracking-wide">
-                <th class="px-5 py-3 font-medium">Отдел</th>
-                <th class="px-5 py-3 font-medium">Описание</th>
-                <th class="px-5 py-3 font-medium">Ответственный</th>
-                <th class="px-5 py-3 font-medium">Телефон</th>
-                <th class="px-5 py-3 font-medium">Email</th>
-                <th class="px-5 py-3 font-medium w-10" />
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-50 dark:divide-gray-800">
-              <tr v-for="(dept, i) in form.departments" :key="i" class="group">
-                <td class="px-3 py-2">
-                  <UInput v-model="form.departments[i].name" size="sm" class="w-full" placeholder="Членство" />
-                </td>
-                <td class="px-3 py-2">
-                  <UInput v-model="form.departments[i].desc" size="sm" class="w-full" placeholder="Вступление, тарифы" />
-                </td>
-                <td class="px-3 py-2">
-                  <UInput v-model="form.departments[i].responsible" size="sm" class="w-full" placeholder="Абидов Марат" />
-                </td>
-                <td class="px-3 py-2">
-                  <UInput v-model="form.departments[i].phone" size="sm" class="w-full" placeholder="+998 55 503 12 21" />
-                </td>
-                <td class="px-3 py-2">
-                  <UInput v-model="form.departments[i].email" size="sm" class="w-full" placeholder="info@augz.uz" />
-                </td>
-                <td class="px-3 py-2">
-                  <UButton
-                    color="error"
-                    variant="ghost"
-                    icon="i-lucide-trash-2"
-                    size="xs"
-                    @click="removeDept(i)"
-                  />
-                </td>
-              </tr>
-              <tr v-if="!form.departments.length">
-                <td colspan="6" class="px-5 py-8 text-center text-gray-400 text-sm">Нет отделов</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="flex flex-col gap-3">
+          <div
+            v-for="(dept, i) in form.departments"
+            :key="i"
+            class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-5"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                {{ dept.name.ru || `Отдел ${i + 1}` }}
+              </span>
+              <UButton color="error" variant="ghost" icon="i-lucide-trash-2" size="xs" @click="removeDept(i)" />
+            </div>
 
-          <div class="px-5 py-3 border-t border-gray-100 dark:border-gray-800">
-            <button
-              type="button"
-              class="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors"
-              @click="addDept"
-            >
-              <UIcon name="i-lucide-plus-circle" class="w-4 h-4" />
-              Добавить отдел
-            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+              <!-- Name -->
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">Название отдела</p>
+                <div class="flex flex-col gap-1.5">
+                  <UInput v-model="form.departments[i].name.ru" size="sm" placeholder="RU: Членство" />
+                  <UInput v-model="form.departments[i].name.uz" size="sm" placeholder="UZ: A'zolik" />
+                  <UInput v-model="form.departments[i].name.en" size="sm" placeholder="EN: Membership" />
+                </div>
+              </div>
+              <!-- Description -->
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">Описание</p>
+                <div class="flex flex-col gap-1.5">
+                  <UInput v-model="form.departments[i].desc.ru" size="sm" placeholder="RU: Вступление, тарифы" />
+                  <UInput v-model="form.departments[i].desc.uz" size="sm" placeholder="UZ: Kirish, tariflar" />
+                  <UInput v-model="form.departments[i].desc.en" size="sm" placeholder="EN: Membership, rates" />
+                </div>
+              </div>
+              <!-- Responsible -->
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">Ответственный</p>
+                <div class="flex flex-col gap-1.5">
+                  <UInput v-model="form.departments[i].responsible.ru" size="sm" placeholder="RU: Абидов Марат" />
+                  <UInput v-model="form.departments[i].responsible.uz" size="sm" placeholder="UZ: Abidov Marat" />
+                  <UInput v-model="form.departments[i].responsible.en" size="sm" placeholder="EN: Abidov Marat" />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <UFormField label="Телефон">
+                <UInput v-model="form.departments[i].phone" size="sm" class="w-full" placeholder="+998 55 503 12 21" />
+              </UFormField>
+              <UFormField label="Email">
+                <UInput v-model="form.departments[i].email" size="sm" class="w-full" placeholder="info@augz.uz" />
+              </UFormField>
+            </div>
           </div>
+
+          <div v-if="!form.departments.length" class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 px-5 py-8 text-center text-gray-400 text-sm">
+            Нет отделов
+          </div>
+
+          <button
+            type="button"
+            class="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors px-1 py-2"
+            @click="addDept"
+          >
+            <UIcon name="i-lucide-plus-circle" class="w-4 h-4" />
+            Добавить отдел
+          </button>
         </div>
       </section>
 
@@ -235,8 +245,9 @@ const coordsError = ref('')
 interface Social {
   id: string; name: string; handle: string; url: string; icon: string
 }
+interface I18nField { ru: string; uz: string; en: string }
 interface Department {
-  name: string; desc: string; responsible: string; phone: string; email: string
+  name: I18nField; desc: I18nField; responsible: I18nField; phone: string; email: string
 }
 
 const form = reactive({
@@ -275,6 +286,12 @@ function parseCoords() {
   coordsInput.value = `${lat}, ${lng}`
 }
 
+function toI18n(val: any): I18nField {
+  if (val && typeof val === 'object' && 'ru' in val) return val as I18nField
+  const str = typeof val === 'string' ? val : ''
+  return { ru: str, uz: '', en: '' }
+}
+
 onMounted(async () => {
   try {
     const data = await apiFetch<any>('/admin/settings')
@@ -283,7 +300,14 @@ onMounted(async () => {
     if (data?.address)     Object.assign(form.address, data.address)
     if (data?.hours)       Object.assign(form.hours, data.hours)
     if (data?.socials)     form.socials = data.socials
-    if (data?.departments) form.departments = data.departments
+    if (data?.departments) {
+      form.departments = data.departments.map((d: any) => ({
+        ...d,
+        name:        toI18n(d.name),
+        desc:        toI18n(d.desc),
+        responsible: toI18n(d.responsible),
+      }))
+    }
     // Populate coords display
     if (data?.address?.lat) coordsInput.value = `${data.address.lat}, ${data.address.lng}`
   } finally {
@@ -296,8 +320,10 @@ function addSocial() {
 }
 function removeSocial(i: number) { form.socials.splice(i, 1) }
 
+const emptyI18n = (): I18nField => ({ ru: '', uz: '', en: '' })
+
 function addDept() {
-  form.departments.push({ name: '', desc: '', responsible: '', phone: '', email: '' })
+  form.departments.push({ name: emptyI18n(), desc: emptyI18n(), responsible: emptyI18n(), phone: '', email: '' })
 }
 function removeDept(i: number) { form.departments.splice(i, 1) }
 

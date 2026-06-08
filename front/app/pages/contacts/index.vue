@@ -337,7 +337,22 @@ function cms(section: Record<string, any>, key: string, fallback: string): strin
 function ui(key: string): string  { return cms(cmsUi.value, key, t(`contacts_page.${key}`)) }
 function hero(key: string): string { return cms(cmsHero.value, key, t(`contacts_page.${key}`)) }
 
-const departments = computed(() => settings.value?.departments ?? [])
+const lt = useLocaleText()
+
+function deptText(val: string | { ru: string; uz: string; en: string } | undefined): string {
+  if (!val) return ''
+  if (typeof val === 'string') return val
+  return lt(val)
+}
+
+const departments = computed(() =>
+  (settings.value?.departments ?? []).map(d => ({
+    ...d,
+    name:        deptText(d.name),
+    desc:        deptText(d.desc),
+    responsible: deptText(d.responsible),
+  }))
+)
 const socials     = computed(() => settings.value?.socials ?? [])
 
 function phoneHref(phone: string | undefined) {

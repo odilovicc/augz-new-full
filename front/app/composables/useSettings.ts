@@ -26,9 +26,9 @@ export interface SiteSettings {
     icon: string
   }>
   departments: Array<{
-    name: string
-    desc: string
-    responsible: string
+    name: string | { ru: string; uz: string; en: string }
+    desc: string | { ru: string; uz: string; en: string }
+    responsible: string | { ru: string; uz: string; en: string }
     phone: string
     email: string
   }>
