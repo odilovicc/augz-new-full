@@ -376,6 +376,7 @@ async function submitApplication() {
         })
         appSent.value = true
         Object.assign(appForm, { name: '', organization: '', phone: '', email: '' })
+        setTimeout(() => { appSent.value = false }, 3500)
     } catch (e: any) {
         const errors = e?.data?.errors
         if (errors) {

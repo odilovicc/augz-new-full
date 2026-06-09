@@ -3,7 +3,7 @@
     <Transition name="modal">
       <div
         v-if="modelValue"
-        class="fixed inset-0 z-50 flex items-center justify-center p-4"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4"
         @keydown.esc="$emit('update:modelValue', false)"
       >
         <!-- Backdrop -->
@@ -24,15 +24,15 @@
           </button>
 
           <!-- Form state -->
-          <div v-if="!sent" class="p-8 flex flex-col gap-5">
+          <div v-if="!sent" class="p-5 sm:p-8 flex flex-col gap-4 sm:gap-5">
             <div class="flex flex-col gap-1">
               <p class="text-xs font-bold tracking-widest uppercase text-(--theme-color)">{{ txt('support_label') }}</p>
-              <h2 class="text-3xl font-black uppercase text-white leading-tight">{{ txt('title') }}</h2>
+              <h2 class="text-2xl sm:text-3xl font-black uppercase text-white leading-tight">{{ txt('title') }}</h2>
               <p class="text-sm text-gray-400 mt-1">{{ txt('subtitle') }}</p>
             </div>
 
             <!-- Trust badges -->
-            <div class="flex flex-wrap gap-2">
+            <div class="hidden sm:flex flex-wrap gap-2">
               <div class="flex items-center gap-1.5 bg-white/5 border border-white/8 rounded-lg px-3 py-1.5">
                 <Icon name="heroicons:clock" class="w-3.5 h-3.5 text-(--theme-color)" />
                 <span class="text-xs text-gray-300 font-medium">{{ txt('badge_time') }}</span>
@@ -235,7 +235,7 @@
 
 <script setup lang="ts">
 defineProps<{ modelValue: boolean }>()
-defineEmits<{ (e: 'update:modelValue', val: boolean): void }>()
+const emit = defineEmits<{ (e: 'update:modelValue', val: boolean): void }>()
 
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
@@ -307,6 +307,10 @@ async function submit() {
       },
     })
     sent.value = true
+    setTimeout(() => {
+      sent.value = false
+      emit('update:modelValue', false)
+    }, 3500)
   } catch (e: any) {
     const errs = e?.data?.errors
     serverError.value = errs
